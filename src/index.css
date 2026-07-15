@@ -47,6 +47,13 @@ body {
   font-weight: 600;
 }
 
+.subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
 .step {
   display: flex;
   flex-direction: column;

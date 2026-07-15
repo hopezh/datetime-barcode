@@ -58,7 +58,16 @@ export default function App() {
   return (
     <main className="app">
       <header className="app-header">
-        <h1>Datetime Barcode</h1>
+        <div>
+          <h1>Datetime Barcode</h1>
+          <p className="subtitle">
+            -&gt; 2026-07-15_21:08:56
+            <br />
+            -&gt; 011111101010-0111-01111_10101-001000-111000
+            <br />
+            -&gt; ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▚▒▒▒
+          </p>
+        </div>
         <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
       </header>
 
