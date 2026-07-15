@@ -18,6 +18,7 @@ export default function App() {
   const [oneSymbol, setOneSymbol] = useState(null)
   const [assignTarget, setAssignTarget] = useState('zero')
   const [datetimeInput, setDatetimeInput] = useState('')
+  const [binary, setBinary] = useState('')
   const [barcode, setBarcode] = useState('')
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function App() {
 
   const selectedSet = SYMBOL_SETS.find((set) => set.id === selectedSetId)
   const binaryResult = datetimeToBinary(datetimeInput)
-  const canTranslate = binaryResult.ok && zeroSymbol && oneSymbol
+  const canTranslate = Boolean(binary && zeroSymbol && oneSymbol)
 
   function selectSet(setId) {
     setSelectedSetId(setId)
@@ -45,8 +46,12 @@ export default function App() {
     }
   }
 
+  function convert() {
+    setBinary(binaryResult.ok ? binaryResult.binary : '')
+  }
+
   function translate() {
-    setBarcode(binaryToBarcode(binaryResult.binary, zeroSymbol, oneSymbol))
+    setBarcode(binaryToBarcode(binary, zeroSymbol, oneSymbol))
   }
 
   return (
@@ -56,41 +61,56 @@ export default function App() {
         <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
       </header>
 
-      <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={selectSet} />
+      <section className="step">
+        <h2>Step 1. Select symbol set</h2>
+        <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={selectSet} />
+        {selectedSet.experimental && (
+          <p className="warning">
+            Experimental set: these glyphs may not render with default system fonts.
+          </p>
+        )}
+        <SymbolGrid
+          symbols={selectedSet.symbols}
+          zeroSymbol={zeroSymbol}
+          oneSymbol={oneSymbol}
+          onPick={pickSymbol}
+        />
+      </section>
 
-      {selectedSet.experimental && (
-        <p className="warning">
-          Experimental set: these glyphs may not render with default system fonts.
-        </p>
-      )}
+      <section className="step">
+        <h2>Step 2. Pick the symbols for zero and one</h2>
+        <ZeroOneAssigner
+          zeroSymbol={zeroSymbol}
+          oneSymbol={oneSymbol}
+          assignTarget={assignTarget}
+          onArm={setAssignTarget}
+        />
+      </section>
 
-      <SymbolGrid
-        symbols={selectedSet.symbols}
-        zeroSymbol={zeroSymbol}
-        oneSymbol={oneSymbol}
-        onPick={pickSymbol}
-      />
+      <section className="step">
+        <h2>Step 3. Specify the date and time</h2>
+        <DatetimeInput
+          value={datetimeInput}
+          error={datetimeInput && !binaryResult.ok ? binaryResult.error : null}
+          onChange={setDatetimeInput}
+        />
+      </section>
 
-      <ZeroOneAssigner
-        zeroSymbol={zeroSymbol}
-        oneSymbol={oneSymbol}
-        assignTarget={assignTarget}
-        onArm={setAssignTarget}
-      />
+      <section className="step">
+        <h2>Step 4. Convert date &amp; time to binary string</h2>
+        <button type="button" className="action-button" disabled={!binaryResult.ok} onClick={convert}>
+          Convert
+        </button>
+        <CodeDisplay label="Binary" value={binary} />
+      </section>
 
-      <DatetimeInput
-        value={datetimeInput}
-        error={datetimeInput && !binaryResult.ok ? binaryResult.error : null}
-        onChange={setDatetimeInput}
-      />
-
-      <CodeDisplay label="Binary" value={binaryResult.ok ? binaryResult.binary : ''} />
-
-      <button type="button" className="translate-button" disabled={!canTranslate} onClick={translate}>
-        Translate
-      </button>
-
-      <CodeDisplay label="Barcode" value={barcode} />
+      <section className="step">
+        <h2>Step 5. Convert the binary string to barcode</h2>
+        <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>
+          Translate
+        </button>
+        <CodeDisplay label="Barcode" value={barcode} />
+      </section>
     </main>
   )
 }
