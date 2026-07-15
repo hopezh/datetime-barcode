@@ -37,13 +37,6 @@ export default function App() {
   const binaryResult = datetimeToBinary(datetimeInput)
   const canTranslate = Boolean(binary && zeroSymbol && oneSymbol)
 
-  function selectSet(setId) {
-    setSelectedSetId(setId)
-    setZeroSymbol(null)
-    setOneSymbol(null)
-    setAssignTarget('zero')
-  }
-
   function pickSymbol(symbol) {
     if (assignTarget === 'zero') {
       setZeroSymbol(symbol)
@@ -87,8 +80,18 @@ export default function App() {
       </section>
 
       <section className="step">
-        <h2>Step 3. Select symbol set</h2>
-        <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={selectSet} />
+        <h2>Step 3. Pick the symbols for zero and one</h2>
+        <ZeroOneAssigner
+          zeroSymbol={zeroSymbol}
+          oneSymbol={oneSymbol}
+          assignTarget={assignTarget}
+          onArm={setAssignTarget}
+        />
+      </section>
+
+      <section className="step">
+        <h2>Step 4. Select symbol set</h2>
+        <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={setSelectedSetId} />
         {selectedSet.experimental && (
           <p className="warning">
             Experimental set: these glyphs may not render with default system fonts.
@@ -99,16 +102,6 @@ export default function App() {
           zeroSymbol={zeroSymbol}
           oneSymbol={oneSymbol}
           onPick={pickSymbol}
-        />
-      </section>
-
-      <section className="step">
-        <h2>Step 4. Pick the symbols for zero and one</h2>
-        <ZeroOneAssigner
-          zeroSymbol={zeroSymbol}
-          oneSymbol={oneSymbol}
-          assignTarget={assignTarget}
-          onArm={setAssignTarget}
         />
       </section>
 
