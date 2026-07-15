@@ -6,6 +6,7 @@ import BarcodeBuilder from './components/BarcodeBuilder.jsx'
 const TABS = [
   { id: 'binary', label: 'Binary code', base: 2 },
   { id: 'ternary', label: 'Ternary code', base: 3 },
+  { id: 'quaternary', label: 'Quaternary code', base: 4 },
 ]
 
 export default function App() {

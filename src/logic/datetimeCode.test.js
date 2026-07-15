@@ -15,6 +15,11 @@ describe('toDigits', () => {
     expect(toDigits(7, 3, 3)).toBe('021')
     expect(toDigits(6560, 3, 8)).toBe('22222222')
   })
+
+  it('encodes quaternary digits', () => {
+    expect(toDigits(7, 4, 2)).toBe('13')
+    expect(toDigits(4095, 4, 6)).toBe('333333')
+  })
 })
 
 describe('parseDatetime', () => {
@@ -84,5 +89,22 @@ describe('datetimeToCode base 3', () => {
     expect(code[17]).toBe('_')
     expect(code[21]).toBe('-')
     expect(code[26]).toBe('-')
+  })
+})
+
+describe('datetimeToCode base 4', () => {
+  it('encodes the canonical example', () => {
+    const result = datetimeToCode('2026-07-14_23:12:00', 4)
+    expect(result.ok).toBe(true)
+    expect(result.code).toBe('133222-13-032_113-030-000')
+  })
+
+  it('places separators at field boundaries', () => {
+    const { code } = datetimeToCode('2026-07-14_23:12:00', 4)
+    expect(code[6]).toBe('-')
+    expect(code[9]).toBe('-')
+    expect(code[13]).toBe('_')
+    expect(code[17]).toBe('-')
+    expect(code[21]).toBe('-')
   })
 })

@@ -8,8 +8,8 @@ import DigitAssigner from './DigitAssigner.jsx'
 import DatetimeInput from './DatetimeInput.jsx'
 import CodeDisplay from './CodeDisplay.jsx'
 
-const CODE_NAMES = { 2: 'binary', 3: 'ternary' }
-const DIGIT_WORDS = { 2: 'zero and one', 3: 'zero, one and two' }
+const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary' }
+const DIGIT_WORDS = { 2: 'zero and one', 3: 'zero, one and two', 4: 'zero, one, two and three' }
 
 function nowAsDatetimeInput() {
   const now = new Date()
