@@ -8,6 +8,8 @@ import DigitAssigner from './DigitAssigner.jsx'
 import DatetimeInput from './DatetimeInput.jsx'
 import CodeDisplay from './CodeDisplay.jsx'
 
+const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
+
 const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary', 6: 'senary' }
 const DIGIT_WORDS = {
   2: 'zero and one',
@@ -44,6 +46,16 @@ export default function BarcodeBuilder({ base }) {
     setAssignTarget((assignTarget + 1) % base)
   }
 
+  function randomize() {
+    const pool = [...RANDOM_POOL]
+    const picked = Array.from({ length: base }, () => {
+      const index = Math.floor(Math.random() * pool.length)
+      return pool.splice(index, 1)[0]
+    })
+    setSymbols(picked)
+    setAssignTarget(0)
+  }
+
   function convert() {
     setCode(codeResult.ok ? codeResult.code : '')
   }
@@ -73,7 +85,12 @@ export default function BarcodeBuilder({ base }) {
 
       <section className="step">
         <h2>Step 3. Pick the symbols for {DIGIT_WORDS[base]}</h2>
-        <DigitAssigner symbols={symbols} assignTarget={assignTarget} onArm={setAssignTarget} />
+        <DigitAssigner
+          symbols={symbols}
+          assignTarget={assignTarget}
+          onArm={setAssignTarget}
+          onRandomize={randomize}
+        />
       </section>
 
       <section className="step">

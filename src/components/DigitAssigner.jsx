@@ -1,4 +1,4 @@
-export default function DigitAssigner({ symbols, assignTarget, onArm }) {
+export default function DigitAssigner({ symbols, assignTarget, onArm, onRandomize }) {
   return (
     <div className="assigner">
       <div className="assigner-slots">
@@ -15,6 +15,9 @@ export default function DigitAssigner({ symbols, assignTarget, onArm }) {
       <p className="assigner-hint">
         Click a slot, then click a symbol in the grid to assign it.
       </p>
+      <button type="button" onClick={onRandomize}>
+        Randomize
+      </button>
     </div>
   )
 }

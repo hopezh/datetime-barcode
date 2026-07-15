@@ -61,7 +61,7 @@ Pick a tab for the base you want, then walk through its five labeled steps (each
 
 1. **Specify the date and time** — a date picker plus three 24-hour dropdowns for hour, minute, and second. It defaults to the moment the app loaded.
 2. **Convert to the chosen base** — click **Convert** to encode the datetime as the fixed-width digit string.
-3. **Pick the symbols for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `5 =` for senary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup.
+3. **Pick the symbols for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `5 =` for senary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup. Or click **Randomize** to fill every slot with distinct random symbols drawn from the three non-experimental sets.
 4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the digit symbols can come from different sets.
 5. **Convert the digit string to barcode** — click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
 
