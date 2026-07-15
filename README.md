@@ -1,11 +1,17 @@
 # Datetime Barcode
 
-A minimalistic web app that converts a datetime string into fixed-width binary, then renders that binary as a "barcode" made of Unicode block-element symbols you pick to represent 0 and 1.
+**Live app: https://hopezh.github.io/datetime-barcode/**
 
-Each datetime component is encoded with a fixed bit width — year 12, month 4, day 5, hour 5, minute 6, second 6 — with `-` between fields and `_` between the date and time halves. Example:
+A minimalistic web app that converts a date and time into a fixed-width binary string, then renders that binary as a "barcode" made of two Unicode symbols you pick to represent 0 and 1.
+
+Each datetime component is encoded with a fixed bit width — year 12, month 4, day 5, hour 5, minute 6, second 6 — with `-` between fields and `_` between the date and time halves.
+
+Example:
 
 ```
-2026-07-14_23:12:00  →  011111101010-0111-01110_10111-001100-000000
+-> 2026-07-15_21:08:56
+-> 011111101010-0111-01111_10101-001000-111000
+-> ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▚▒▒▒
 ```
 
 Built with React + Vite (plain JSX, no TypeScript), run with [Bun](https://bun.sh). No other runtime dependencies.
@@ -26,16 +32,21 @@ Other commands:
 - `bun test` — run the unit tests
 - `bun run build` — production build into `dist/`
 - `bun run preview` — serve the built `dist/` locally
+- `bun run lint` — lint with oxlint
+
+Pushes to `main` deploy the app to [GitHub Pages](https://hopezh.github.io/datetime-barcode/) via `.github/workflows/deploy.yml`.
 
 ## How to use the app
 
-1. Pick a symbol set from the dropdown (Block Elements is the default; Legacy Computing is experimental and may not render with default fonts).
-2. Assign symbols to 0 and 1: click a slot button (`0 =` or `1 =`), then click a glyph in the grid. After each pick the other slot arms automatically, so two grid clicks complete the setup. Assigned glyphs show a highlight ring and a small 0/1 badge.
-3. Type a datetime as `YYYY-MM-DD_hh:mm:ss` — the binary translation updates live as you type, with an error message for malformed input.
-4. Click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
-5. Use the toggle in the header to switch between dark and light mode (the initial theme follows your system preference).
+The app walks through five labeled steps:
 
-Switching symbol sets clears the 0/1 assignments, since the assigned glyphs may not exist in the new set.
+1. **Specify the date and time** — a date picker plus three 24-hour dropdowns for hour, minute, and second. It defaults to the moment the app loaded.
+2. **Convert to binary** — click **Convert** to encode the datetime as the fixed-width binary string.
+3. **Pick the symbols for zero and one** — click a slot button (`0 =` or `1 =`) to arm it, then click a glyph in the grid below. After each pick the other slot arms automatically, so two grid clicks complete the setup.
+4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the 0 and 1 symbols can come from different sets.
+5. **Convert the binary string to barcode** — click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
+
+Each output (datetime, binary, barcode) has a copy button. The toggle in the header switches between dark and light mode; the initial theme follows your system preference.
 
 ## Structure of the app
 
@@ -44,9 +55,11 @@ datetime-barcode/
 ├── index.html
 ├── package.json
 ├── vite.config.js
+├── public/
+│   └── qr-code.svg          # theme-aware favicon
 └── src/
     ├── main.jsx             # bootstrap
-    ├── App.jsx              # owns all state; composes components; Translate button
+    ├── App.jsx              # owns all state; composes the five steps
     ├── index.css            # theme tokens + all styles
     ├── logic/               # pure functions, zero React imports
     │   ├── datetimeBinary.js    # parse + fixed-width binary encoding
@@ -57,6 +70,7 @@ datetime-barcode/
     │   └── symbolSets.js        # curated Unicode symbol sets
     └── components/
         ├── ThemeToggle.jsx
+        ├── CopyButton.jsx
         ├── SymbolSetPicker.jsx
         ├── SymbolGrid.jsx
         ├── ZeroOneAssigner.jsx
