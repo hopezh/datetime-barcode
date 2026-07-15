@@ -62,7 +62,24 @@ export default function App() {
       </header>
 
       <section className="step">
-        <h2>Step 1. Select symbol set</h2>
+        <h2>Step 1. Specify the date and time</h2>
+        <DatetimeInput
+          value={datetimeInput}
+          error={datetimeInput && !binaryResult.ok ? binaryResult.error : null}
+          onChange={setDatetimeInput}
+        />
+      </section>
+
+      <section className="step">
+        <h2>Step 2. Convert date &amp; time to binary string</h2>
+        <button type="button" className="action-button" disabled={!binaryResult.ok} onClick={convert}>
+          Convert
+        </button>
+        <CodeDisplay label="Binary" value={binary} />
+      </section>
+
+      <section className="step">
+        <h2>Step 3. Select symbol set</h2>
         <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={selectSet} />
         {selectedSet.experimental && (
           <p className="warning">
@@ -78,30 +95,13 @@ export default function App() {
       </section>
 
       <section className="step">
-        <h2>Step 2. Pick the symbols for zero and one</h2>
+        <h2>Step 4. Pick the symbols for zero and one</h2>
         <ZeroOneAssigner
           zeroSymbol={zeroSymbol}
           oneSymbol={oneSymbol}
           assignTarget={assignTarget}
           onArm={setAssignTarget}
         />
-      </section>
-
-      <section className="step">
-        <h2>Step 3. Specify the date and time</h2>
-        <DatetimeInput
-          value={datetimeInput}
-          error={datetimeInput && !binaryResult.ok ? binaryResult.error : null}
-          onChange={setDatetimeInput}
-        />
-      </section>
-
-      <section className="step">
-        <h2>Step 4. Convert date &amp; time to binary string</h2>
-        <button type="button" className="action-button" disabled={!binaryResult.ok} onClick={convert}>
-          Convert
-        </button>
-        <CodeDisplay label="Binary" value={binary} />
       </section>
 
       <section className="step">
