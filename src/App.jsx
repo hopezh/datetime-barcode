@@ -9,6 +9,14 @@ import ZeroOneAssigner from './components/ZeroOneAssigner.jsx'
 import DatetimeInput from './components/DatetimeInput.jsx'
 import CodeDisplay from './components/CodeDisplay.jsx'
 
+function nowAsDatetimeInput() {
+  const now = new Date()
+  const pad = (n) => String(n).padStart(2, '0')
+  const date = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
+  const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`
+  return `${date}_${time}`
+}
+
 export default function App() {
   const [theme, setTheme] = useState(() =>
     matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
@@ -17,7 +25,7 @@ export default function App() {
   const [zeroSymbol, setZeroSymbol] = useState(null)
   const [oneSymbol, setOneSymbol] = useState(null)
   const [assignTarget, setAssignTarget] = useState('zero')
-  const [datetimeInput, setDatetimeInput] = useState('')
+  const [datetimeInput, setDatetimeInput] = useState(nowAsDatetimeInput)
   const [binary, setBinary] = useState('')
   const [barcode, setBarcode] = useState('')
 
