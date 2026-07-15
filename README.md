@@ -2,9 +2,12 @@
 
 **Live app: https://hopezh.github.io/datetime-barcode/**
 
-A minimalistic web app that converts a date and time into a fixed-width binary string, then renders that binary as a "barcode" made of two Unicode symbols you pick to represent 0 and 1.
+A minimalistic web app that converts a date and time into a fixed-width binary or ternary string, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Two tabs — **Binary code** and **Ternary code** — offer the same five-step flow in base 2 and base 3.
 
-Each datetime component is encoded with a fixed bit width — year 12, month 4, day 5, hour 5, minute 6, second 6 — with `-` between fields and `_` between the date and time halves.
+Each datetime component is encoded with a fixed digit width, with `-` between fields and `_` between the date and time halves:
+
+- binary (bits): year 12, month 4, day 5, hour 5, minute 6, second 6
+- ternary (trits): year 8, month 3, day 4, hour 3, minute 4, second 4
 
 Example:
 
@@ -38,15 +41,15 @@ Pushes to `main` deploy the app to [GitHub Pages](https://hopezh.github.io/datet
 
 ## How to use the app
 
-The app walks through five labeled steps:
+Pick a tab — **Binary code** or **Ternary code** — then walk through its five labeled steps (each tab keeps its own state):
 
 1. **Specify the date and time** — a date picker plus three 24-hour dropdowns for hour, minute, and second. It defaults to the moment the app loaded.
-2. **Convert to binary** — click **Convert** to encode the datetime as the fixed-width binary string.
-3. **Pick the symbols for zero and one** — click a slot button (`0 =` or `1 =`) to arm it, then click a glyph in the grid below. After each pick the other slot arms automatically, so two grid clicks complete the setup.
-4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the 0 and 1 symbols can come from different sets.
-5. **Convert the binary string to barcode** — click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
+2. **Convert to binary/ternary** — click **Convert** to encode the datetime as the fixed-width digit string.
+3. **Pick the symbols for each digit** — click a slot button (`0 =`, `1 =`, and `2 =` on the ternary tab) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup.
+4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the digit symbols can come from different sets.
+5. **Convert the binary/ternary string to barcode** — click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
 
-Each output (datetime, binary, barcode) has a copy button. The toggle in the header switches between dark and light mode; the initial theme follows your system preference.
+Each output (datetime, digit string, barcode) has a copy button. The toggle in the header switches between dark and light mode; the initial theme follows your system preference.
 
 ## Structure of the app
 
@@ -59,26 +62,28 @@ datetime-barcode/
 │   └── qr-code.svg          # theme-aware favicon
 └── src/
     ├── main.jsx             # bootstrap
-    ├── App.jsx              # owns all state; composes the five steps
+    ├── App.jsx              # theme + tab switching; renders one BarcodeBuilder per tab
     ├── index.css            # theme tokens + all styles
     ├── logic/               # pure functions, zero React imports
-    │   ├── datetimeBinary.js    # parse + fixed-width binary encoding
-    │   ├── datetimeBinary.test.js
-    │   ├── barcode.js           # binary → symbol substitution
+    │   ├── datetimeCode.js      # parse + fixed-width encoding in a given base
+    │   ├── datetimeCode.test.js
+    │   ├── barcode.js           # digit string → symbol substitution
     │   └── barcode.test.js
     ├── data/
     │   └── symbolSets.js        # curated Unicode symbol sets
     └── components/
+        ├── BarcodeBuilder.jsx   # the five-step flow, parameterized by base
         ├── ThemeToggle.jsx
+        ├── GithubLink.jsx
         ├── CopyButton.jsx
         ├── SymbolSetPicker.jsx
         ├── SymbolGrid.jsx
-        ├── ZeroOneAssigner.jsx
+        ├── DigitAssigner.jsx
         ├── DatetimeInput.jsx
         └── CodeDisplay.jsx
 ```
 
-State lives entirely in `App.jsx` (props down, callbacks up). The `logic/` modules return result objects (`{ ok, ... }`) instead of throwing, since malformed input is an expected state while typing.
+Per-tab state lives in each `BarcodeBuilder` instance (props down, callbacks up); both stay mounted so switching tabs preserves their state. The `logic/` modules return result objects (`{ ok, ... }`) instead of throwing, since malformed input is an expected state while typing.
 
 ## References
 

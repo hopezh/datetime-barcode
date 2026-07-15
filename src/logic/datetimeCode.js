@@ -1,16 +1,12 @@
 export const FIELD_WIDTHS = {
-  year: 12,
-  month: 4,
-  day: 5,
-  hour: 5,
-  minute: 6,
-  second: 6,
+  2: { year: 12, month: 4, day: 5, hour: 5, minute: 6, second: 6 },
+  3: { year: 8, month: 3, day: 4, hour: 3, minute: 4, second: 4 },
 }
 
 const DATETIME_PATTERN = /^(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2}):(\d{2})$/
 
-export function toBinary(value, width) {
-  return value.toString(2).padStart(width, '0')
+export function toDigits(value, base, width) {
+  return value.toString(base).padStart(width, '0')
 }
 
 export function parseDatetime(input) {
@@ -28,21 +24,22 @@ export function parseDatetime(input) {
   return { ok: true, parts: { year, month, day, hour, minute, second } }
 }
 
-export function datetimeToBinary(input) {
+export function datetimeToCode(input, base) {
   const parsed = parseDatetime(input)
   if (!parsed.ok) return parsed
   const { year, month, day, hour, minute, second } = parsed.parts
+  const widths = FIELD_WIDTHS[base]
   // Per the confirmed canonical example, time-field separators render as '-',
   // not the input's ':' — only the date/time '_' divider is kept as-is.
   const date = [
-    toBinary(year, FIELD_WIDTHS.year),
-    toBinary(month, FIELD_WIDTHS.month),
-    toBinary(day, FIELD_WIDTHS.day),
+    toDigits(year, base, widths.year),
+    toDigits(month, base, widths.month),
+    toDigits(day, base, widths.day),
   ].join('-')
   const time = [
-    toBinary(hour, FIELD_WIDTHS.hour),
-    toBinary(minute, FIELD_WIDTHS.minute),
-    toBinary(second, FIELD_WIDTHS.second),
+    toDigits(hour, base, widths.hour),
+    toDigits(minute, base, widths.minute),
+    toDigits(second, base, widths.second),
   ].join('-')
-  return { ok: true, binary: `${date}_${time}` }
+  return { ok: true, code: `${date}_${time}` }
 }

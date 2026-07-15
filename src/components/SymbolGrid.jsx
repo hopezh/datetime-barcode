@@ -1,8 +1,9 @@
-export default function SymbolGrid({ symbols, zeroSymbol, oneSymbol, onPick }) {
+export default function SymbolGrid({ symbols, assigned, onPick }) {
   return (
     <div className="symbol-grid">
       {symbols.map((symbol) => {
-        const badge = symbol === zeroSymbol ? '0' : symbol === oneSymbol ? '1' : null
+        const digit = assigned.indexOf(symbol)
+        const badge = digit === -1 ? null : String(digit)
         return (
           <button
             key={symbol}

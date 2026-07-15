@@ -1,19 +1,16 @@
-export default function ZeroOneAssigner({ zeroSymbol, oneSymbol, assignTarget, onArm }) {
+export default function DigitAssigner({ symbols, assignTarget, onArm }) {
   return (
     <div className="assigner">
       <div className="assigner-slots">
-        <SlotButton
-          label="0"
-          symbol={zeroSymbol}
-          armed={assignTarget === 'zero'}
-          onClick={() => onArm('zero')}
-        />
-        <SlotButton
-          label="1"
-          symbol={oneSymbol}
-          armed={assignTarget === 'one'}
-          onClick={() => onArm('one')}
-        />
+        {symbols.map((symbol, digit) => (
+          <SlotButton
+            key={digit}
+            label={String(digit)}
+            symbol={symbol}
+            armed={assignTarget === digit}
+            onClick={() => onArm(digit)}
+          />
+        ))}
       </div>
       <p className="assigner-hint">
         Click a slot, then click a symbol in the grid to assign it.

@@ -1,59 +1,22 @@
 import { useEffect, useState } from 'react'
-import { SYMBOL_SETS } from './data/symbolSets.js'
-import { datetimeToBinary } from './logic/datetimeBinary.js'
-import { binaryToBarcode } from './logic/barcode.js'
 import ThemeToggle from './components/ThemeToggle.jsx'
-import SymbolSetPicker from './components/SymbolSetPicker.jsx'
-import SymbolGrid from './components/SymbolGrid.jsx'
-import ZeroOneAssigner from './components/ZeroOneAssigner.jsx'
-import DatetimeInput from './components/DatetimeInput.jsx'
-import CodeDisplay from './components/CodeDisplay.jsx'
+import GithubLink from './components/GithubLink.jsx'
+import BarcodeBuilder from './components/BarcodeBuilder.jsx'
 
-function nowAsDatetimeInput() {
-  const now = new Date()
-  const pad = (n) => String(n).padStart(2, '0')
-  const date = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`
-  const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`
-  return `${date}_${time}`
-}
+const TABS = [
+  { id: 'binary', label: 'Binary code', base: 2 },
+  { id: 'ternary', label: 'Ternary code', base: 3 },
+]
 
 export default function App() {
   const [theme, setTheme] = useState(() =>
     matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
   )
-  const [selectedSetId, setSelectedSetId] = useState(SYMBOL_SETS[0].id)
-  const [zeroSymbol, setZeroSymbol] = useState(null)
-  const [oneSymbol, setOneSymbol] = useState(null)
-  const [assignTarget, setAssignTarget] = useState('zero')
-  const [datetimeInput, setDatetimeInput] = useState(nowAsDatetimeInput)
-  const [binary, setBinary] = useState('')
-  const [barcode, setBarcode] = useState('')
+  const [activeTabId, setActiveTabId] = useState(TABS[0].id)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
-
-  const selectedSet = SYMBOL_SETS.find((set) => set.id === selectedSetId)
-  const binaryResult = datetimeToBinary(datetimeInput)
-  const canTranslate = Boolean(binary && zeroSymbol && oneSymbol)
-
-  function pickSymbol(symbol) {
-    if (assignTarget === 'zero') {
-      setZeroSymbol(symbol)
-      setAssignTarget('one')
-    } else {
-      setOneSymbol(symbol)
-      setAssignTarget('zero')
-    }
-  }
-
-  function convert() {
-    setBinary(binaryResult.ok ? binaryResult.binary : '')
-  }
-
-  function translate() {
-    setBarcode(binaryToBarcode(binary, zeroSymbol, oneSymbol))
-  }
 
   return (
     <main className="app">
@@ -68,59 +31,32 @@ export default function App() {
             -&gt; ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▚▒▒▒
           </p>
         </div>
-        <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+        <div className="header-actions">
+          <GithubLink />
+          <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+        </div>
       </header>
 
-      <section className="step">
-        <h2>Step 1. Specify the date and time</h2>
-        <DatetimeInput
-          value={datetimeInput}
-          error={datetimeInput && !binaryResult.ok ? binaryResult.error : null}
-          onChange={setDatetimeInput}
-        />
-      </section>
+      <div className="tabs" role="tablist">
+        {TABS.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            aria-selected={activeTabId === tab.id}
+            className={`tab${activeTabId === tab.id ? ' active' : ''}`}
+            onClick={() => setActiveTabId(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-      <section className="step">
-        <h2>Step 2. Convert date &amp; time to binary string</h2>
-        <button type="button" className="action-button" disabled={!binaryResult.ok} onClick={convert}>
-          Convert
-        </button>
-        <CodeDisplay label="Binary" value={binary} />
-      </section>
-
-      <section className="step">
-        <h2>Step 3. Pick the symbols for zero and one</h2>
-        <ZeroOneAssigner
-          zeroSymbol={zeroSymbol}
-          oneSymbol={oneSymbol}
-          assignTarget={assignTarget}
-          onArm={setAssignTarget}
-        />
-      </section>
-
-      <section className="step">
-        <h2>Step 4. Select symbol set</h2>
-        <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={setSelectedSetId} />
-        {selectedSet.experimental && (
-          <p className="warning">
-            Experimental set: these glyphs may not render with default system fonts.
-          </p>
-        )}
-        <SymbolGrid
-          symbols={selectedSet.symbols}
-          zeroSymbol={zeroSymbol}
-          oneSymbol={oneSymbol}
-          onPick={pickSymbol}
-        />
-      </section>
-
-      <section className="step">
-        <h2>Step 5. Convert the binary string to barcode</h2>
-        <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>
-          Translate
-        </button>
-        <CodeDisplay label="Barcode" value={barcode} />
-      </section>
+      {TABS.map((tab) => (
+        <div key={tab.id} className="tab-panel" role="tabpanel" hidden={activeTabId !== tab.id}>
+          <BarcodeBuilder base={tab.base} />
+        </div>
+      ))}
     </main>
   )
 }
