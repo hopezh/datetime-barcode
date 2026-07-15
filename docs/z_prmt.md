@@ -45,3 +45,17 @@ how about i move this project into an independent repo and publish it as a "gith
 
 - pls update the readme with a more accurate description of the project.
 - pls also add the link to the github pages site in the readme: https://hopezh.github.io/datetime-barcod
+
+how difficult it is if we use a ternary number system to generate the barcode? i.e. translateing the datetime into a number using 0, 1 an 2, and replace each with a block symbol? 
+
+pls create two tabs for this app under the main title and subtitle: one for "binary code" and the other for "ternary code". move the existing cards to the "binary code" tab and add new cards for the ternary code in similar structure, contents and style, but implementing the ternary code logic instead of the binary code logic.
+
+let's add one more tab for the quaternary numeral system, and implement it in similar structure, contents and style, but applying the quaternary code logic instead of the binary or ternary code logic.
+
+let's push it one more time: adding a new tab for the Quinary number system. 
+
+let's push it one more time: adding a new tab for the senary number system.
+
+can you add a button "randomize" in step 3 below the text "click a slot,*" for all tabs, which when pressed will pick random symbols from the four symbol sets for each digit slot? reply first.
+
+pls replace the subtitle with the contents in the code block of example in the readme.
