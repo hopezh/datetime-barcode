@@ -2,13 +2,15 @@
 
 **Live app: https://hopezh.github.io/datetime-barcode/**
 
-A minimalistic web app that converts a date and time into a fixed-width binary, ternary, or quaternary string, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Three tabs — **Binary code**, **Ternary code**, and **Quaternary code** — offer the same five-step flow in base 2, 3, and 4.
+A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–6, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Five tabs — **Binary code**, **Ternary code**, **Quaternary code**, **Quinary code**, and **Senary code** — offer the same five-step flow, one per base.
 
 Each datetime component is encoded with a fixed digit width, with `-` between fields and `_` between the date and time halves:
 
 - binary (bits): year 12, month 4, day 5, hour 5, minute 6, second 6
 - ternary (trits): year 8, month 3, day 4, hour 3, minute 4, second 4
 - quaternary: year 6, month 2, day 3, hour 3, minute 3, second 3
+- quinary: year 6, month 2, day 3, hour 2, minute 3, second 3
+- senary: year 5, month 2, day 2, hour 2, minute 3, second 3
 
 Example:
 
@@ -42,11 +44,11 @@ Pushes to `main` deploy the app to [GitHub Pages](https://hopezh.github.io/datet
 
 ## How to use the app
 
-Pick a tab — **Binary code**, **Ternary code**, or **Quaternary code** — then walk through its five labeled steps (each tab keeps its own state):
+Pick a tab for the base you want, then walk through its five labeled steps (each tab keeps its own state):
 
 1. **Specify the date and time** — a date picker plus three 24-hour dropdowns for hour, minute, and second. It defaults to the moment the app loaded.
 2. **Convert to binary/ternary** — click **Convert** to encode the datetime as the fixed-width digit string.
-3. **Pick the symbols for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `3 =` for quaternary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup.
+3. **Pick the symbols for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `5 =` for senary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup.
 4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the digit symbols can come from different sets.
 5. **Convert the binary/ternary string to barcode** — click **Translate** to render the barcode. Separators become spaces so the fields read as groups.
 

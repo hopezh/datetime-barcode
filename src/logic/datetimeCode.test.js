@@ -20,6 +20,16 @@ describe('toDigits', () => {
     expect(toDigits(7, 4, 2)).toBe('13')
     expect(toDigits(4095, 4, 6)).toBe('333333')
   })
+
+  it('encodes quinary digits', () => {
+    expect(toDigits(7, 5, 2)).toBe('12')
+    expect(toDigits(3124, 5, 5)).toBe('44444')
+  })
+
+  it('encodes senary digits', () => {
+    expect(toDigits(7, 6, 2)).toBe('11')
+    expect(toDigits(1295, 6, 4)).toBe('5555')
+  })
 })
 
 describe('parseDatetime', () => {
@@ -106,5 +116,39 @@ describe('datetimeToCode base 4', () => {
     expect(code[13]).toBe('_')
     expect(code[17]).toBe('-')
     expect(code[21]).toBe('-')
+  })
+})
+
+describe('datetimeToCode base 5', () => {
+  it('encodes the canonical example', () => {
+    const result = datetimeToCode('2026-07-14_23:12:00', 5)
+    expect(result.ok).toBe(true)
+    expect(result.code).toBe('031101-12-024_43-022-000')
+  })
+
+  it('places separators at field boundaries', () => {
+    const { code } = datetimeToCode('2026-07-14_23:12:00', 5)
+    expect(code[6]).toBe('-')
+    expect(code[9]).toBe('-')
+    expect(code[13]).toBe('_')
+    expect(code[16]).toBe('-')
+    expect(code[20]).toBe('-')
+  })
+})
+
+describe('datetimeToCode base 6', () => {
+  it('encodes the canonical example', () => {
+    const result = datetimeToCode('2026-07-14_23:12:00', 6)
+    expect(result.ok).toBe(true)
+    expect(result.code).toBe('13214-11-22_35-020-000')
+  })
+
+  it('places separators at field boundaries', () => {
+    const { code } = datetimeToCode('2026-07-14_23:12:00', 6)
+    expect(code[5]).toBe('-')
+    expect(code[8]).toBe('-')
+    expect(code[11]).toBe('_')
+    expect(code[14]).toBe('-')
+    expect(code[18]).toBe('-')
   })
 })

@@ -7,6 +7,8 @@ const TABS = [
   { id: 'binary', label: 'Binary code', base: 2 },
   { id: 'ternary', label: 'Ternary code', base: 3 },
   { id: 'quaternary', label: 'Quaternary code', base: 4 },
+  { id: 'quinary', label: 'Quinary code', base: 5 },
+  { id: 'senary', label: 'Senary code', base: 6 },
 ]
 
 export default function App() {
