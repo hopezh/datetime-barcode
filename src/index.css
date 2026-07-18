@@ -9,8 +9,18 @@
   --fg-muted: lab(73% 0 0);         /* ≈ #b3b3b3 — body, icons */
   --fg: lab(88% 0 0);               /* ≈ #dddddd — titles, never #fff */
   --accent: lab(82.6% 15.9 66.4);   /* ≈ #ffc04b — the only chroma */
-  --hero-stripe: lab(5.5% 0 0);     /* 45° texture on the hero panel */
   --error: #ff8a80;
+
+  /* Stripe texture traced from the aihero.dev reference: 5px tile, 135°,
+     thin light lines over a dark field, both at 10% alpha so the same
+     texture reads correctly on dark and light backgrounds. */
+  --stripe-texture: linear-gradient(
+    45deg,
+    rgb(221 221 221 / 0.1) 14.29%,
+    rgb(10 10 10 / 0.1) 14.29% 50%,
+    rgb(221 221 221 / 0.1) 50% 64.29%,
+    rgb(10 10 10 / 0.1) 64.29%
+  );
 
   --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, monospace;
@@ -32,7 +42,6 @@
   --fg-muted: lab(38% 0 0);         /* ≈ #595959 */
   --fg: lab(15% 0 0);               /* ≈ #262626 */
   --accent: lab(50% 20 65);         /* darker amber */
-  --hero-stripe: lab(94.5% 0 0);
   --error: #b3261e;
 
   color-scheme: light;
@@ -168,11 +177,8 @@ nav {
   align-items: center;
   padding: 48px var(--pad-x);
   border-top: var(--hairline) solid var(--border);
-  background: repeating-linear-gradient(
-    45deg,
-    transparent 0 6px,
-    var(--hero-stripe) 6px 7px
-  );
+  background-image: var(--stripe-texture);
+  background-size: 5px 5px;
 }
 
 @media (min-width: 860px) {
@@ -603,11 +609,8 @@ button.symbol-cell:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent 0 6px,
-    var(--hero-stripe) 6px 7px
-  );
+  background-image: var(--stripe-texture);
+  background-size: 5px 5px;
 }
 
 .footer-row {
