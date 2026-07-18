@@ -49,6 +49,7 @@ body {
 
 .tabs {
   display: flex;
+  justify-content: center;
   gap: 0.25rem;
   border-bottom: 1px solid var(--border);
 }
@@ -259,7 +260,7 @@ input {
 }
 
 .slot-symbol {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   min-width: 1.5rem;
   text-align: center;
 }
@@ -320,6 +321,11 @@ input {
   font-size: 1.1rem;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+/* Barcode symbols match the size of the step-4 symbol grid. */
+.code-value.symbols {
+  font-size: 1.5rem;
 }
 
 .action-button {

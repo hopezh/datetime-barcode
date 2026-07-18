@@ -90,7 +90,7 @@ export default function BarcodeBuilder({ base }) {
       </section>
 
       <section className="step">
-        <h2>Step 3. Pick Symbols and Colors for {DIGIT_LISTS[base]}</h2>
+        <h2>Step 3. Pick symbols and colors for {DIGIT_LISTS[base]}</h2>
         <DigitAssigner
           symbols={symbols}
           colors={colors}

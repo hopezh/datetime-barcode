@@ -5,7 +5,7 @@ export default function CodeDisplay({ label, value, segments }) {
     <div className="code-display">
       <span className="field-label">{label}</span>
       <div className="code-row">
-        <output className="code-value">
+        <output className={`code-value${segments ? ' symbols' : ''}`}>
           {segments
             ? segments.map((segment, i) => (
                 <span key={i} style={segment.color ? { color: segment.color } : undefined}>
