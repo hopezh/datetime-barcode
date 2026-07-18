@@ -2,7 +2,7 @@
 
 **Live app: https://hopezh.github.io/datetime-barcode/**
 
-A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–6, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Five tabs — **Binary code**, **Ternary code**, **Quaternary code**, **Quinary code**, and **Senary code** — offer the same five-step flow, one per base.
+A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–6, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Five tabs — **Binary**, **Ternary**, **Quaternary**, **Quinary**, and **Senary**, each marked with a dice icon showing its base — offer the same five-step flow, one per base.
 
 Each datetime component is encoded with a fixed digit width, with `-` between fields and `_` between the date and time halves:
 

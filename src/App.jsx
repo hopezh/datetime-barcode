@@ -5,11 +5,11 @@ import BarcodeBuilder from './components/BarcodeBuilder.jsx'
 import ExampleSubtitle from './components/ExampleSubtitle.jsx'
 
 const TABS = [
-  { id: 'binary', label: 'Binary code', base: 2 },
-  { id: 'ternary', label: 'Ternary code', base: 3 },
-  { id: 'quaternary', label: 'Quaternary code', base: 4 },
-  { id: 'quinary', label: 'Quinary code', base: 5 },
-  { id: 'senary', label: 'Senary code', base: 6 },
+  { id: 'binary', label: 'Binary', base: 2 },
+  { id: 'ternary', label: 'Ternary', base: 3 },
+  { id: 'quaternary', label: 'Quaternary', base: 4 },
+  { id: 'quinary', label: 'Quinary', base: 5 },
+  { id: 'senary', label: 'Senary', base: 6 },
 ]
 
 export default function App() {
@@ -45,6 +45,8 @@ export default function App() {
             className={`tab${activeTabId === tab.id ? ' active' : ''}`}
             onClick={() => setActiveTabId(tab.id)}
           >
+            {/* Masked span (not <img>) so the icon follows the tab's text color in both themes. */}
+            <span className="tab-icon" style={{ maskImage: `url(dice-${tab.base}.svg)` }} />
             {tab.label}
           </button>
         ))}
