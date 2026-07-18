@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { SYMBOL_SETS } from '../data/symbolSets.js'
+import { COLOR_POOL } from '../data/colorPool.js'
 import { datetimeToCode } from '../logic/datetimeCode.js'
 import { codeToBarcodeSegments } from '../logic/barcode.js'
+import { sampleWithoutReplacement } from '../logic/random.js'
 import SymbolSetPicker from './SymbolSetPicker.jsx'
 import SymbolGrid from './SymbolGrid.jsx'
 import DigitAssigner from './DigitAssigner.jsx'
@@ -9,12 +11,6 @@ import DatetimeInput from './DatetimeInput.jsx'
 import CodeDisplay from './CodeDisplay.jsx'
 
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
-
-// Mid-tone hues that stay readable on both the light and dark themes.
-const COLOR_POOL = [
-  '#d32f2f', '#f57c00', '#c0a219', '#388e3c', '#00897b', '#00acc1',
-  '#1976d2', '#5e35b1', '#7b1fa2', '#c2185b', '#8d6e63', '#607d8b',
-]
 
 const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary', 6: 'senary' }
 const DIGIT_LISTS = {
@@ -55,14 +51,6 @@ export default function BarcodeBuilder({ base }) {
 
   function pickColor(digit, color) {
     setColors(colors.map((c, i) => (i === digit ? color : c)))
-  }
-
-  function sampleWithoutReplacement(source, count) {
-    const pool = [...source]
-    return Array.from({ length: count }, () => {
-      const index = Math.floor(Math.random() * pool.length)
-      return pool.splice(index, 1)[0]
-    })
   }
 
   function randomizeSymbols() {
