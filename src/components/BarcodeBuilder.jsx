@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SYMBOL_SETS } from '../data/symbolSets.js'
 import { datetimeToCode } from '../logic/datetimeCode.js'
-import { codeToBarcode } from '../logic/barcode.js'
+import { codeToBarcodeSegments } from '../logic/barcode.js'
 import SymbolSetPicker from './SymbolSetPicker.jsx'
 import SymbolGrid from './SymbolGrid.jsx'
 import DigitAssigner from './DigitAssigner.jsx'
@@ -10,13 +10,19 @@ import CodeDisplay from './CodeDisplay.jsx'
 
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
 
+// Mid-tone hues that stay readable on both the light and dark themes.
+const COLOR_POOL = [
+  '#d32f2f', '#f57c00', '#c0a219', '#388e3c', '#00897b', '#00acc1',
+  '#1976d2', '#5e35b1', '#7b1fa2', '#c2185b', '#8d6e63', '#607d8b',
+]
+
 const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary', 6: 'senary' }
-const DIGIT_WORDS = {
-  2: 'zero and one',
-  3: 'zero, one and two',
-  4: 'zero, one, two and three',
-  5: 'zero, one, two, three and four',
-  6: 'zero, one, two, three, four and five',
+const DIGIT_LISTS = {
+  2: '0 and 1',
+  3: '0, 1, and 2',
+  4: '0, 1, 2, and 3',
+  5: '0, 1, 2, 3, and 4',
+  6: '0, 1, 2, 3, 4, and 5',
 }
 
 function nowAsDatetimeInput() {
@@ -30,10 +36,11 @@ function nowAsDatetimeInput() {
 export default function BarcodeBuilder({ base }) {
   const [selectedSetId, setSelectedSetId] = useState(SYMBOL_SETS[0].id)
   const [symbols, setSymbols] = useState(() => Array(base).fill(null))
+  const [colors, setColors] = useState(() => Array(base).fill(null))
   const [assignTarget, setAssignTarget] = useState(0)
   const [datetimeInput, setDatetimeInput] = useState(nowAsDatetimeInput)
   const [code, setCode] = useState('')
-  const [barcode, setBarcode] = useState('')
+  const [barcodeSegments, setBarcodeSegments] = useState(null)
 
   const codeName = CODE_NAMES[base]
   const codeLabel = codeName[0].toUpperCase() + codeName.slice(1)
@@ -46,14 +53,25 @@ export default function BarcodeBuilder({ base }) {
     setAssignTarget((assignTarget + 1) % base)
   }
 
-  function randomize() {
-    const pool = [...RANDOM_POOL]
-    const picked = Array.from({ length: base }, () => {
+  function pickColor(digit, color) {
+    setColors(colors.map((c, i) => (i === digit ? color : c)))
+  }
+
+  function sampleWithoutReplacement(source, count) {
+    const pool = [...source]
+    return Array.from({ length: count }, () => {
       const index = Math.floor(Math.random() * pool.length)
       return pool.splice(index, 1)[0]
     })
-    setSymbols(picked)
+  }
+
+  function randomizeSymbols() {
+    setSymbols(sampleWithoutReplacement(RANDOM_POOL, base))
     setAssignTarget(0)
+  }
+
+  function randomizeColors() {
+    setColors(sampleWithoutReplacement(COLOR_POOL, base))
   }
 
   function convert() {
@@ -61,7 +79,7 @@ export default function BarcodeBuilder({ base }) {
   }
 
   function translate() {
-    setBarcode(codeToBarcode(code, symbols))
+    setBarcodeSegments(codeToBarcodeSegments(code, symbols, colors))
   }
 
   return (
@@ -84,12 +102,15 @@ export default function BarcodeBuilder({ base }) {
       </section>
 
       <section className="step">
-        <h2>Step 3. Pick the symbols for {DIGIT_WORDS[base]}</h2>
+        <h2>Step 3. Pick Symbols and Colors for {DIGIT_LISTS[base]}</h2>
         <DigitAssigner
           symbols={symbols}
+          colors={colors}
           assignTarget={assignTarget}
           onArm={setAssignTarget}
-          onRandomize={randomize}
+          onPickColor={pickColor}
+          onRandomizeSymbols={randomizeSymbols}
+          onRandomizeColors={randomizeColors}
         />
       </section>
 
@@ -109,7 +130,11 @@ export default function BarcodeBuilder({ base }) {
         <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>
           Translate
         </button>
-        <CodeDisplay label="Barcode" value={barcode} />
+        <CodeDisplay
+          label="Barcode"
+          value={barcodeSegments ? barcodeSegments.map((seg) => seg.symbol).join('') : ''}
+          segments={barcodeSegments}
+        />
       </section>
     </>
   )

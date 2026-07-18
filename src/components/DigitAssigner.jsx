@@ -1,28 +1,50 @@
-export default function DigitAssigner({ symbols, assignTarget, onArm, onRandomize }) {
+export default function DigitAssigner({
+  symbols,
+  colors,
+  assignTarget,
+  onArm,
+  onPickColor,
+  onRandomizeSymbols,
+  onRandomizeColors,
+}) {
   return (
     <div className="assigner">
+      <p className="assigner-hint">
+        Click a slot, pick a symbol from Step 4, and assign a color.
+      </p>
       <div className="assigner-slots">
         {symbols.map((symbol, digit) => (
-          <SlotButton
-            key={digit}
-            label={String(digit)}
-            symbol={symbol}
-            armed={assignTarget === digit}
-            onClick={() => onArm(digit)}
-          />
+          <div key={digit} className="assigner-slot">
+            <SlotButton
+              label={String(digit)}
+              symbol={symbol}
+              color={colors[digit]}
+              armed={assignTarget === digit}
+              onClick={() => onArm(digit)}
+            />
+            <input
+              type="color"
+              className="slot-color"
+              value={colors[digit] ?? '#808080'}
+              aria-label={`Color for digit ${digit}`}
+              onChange={(event) => onPickColor(digit, event.target.value)}
+            />
+          </div>
         ))}
       </div>
-      <p className="assigner-hint">
-        Click a slot, then click a symbol in the grid to assign it.
-      </p>
-      <button type="button" onClick={onRandomize}>
-        Randomize
-      </button>
+      <div className="assigner-actions">
+        <button type="button" onClick={onRandomizeSymbols}>
+          Randomize symbols
+        </button>
+        <button type="button" onClick={onRandomizeColors}>
+          Randomize colors
+        </button>
+      </div>
     </div>
   )
 }
 
-function SlotButton({ label, symbol, armed, onClick }) {
+function SlotButton({ label, symbol, color, armed, onClick }) {
   return (
     <button
       type="button"
@@ -30,7 +52,9 @@ function SlotButton({ label, symbol, armed, onClick }) {
       onClick={onClick}
     >
       <span className="slot-label">{label} =</span>
-      <span className="slot-symbol">{symbol ?? '?'}</span>
+      <span className="slot-symbol" style={color ? { color } : undefined}>
+        {symbol ?? '?'}
+      </span>
     </button>
   )
 }

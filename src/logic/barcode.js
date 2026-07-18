@@ -1,7 +1,12 @@
+export function codeToBarcodeSegments(code, symbols, colors) {
+  return [...code].map((char) => ({
+    symbol: symbols[Number(char)] ?? ' ',
+    color: colors[Number(char)] ?? null,
+  }))
+}
+
 export function codeToBarcode(code, symbols) {
-  let barcode = ''
-  for (const char of code) {
-    barcode += symbols[Number(char)] ?? ' '
-  }
-  return barcode
+  return codeToBarcodeSegments(code, symbols, [])
+    .map((segment) => segment.symbol)
+    .join('')
 }
