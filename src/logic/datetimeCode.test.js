@@ -36,6 +36,11 @@ describe('toDigits', () => {
     expect(toDigits(2400, 7, 4)).toBe('6666')
   })
 
+  it('encodes octal digits', () => {
+    expect(toDigits(8, 8, 2)).toBe('10')
+    expect(toDigits(4095, 8, 4)).toBe('7777')
+  })
+
   it('encodes nonary digits', () => {
     expect(toDigits(9, 9, 2)).toBe('10')
     expect(toDigits(6560, 9, 4)).toBe('8888')
@@ -182,6 +187,23 @@ describe('datetimeToCode base 7', () => {
     expect(code[11]).toBe('_')
     expect(code[14]).toBe('-')
     expect(code[18]).toBe('-')
+  })
+})
+
+describe('datetimeToCode base 8', () => {
+  it('encodes the canonical example', () => {
+    const result = datetimeToCode('2026-07-14_23:12:00', 8)
+    expect(result.ok).toBe(true)
+    expect(result.code).toBe('03752-07-16_27-14-00')
+  })
+
+  it('places separators at field boundaries', () => {
+    const { code } = datetimeToCode('2026-07-14_23:12:00', 8)
+    expect(code[5]).toBe('-')
+    expect(code[8]).toBe('-')
+    expect(code[11]).toBe('_')
+    expect(code[14]).toBe('-')
+    expect(code[17]).toBe('-')
   })
 })
 

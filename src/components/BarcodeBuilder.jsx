@@ -19,6 +19,7 @@ const CODE_NAMES = {
   5: 'quinary',
   6: 'senary',
   7: 'septenary',
+  8: 'octal',
   9: 'nonary',
   10: 'decimal',
 }

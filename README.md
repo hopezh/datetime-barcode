@@ -2,7 +2,7 @@
 
 **Live app: https://hopezh.github.io/datetime-barcode/**
 
-A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–10 (skipping octal), then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Eight tabs — **Binary**, **Ternary**, **Quaternary**, **Quinary**, **Senary**, **Septenary**, **Nonary**, and **Decimal**, each marked with a dice icon showing its base — offer the same five-step flow, one per base.
+A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–10, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Nine tabs — **Binary**, **Ternary**, **Quaternary**, **Quinary**, **Senary**, **Septenary**, **Octal**, **Nonary**, and **Decimal**, each marked with a dice icon showing its base — offer the same five-step flow, one per base.
 
 Each datetime component is encoded with a fixed digit width, with `-` between fields and `_` between the date and time halves:
 
@@ -12,6 +12,7 @@ Each datetime component is encoded with a fixed digit width, with `-` between fi
 - quinary: year 6, month 2, day 3, hour 2, minute 3, second 3
 - senary: year 5, month 2, day 2, hour 2, minute 3, second 3
 - septenary: year 5, month 2, day 2, hour 2, minute 3, second 3
+- octal: year 5, month 2, day 2, hour 2, minute 2, second 2
 - nonary: year 5, month 2, day 2, hour 2, minute 2, second 2
 - decimal: year 4, month 2, day 2, hour 2, minute 2, second 2
 
@@ -37,6 +38,9 @@ senary     -> 13214-11-23_30-055-121
 
 septenary  -> 05623-10-21_24-050-100
            -> ▁▆▇▃▄ ▂▁ ▃▂ ▃▅ ▁▆▁ ▂▁▁
+
+octal      -> 03752-07-17_22-43-61
+           -> ▏▌█▊▍ ▏█ ▎█ ▍▍ ▋▌ ▉▎
 
 nonary     -> 02701-07-16_20-38-54
            -> ▘▖▟▘▝ ▘▟ ▝▛ ▖▘ ▗█ ▞▚
@@ -115,7 +119,7 @@ Per-tab state lives in each `BarcodeBuilder` instance (props down, callbacks up)
 
 ## References
 
-- Numeral systems: [binary](https://en.wikipedia.org/wiki/Binary_number) · [ternary](https://en.wikipedia.org/wiki/Ternary_numeral_system) · [quaternary](https://en.wikipedia.org/wiki/Quaternary_numeral_system) · [quinary](https://en.wikipedia.org/wiki/Quinary) · [senary](https://en.wikipedia.org/wiki/Senary) · [septenary](https://en.wikipedia.org/wiki/Septenary) · [nonary](https://en.wikipedia.org/wiki/Nonary) · [decimal](https://en.wikipedia.org/wiki/Decimal)
+- Numeral systems: [binary](https://en.wikipedia.org/wiki/Binary_number) · [ternary](https://en.wikipedia.org/wiki/Ternary_numeral_system) · [quaternary](https://en.wikipedia.org/wiki/Quaternary_numeral_system) · [quinary](https://en.wikipedia.org/wiki/Quinary) · [senary](https://en.wikipedia.org/wiki/Senary) · [septenary](https://en.wikipedia.org/wiki/Septenary) · [octal](https://en.wikipedia.org/wiki/Octal) · [nonary](https://en.wikipedia.org/wiki/Nonary) · [decimal](https://en.wikipedia.org/wiki/Decimal)
 - [Block Elements](https://en.wikipedia.org/wiki/Block_Elements) — U+2580–259F
 - [Box Drawing](https://en.wikipedia.org/wiki/Box_Drawing) — U+2500–257F
 - [Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block)) — U+25A0–25FF

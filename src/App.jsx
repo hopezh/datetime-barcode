@@ -12,6 +12,7 @@ const TABS = [
   { id: 'quinary', label: 'Quinary', base: 5 },
   { id: 'senary', label: 'Senary', base: 6 },
   { id: 'septenary', label: 'Septenary', base: 7 },
+  { id: 'octal', label: 'Octal', base: 8 },
   { id: 'nonary', label: 'Nonary', base: 9 },
   { id: 'decimal', label: 'Decimal', base: 10 },
 ]
@@ -41,7 +42,7 @@ export default function App() {
           <h1>
             A date and time,
             <br />
-            written in eight bases,
+            written in nine bases,
             <br />
             <span className="accent">drawn as a barcode</span>.
           </h1>

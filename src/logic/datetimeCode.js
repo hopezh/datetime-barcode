@@ -5,6 +5,7 @@ export const FIELD_WIDTHS = {
   5: { year: 6, month: 2, day: 3, hour: 2, minute: 3, second: 3 },
   6: { year: 5, month: 2, day: 2, hour: 2, minute: 3, second: 3 },
   7: { year: 5, month: 2, day: 2, hour: 2, minute: 3, second: 3 },
+  8: { year: 5, month: 2, day: 2, hour: 2, minute: 2, second: 2 },
   9: { year: 5, month: 2, day: 2, hour: 2, minute: 2, second: 2 },
   10: { year: 4, month: 2, day: 2, hour: 2, minute: 2, second: 2 },
 }
