@@ -19,6 +19,8 @@ const CODE_NAMES = {
   5: 'quinary',
   6: 'senary',
   7: 'septenary',
+  9: 'nonary',
+  10: 'decimal',
 }
 function nowAsDatetimeInput() {
   const now = new Date()

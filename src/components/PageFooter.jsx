@@ -8,6 +8,8 @@ const REFERENCE_ROWS = [
       ['quinary', 'https://en.wikipedia.org/wiki/Quinary'],
       ['senary', 'https://en.wikipedia.org/wiki/Senary'],
       ['septenary', 'https://en.wikipedia.org/wiki/Septenary'],
+      ['nonary', 'https://en.wikipedia.org/wiki/Nonary'],
+      ['decimal', 'https://en.wikipedia.org/wiki/Decimal'],
     ],
   },
   {
