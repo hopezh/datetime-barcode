@@ -547,6 +547,13 @@ button.symbol-cell:hover {
 
 .assigner-actions {
   display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.assigner-actions-column {
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 }
 

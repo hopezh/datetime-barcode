@@ -50,6 +50,11 @@ export default function BarcodeBuilder({ base }) {
     setAssignTarget(0)
   }
 
+  function randomizeSymbolsInSet() {
+    setSymbols(sampleWithoutReplacement(selectedSet.symbols, base))
+    setAssignTarget(0)
+  }
+
   function randomizeColors() {
     setColors(sampleWithoutReplacement(COLOR_POOL, base))
   }
@@ -90,6 +95,7 @@ export default function BarcodeBuilder({ base }) {
             onArm={setAssignTarget}
             onPickColor={pickColor}
             onRandomizeSymbols={randomizeSymbols}
+            onRandomizeSymbolsInSet={randomizeSymbolsInSet}
             onRandomizeColors={randomizeColors}
           />
         </Step>
