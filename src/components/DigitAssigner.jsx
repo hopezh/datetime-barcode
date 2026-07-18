@@ -6,6 +6,7 @@ export default function DigitAssigner({
   onPickColor,
   onRandomizeSymbols,
   onRandomizeSymbolsInSet,
+  onApplyOneRandomColor,
   onRandomizeColors,
 }) {
   return (
@@ -36,15 +37,20 @@ export default function DigitAssigner({
       <div className="assigner-actions">
         <div className="assigner-actions-column">
           <button type="button" onClick={onRandomizeSymbolsInSet}>
-            Randomize symbols in selected set only
+            Assign random symbols in the selected set only
           </button>
           <button type="button" onClick={onRandomizeSymbols}>
-            Randomize symbols across all sets
+            Assign random symbols across all sets
           </button>
         </div>
-        <button type="button" onClick={onRandomizeColors}>
-          Randomize colors
-        </button>
+        <div className="assigner-actions-column">
+          <button type="button" onClick={onApplyOneRandomColor}>
+            Assign one random color
+          </button>
+          <button type="button" onClick={onRandomizeColors}>
+            Assign unique random colors
+          </button>
+        </div>
       </div>
     </div>
   )

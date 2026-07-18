@@ -59,6 +59,11 @@ export default function BarcodeBuilder({ base }) {
     setColors(sampleWithoutReplacement(COLOR_POOL, base))
   }
 
+  function applyOneRandomColor() {
+    const [color] = sampleWithoutReplacement(COLOR_POOL, 1)
+    setColors(Array(base).fill(color))
+  }
+
   function convert() {
     setCode(codeResult.ok ? codeResult.code : '')
   }
@@ -96,6 +101,7 @@ export default function BarcodeBuilder({ base }) {
             onPickColor={pickColor}
             onRandomizeSymbols={randomizeSymbols}
             onRandomizeSymbolsInSet={randomizeSymbolsInSet}
+            onApplyOneRandomColor={applyOneRandomColor}
             onRandomizeColors={randomizeColors}
           />
         </Step>
