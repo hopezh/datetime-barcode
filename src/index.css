@@ -183,7 +183,9 @@ nav {
 
 @media (min-width: 860px) {
   .hero {
-    grid-template-columns: 1.3fr 1fr;
+    /* 50% + step-rail width: the divider lines up with the rail/content
+       seam of steps 02 and 04 in the paired rows below. */
+    grid-template-columns: calc(50% + 66.5px) 1fr;
   }
 
   .hero > aside {
