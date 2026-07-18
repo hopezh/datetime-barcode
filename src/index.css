@@ -286,7 +286,17 @@ nav {
 
 .step-meta {
   grid-row: 1 / 3;
-  padding: 20px 36px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 12px 20px 24px;
+}
+
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--fg-muted);
 }
 
 .step-meta,
