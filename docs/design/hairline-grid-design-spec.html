@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hairline Grid — Design Spec</title>
+<!-- Geist via Fontsource CDN; system fallbacks below keep the page intact if blocked -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist@latest/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@latest/400.css">
+<style>
+/* ============================================================
+   TOKENS — the entire system.
+   Surfaces live in a narrow lightness band (Lab 3%–13%).
+   Text is never pure white. One chromatic accent only.
+   ============================================================ */
+:root{
+  /* Grey ladder (Lab lightness, zero chroma) */
+  --background:       lab(3% 0 0);      /* ≈ #0b0b0b — page AND cards      */
+  --surface-raised:   lab(7% 0 0);      /* ≈ #151515 — code blocks, chips  */
+  --surface-hover:    lab(9% 0 0);      /* ≈ #191919 — hover fill          */
+  --border:           lab(13% 0 0);     /* ≈ #222222 — every hairline      */
+  --fg-muted:         lab(73% 0 0);     /* ≈ #b3b3b3 — body, icons         */
+  --fg:               lab(88% 0 0);     /* ≈ #dddddd — titles (not #fff!)  */
+
+  /* The single accent */
+  --accent:           lab(82.6% 15.9 66.4); /* ≈ #ffc04b warm amber        */
+
+  /* Two typefaces, two strict roles */
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, monospace;
+
+  /* Geometry */
+  --radius: 0px;                        /* zero. everywhere.               */
+  --hairline: 1px;
+  --pad-card: 28px;
+  --pad-x: 32px;
+  --max-w: 1180px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; }
+}
+
+body{
+  background:var(--background);
+  color:var(--fg);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; text-decoration:none; }
+a:focus-visible, button:focus-visible{
+  outline:1px solid var(--accent);
+  outline-offset:-1px;
+}
+
+/* ============================================================
+   RULE 1 — THE HAIRLINE GRID
+   Lines are NOT borders on cards. The container's background
+   is the border color; gap is exactly 1px; each cell paints
+   its own opaque background. Lines are the container showing
+   through the gaps. No doubled borders, ever.
+   ============================================================ */
+.hairline-grid{
+  display:grid;
+  gap:var(--hairline);
+  background:var(--border);
+  border-top:var(--hairline) solid var(--border);
+  border-bottom:var(--hairline) solid var(--border);
+}
+.hairline-grid > *{ background:var(--background); }
+.cols-2{ grid-template-columns:1fr; }
+.cols-3{ grid-template-columns:1fr; }
+.cols-6{ grid-template-columns:repeat(2,1fr); }
+@media (min-width:640px){
+  .cols-2{ grid-template-columns:repeat(2,1fr); }
+  .cols-3{ grid-template-columns:repeat(3,1fr); }
+  .cols-6{ grid-template-columns:repeat(3,1fr); }
+}
+@media (min-width:960px){
+  .cols-6{ grid-template-columns:repeat(6,1fr); }
+}
+
+/* Page frame */
+.frame{
+  max-width:var(--max-w);
+  margin:0 auto;
+  border-left:var(--hairline) solid var(--border);
+  border-right:var(--hairline) solid var(--border);
+  min-height:100vh;
+}
+
+/* ============================================================
+   RULE 2 — MONO IS THE METADATA VOICE
+   Geist Mono appears only on chrome: eyebrows, counts, labels,
+   values. Never on reading copy. Sans = content, mono = data.
+   ============================================================ */
+.meta{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--fg-muted);
+}
+.meta-value{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--fg-muted);
+}
+.accent{ color:var(--accent); }
+
+/* Nav */
+nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px var(--pad-x);
+  border-bottom:var(--hairline) solid var(--border);
+}
+nav .wordmark{ font-weight:600; letter-spacing:-0.02em; }
+
+/* ============================================================
+   RULE 3 — BIG TYPE, LIGHT WEIGHT, TIGHT TRACKING
+   Display: 60px / 1.05 / weight 400 / −1.5px tracking.
+   Bold at this size shouts; regular reads refined.
+   Negative tracking scales with size (−1.5px @60, −0.6px @24).
+   ============================================================ */
+.hero{
+  display:grid; grid-template-columns:1fr;
+  border-bottom:var(--hairline) solid var(--border);
+}
+@media (min-width:860px){
+  .hero{ grid-template-columns:1.3fr 1fr; }
+  .hero > aside{ border-left:var(--hairline) solid var(--border); border-top:none; }
+}
+.hero > div{ padding:64px var(--pad-x); }
+.hero h1{
+  font-size:clamp(38px, 5.4vw, 60px);
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:-1.5px;
+  margin:16px 0 24px;
+}
+.hero p.lede{
+  color:var(--fg-muted);
+  font-size:17px;
+  line-height:1.6;
+  max-width:44ch;
+}
+.hero > aside{
+  padding:64px var(--pad-x);
+  border-top:var(--hairline) solid var(--border);
+  background:
+    repeating-linear-gradient(45deg,
+      transparent 0 6px, lab(5.5% 0 0) 6px 7px);
+  display:flex; flex-direction:column; justify-content:center; gap:14px;
+}
+.hero > aside a{
+  font-family:var(--font-mono); font-size:13px; color:var(--fg-muted);
+  transition:color 150ms ease;
+}
+.hero > aside a:hover{ color:var(--fg); }
+.hero > aside a .hash{ color:var(--accent); margin-right:2px; }
+
+/* ============================================================
+   RULE 4 — SECTION HEADERS BELONG TO THE GRID
+   Not floating headings: framed rows sharing the same hairline.
+   Title left (24px semibold −0.6px), mono count right.
+   ============================================================ */
+.section-header{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:16px; padding:20px var(--pad-x);
+  border-bottom:var(--hairline) solid var(--border);
+}
+.section-header h2{
+  font-size:24px; font-weight:600; letter-spacing:-0.6px; line-height:1.33;
+}
+section{ border-bottom:var(--hairline) solid var(--border); }
+section:last-of-type{ border-bottom:none; }
+section > .hairline-grid{ border-bottom:none; border-top:none; }
+
+/* ============================================================
+   RULE 5 — CARD ANATOMY
+   Whole card is the link. Title row (20px semibold) + muted ↗.
+   Description: 14px muted, relaxed leading, clamped to exactly
+   3 lines so rows stay even regardless of content length.
+   ============================================================ */
+.card{
+  display:flex; flex-direction:column; gap:12px;
+  padding:var(--pad-card);
+  transition:background-color 150ms ease;   /* RULE 6: the ONLY hover */
+  cursor:pointer;
+}
+.card:hover{ background:var(--surface-hover); }
+.card .title-row{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+}
+.card h3{
+  font-size:20px; font-weight:600; letter-spacing:-0.4px; line-height:1.2;
+}
+.card .arrow{ color:var(--fg-muted); flex:none; transition:color 150ms ease; }
+.card:hover .arrow{ color:var(--fg); }
+.card p{
+  font-size:14px; line-height:1.62; color:var(--fg-muted);
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.card .spec{ margin-top:auto; padding-top:8px; }
+
+/* Color swatches */
+.swatch{ padding:0; cursor:default; }
+.swatch:hover{ background:var(--background); }
+.swatch .chip{ height:96px; }
+.swatch .info{ padding:16px 18px; display:flex; flex-direction:column; gap:4px; }
+.swatch .info b{ font-size:13px; font-weight:600; letter-spacing:-0.1px; }
+
+/* Type specimen rows */
+.spec-row{
+  display:grid; grid-template-columns:1fr; gap:12px;
+  padding:28px var(--pad-x); align-items:baseline;
+}
+@media (min-width:760px){
+  .spec-row{ grid-template-columns:220px 1fr; }
+}
+.spec-row .sample-display{ font-size:44px; font-weight:400; letter-spacing:-1.2px; line-height:1.05; }
+.spec-row .sample-h2{ font-size:24px; font-weight:600; letter-spacing:-0.6px; }
+.spec-row .sample-h3{ font-size:20px; font-weight:600; letter-spacing:-0.4px; }
+.spec-row .sample-body{ font-size:14px; line-height:1.62; color:var(--fg-muted); max-width:52ch; }
+.spec-row .sample-mono{ font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); letter-spacing:0.06em; }
+
+/* Code block */
+pre{
+  font-family:var(--font-mono);
+  font-size:12.5px; line-height:1.7;
+  color:var(--fg-muted);
+  background:var(--surface-raised);
+  padding:24px var(--pad-x);
+  overflow-x:auto;
+}
+pre .c{ color:lab(45% 0 0); }        /* comment */
+pre .k{ color:var(--fg); }           /* key     */
+pre .a{ color:var(--accent); }       /* value   */
+
+/* Do / don't list */
+.rules{ padding:8px 0; }
+.rules li{
+  list-style:none;
+  display:grid; grid-template-columns:20px 1fr; gap:14px;
+  padding:14px var(--pad-x);
+  border-bottom:var(--hairline) solid var(--border);
+  font-size:14px; line-height:1.6; color:var(--fg-muted);
+}
+.rules li:last-child{ border-bottom:none; }
+.rules li b{ color:var(--fg); font-weight:600; }
+.rules .tick{ color:var(--accent); font-family:var(--font-mono); }
+
+footer{
+  display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center;
+  padding:24px var(--pad-x);
+  border-top:var(--hairline) solid var(--border);
+}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <nav>
+    <span class="wordmark">Hairline&nbsp;Grid</span>
+    <span class="meta">design spec · v1</span>
+  </nav>
+
+  <!-- HERO — RULE 3 in action -->
+  <header class="hero">
+    <div>
+      <p class="meta">Extracted from aihero.dev · Dictionary</p>
+      <h1>A bento grid with<br>no corners,<br><span class="accent">just one trick</span>.</h1>
+      <p class="lede">Every rule on this page is implemented by this page. Hover the cards, inspect the lines, open devtools — the spec is the artifact.</p>
+    </div>
+    <aside>
+      <a href="#grid"><span class="hash">#</span>the-hairline-grid</a>
+      <a href="#color"><span class="hash">#</span>color-ladder</a>
+      <a href="#type"><span class="hash">#</span>typography</a>
+      <a href="#cards"><span class="hash">#</span>card-anatomy</a>
+      <a href="#rules"><span class="hash">#</span>rules-of-restraint</a>
+    </aside>
+  </header>
+
+  <!-- SECTION: THE TRICK -->
+  <section id="grid">
+    <div class="section-header">
+      <h2>The hairline grid</h2>
+      <span class="meta">rule 01 · the core trick</span>
+    </div>
+    <div class="hairline-grid cols-2">
+      <a class="card" href="#grid">
+        <div class="title-row">
+          <h3>Lines are gaps, not borders</h3>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <p>The grid container's background is the border color. Cells sit 1px apart and paint their own opaque background, so the container shows through the gaps as perfectly uniform hairlines.</p>
+        <span class="meta-value spec">display:grid · gap:1px · background:var(--border)</span>
+      </a>
+      <a class="card" href="#grid">
+        <div class="title-row">
+          <h3>Why not border on cards?</h3>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <p>Per-card borders double up where cards touch, drift at corners, and break at responsive reflow. The gap technique can never produce a doubled or missing line — the geometry does the work, at any column count.</p>
+        <span class="meta-value spec">cells: background:var(--background)</span>
+      </a>
+    </div>
+    <pre><span class="c">/* the whole trick */</span>
+<span class="k">.hairline-grid</span> {
+  display: <span class="a">grid</span>;
+  gap: <span class="a">1px</span>;                    <span class="c">/* the "border width"        */</span>
+  background: <span class="a">var(--border)</span>;    <span class="c">/* the "border color"        */</span>
+}
+<span class="k">.hairline-grid > *</span> {
+  background: <span class="a">var(--background)</span>; <span class="c">/* cells mask the container  */</span>
+}</pre>
+  </section>
+
+  <!-- SECTION: COLOR -->
+  <section id="color">
+    <div class="section-header">
+      <h2>Color ladder</h2>
+      <span class="meta">rule 02 · 6 greys + 1 accent</span>
+    </div>
+    <div class="hairline-grid cols-6">
+      <div class="card swatch">
+        <div class="chip" style="background:lab(3% 0 0)"></div>
+        <div class="info"><b>background</b><span class="meta-value">lab(3%) ≈ #0b0b0b</span><span class="meta-value">page + cards</span></div>
+      </div>
+      <div class="card swatch">
+        <div class="chip" style="background:lab(7% 0 0)"></div>
+        <div class="info"><b>surface-raised</b><span class="meta-value">lab(7%) ≈ #151515</span><span class="meta-value">code, chips</span></div>
+      </div>
+      <div class="card swatch">
+        <div class="chip" style="background:lab(9% 0 0)"></div>
+        <div class="info"><b>surface-hover</b><span class="meta-value">lab(9%) ≈ #191919</span><span class="meta-value">hover fill</span></div>
+      </div>
+      <div class="card swatch">
+        <div class="chip" style="background:lab(13% 0 0)"></div>
+        <div class="info"><b>border</b><span class="meta-value">lab(13%) ≈ #222222</span><span class="meta-value">all hairlines</span></div>
+      </div>
+      <div class="card swatch">
+        <div class="chip" style="background:lab(73% 0 0)"></div>
+        <div class="info"><b>fg-muted</b><span class="meta-value">lab(73%) ≈ #b3b3b3</span><span class="meta-value">body, icons</span></div>
+      </div>
+      <div class="card swatch">
+        <div class="chip" style="background:lab(88% 0 0)"></div>
+        <div class="info"><b>fg</b><span class="meta-value">lab(88%) ≈ #dddddd</span><span class="meta-value">titles — not #fff</span></div>
+      </div>
+    </div>
+    <div class="hairline-grid cols-2" style="border-top:none">
+      <div class="card" style="cursor:default">
+        <div class="title-row"><h3>Narrow value band</h3></div>
+        <p>All surfaces live between 3% and 13% lightness — depth is whisper-quiet. Text tops out at 88%, secondary text at 73%. Softened whites on near-black is why it reads calm instead of harsh.</p>
+      </div>
+      <div class="card" style="cursor:default">
+        <div class="title-row"><h3>One accent, <span class="accent">used sparingly</span></h3></div>
+        <p>The only chroma on the page: a warm amber, lab(82.6% 15.9 66.4) ≈ #ffc04b. It appears in the headline, the # marks, and focus rings — nowhere else. When mimicking, swap the hue first; it is the most identifiable part of the source.</p>
+        <span class="meta-value spec">--accent: lab(82.6% 15.9 66.4)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: TYPOGRAPHY -->
+  <section id="type">
+    <div class="section-header">
+      <h2>Typography</h2>
+      <span class="meta">rule 03 · two faces, strict roles</span>
+    </div>
+    <div class="spec-row" style="border-bottom:1px solid var(--border)">
+      <span class="meta-value">display · 60px · w400 · −1.5px</span>
+      <span class="sample-display">Large but light.</span>
+    </div>
+    <div class="spec-row" style="border-bottom:1px solid var(--border)">
+      <span class="meta-value">section h2 · 24px · w600 · −0.6px</span>
+      <span class="sample-h2">Tracking tightens as size grows</span>
+    </div>
+    <div class="spec-row" style="border-bottom:1px solid var(--border)">
+      <span class="meta-value">card h3 · 20px · w600 · −0.4px</span>
+      <span class="sample-h3">Card titles stay compact</span>
+    </div>
+    <div class="spec-row" style="border-bottom:1px solid var(--border)">
+      <span class="meta-value">body · 14px · fg-muted · lh 1.62</span>
+      <span class="sample-body">Reading copy is always the sans face, one size, muted grey, relaxed leading. It never carries the mono voice and never brightens to full foreground.</span>
+    </div>
+    <div class="spec-row">
+      <span class="meta-value">meta · mono · 11–12px</span>
+      <span class="sample-mono">GEIST MONO IS RESERVED FOR CHROME: EYEBROWS · COUNTS · VALUES · LABELS</span>
+    </div>
+  </section>
+
+  <!-- SECTION: CARD ANATOMY -->
+  <section id="cards">
+    <div class="section-header">
+      <h2>Card anatomy &amp; interaction</h2>
+      <span class="meta">rules 04–06 · hover these</span>
+    </div>
+    <div class="hairline-grid cols-3">
+      <a class="card" href="#cards">
+        <div class="title-row">
+          <h3>Whole card is the link</h3>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <p>An anchor styled as a block: 28px padding, title row with a muted ↗ that brightens on hover. No buttons, no "read more" — the affordance is the arrow plus the background lift.</p>
+        <span class="meta-value spec">padding:28px · gap:12px</span>
+      </a>
+      <a class="card" href="#cards">
+        <div class="title-row">
+          <h3>Clamp to three lines</h3>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <p>Descriptions are cut at exactly three lines with line-clamp, which is the quiet reason every grid row stays visually even no matter how long the underlying content runs — like this sentence, which is deliberately too long to fit and is being truncated right about now, proving the point.</p>
+        <span class="meta-value spec">-webkit-line-clamp:3</span>
+      </a>
+      <a class="card" href="#cards">
+        <div class="title-row">
+          <h3>One-property hover</h3>
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <p>The entire hover state is a background shift from 3% to 9% lightness over 150ms. No shadow, no scale, no border change, no translate. Restraint is the effect.</p>
+        <span class="meta-value spec">transition:background-color 150ms</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION: RULES -->
+  <section id="rules">
+    <div class="section-header">
+      <h2>Rules of restraint</h2>
+      <span class="meta">mimic, don't copy</span>
+    </div>
+    <ul class="rules">
+      <li><span class="tick">→</span><span><b>border-radius: 0, box-shadow: none, everywhere.</b> Flatness is a decision, not an omission. Depth comes only from the hover fill.</span></li>
+      <li><span class="tick">→</span><span><b>Section headers are framed rows,</b> title left and mono count right, sharing the page's hairlines — the whole page reads as one continuous ruled sheet.</span></li>
+      <li><span class="tick">→</span><span><b>Responsive by column count only:</b> 1 column → 2 (→ 3, 6 for swatches). The gap technique survives every reflow untouched.</span></li>
+      <li><span class="tick">→</span><span><b>To make it yours:</b> change the accent hue, swap the type pairing while keeping the sans/mono role split (Inter + JetBrains Mono, etc.), and vary the rhythm with asymmetric spans — a col-span-2 feature cell gives a truer bento while the hairline system holds.</span></li>
+      <li><span class="tick">→</span><span><b>Carry the principles, not the pixels:</b> gap-px hairlines, narrow lightness band, off-white text, three-line clamps, one-property hovers.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span class="meta-value">source study: aihero.dev/ai-coding-dictionary</span>
+    <span class="meta-value">·</span>
+    <span class="meta-value">fonts: Geist / Geist Mono (fallbacks: system-ui / ui-monospace)</span>
+  </footer>
+
+</div>
+</body>
+</html>
