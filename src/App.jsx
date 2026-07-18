@@ -40,7 +40,7 @@ export default function App() {
         <div>
           <p className="meta">datetime · base 2–10 · unicode symbols</p>
           <h1>
-            A date and time,
+            Date and time,
             <br />
             written in nine bases,
             <br />
