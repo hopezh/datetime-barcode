@@ -59,3 +59,29 @@ let's push it one more time: adding a new tab for the senary number system.
 can you add a button "randomize" in step 3 below the text "click a slot,*" for all tabs, which when pressed will pick random symbols from the four symbol sets for each digit slot? reply first.
 
 pls replace the subtitle with the contents in the code block of example in the readme.
+
+- let's continue to work on this project. I'd like to add a color picker for each of the symbols in step 3, which should be put below the button to select the symbol. 
+- pls rename the the current "randomize" button to "randomize symbols", and add a new button "randomize colors" after it in the same row, which will pick random colors for each symbol.
+
+1. the colors selected for the symbols are not applied in the string shown in the text field when "translate" button is pressed in step 5. pls verify and fix it. 
+2. change the name of step 3 to "Step 3. Pick Symbols and Colors for 0 and 1", or "Step 3. Pick Symbols and Colors for 0, 1, and 2", etc, depending on the number system selected. 
+3. put the small text "click a slot *" in step 3 to below the main title of step 3 and above the row to select symbols, change the text to "1) click the slot of a number, 2) pick a symbol from the set in Step 4, 3) assign a color to the selected symbol."
+o 
+
+pls change the small text below the title in step 3 to "Click a slot, pick a symbol from Step 4, and assign a color."
+
+pls randomize the colors of the symbols in the subtitle based on the number system, i.e. use two random colors for binary symbols, three for ternary, and so on. 
+
+1. pls remove "code" from "binary Code", so does the other four titles.
+2. pls add the icons "dice-2.svg" to "dice-6.svg" in the ./public folder in front of the correspoding number system name.
+
+1. what's the minimum change to the example datetime in the subtitle that will make each nubmer system use all its basic numbers?
+2. once the datetime is changed, pls update the symbols in the subtitle accordingly.
+
+ Following @docs/design/DESIGN.md, restyle the dashboard page. Use @docs/design/hairline-grid-design-spec.html as the rendered reference. thx.
+
+1. use this photo as visual reference: c:\users\hopez\downloads\z_screenshots\2026-07-18_23-12-01.jpg
+2. pls add a description of this app in the left block, in similar style of that showing "a bento grid with no corners*" in the image. 
+3. move the example code block to the right block, with similar strip pattern as background, like the block showing "#the-hairline-grid*".
+
+1. for each step, move the name "STEP 01" to a vertical block/div to the left of the div containing the title and that of the contents, i.e. the vertical block cover the full height of that two divs, creating a "mini bento grid" for that step. the text "STEP 01" should be alignted to the top left corner of that div.
