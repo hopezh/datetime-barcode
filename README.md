@@ -109,3 +109,4 @@ Per-tab state lives in each `BarcodeBuilder` instance (props down, callbacks up)
 - [Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block)) — U+25A0–25FF
 - [Symbols for Legacy Computing](https://en.wikipedia.org/wiki/Symbols_for_Legacy_Computing) — U+1FB00–1FB3B (sextants)
 - [Vite](https://vite.dev/) · [React](https://react.dev/) · [Bun](https://bun.sh/)
+- Page design study: [aihero.dev/ai-coding-dictionary](https://www.aihero.dev/ai-coding-dictionary)

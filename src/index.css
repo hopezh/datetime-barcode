@@ -572,14 +572,48 @@ button.symbol-cell:hover {
   font-size: 1.5rem;
 }
 
-/* Striped tail band so the barcode output never sits on the page edge. */
+/* Striped tail band so the barcode output never sits on the page edge;
+   carries the reference links as footer chrome. */
 .page-buffer {
-  height: 320px;
+  min-height: 320px;
+  padding: 48px var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   background: repeating-linear-gradient(
     45deg,
     transparent 0 6px,
     var(--hero-stripe) 6px 7px
   );
+}
+
+.footer-row {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+/* Fixed label column so every row's first link starts at the same x. */
+.footer-row .meta {
+  flex: none;
+  width: 140px;
+}
+
+.footer-row a {
+  transition: color 150ms ease;
+}
+
+.footer-row a:hover {
+  color: var(--fg);
+}
+
+.footer-sep {
+  margin-right: 8px;
 }
 
 @media (max-width: 640px) {

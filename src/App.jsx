@@ -3,6 +3,7 @@ import ThemeToggle from './components/ThemeToggle.jsx'
 import GithubLink from './components/GithubLink.jsx'
 import BarcodeBuilder from './components/BarcodeBuilder.jsx'
 import ExampleSubtitle from './components/ExampleSubtitle.jsx'
+import PageFooter from './components/PageFooter.jsx'
 
 const TABS = [
   { id: 'binary', label: 'Binary', base: 2 },
@@ -75,7 +76,7 @@ export default function App() {
         </div>
       ))}
 
-      <div className="page-buffer" aria-hidden="true" />
+      <PageFooter />
     </main>
   )
 }
