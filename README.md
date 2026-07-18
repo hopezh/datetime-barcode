@@ -15,7 +15,7 @@ Each datetime component is encoded with a fixed digit width, with `-` between fi
 Example:
 
 ```
-------------> 2026-07-15_21:08:59
+           -> 2026-07-15_21:08:59
 
 binary     -> 011111101010-0111-01111_10101-001000-111011
            -> ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▚▒▚▚

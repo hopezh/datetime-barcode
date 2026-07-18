@@ -4,7 +4,7 @@ import { codeToBarcodeSegments } from '../logic/barcode.js'
 import { sampleWithoutReplacement } from '../logic/random.js'
 
 // Seconds are 59 (not a rounder value) so every base's string uses all of its digits.
-const DATETIME_LINE = '------------> 2026-07-15_21:08:59'
+const DATETIME_LINE = '           -> 2026-07-15_21:08:59'
 
 const EXAMPLE_ROWS = [
   { name: 'binary', base: 2, code: '011111101010-0111-01111_10101-001000-111011', symbols: ['▒', '▚'] },

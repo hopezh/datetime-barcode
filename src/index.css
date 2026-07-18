@@ -78,10 +78,14 @@ a {
 }
 
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px var(--pad-x);
+  background: var(--background);
   border-bottom: var(--hairline) solid var(--border);
 }
 
@@ -96,13 +100,18 @@ nav {
   gap: 16px;
 }
 
-.github-link {
-  display: flex;
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
   color: var(--fg-muted);
   transition: color 150ms ease;
 }
 
-.github-link:hover {
+.repo-link:hover {
   color: var(--fg);
 }
 
@@ -522,6 +531,16 @@ button.symbol-cell:hover {
 /* Barcode symbols match the size of the step-4 symbol grid. */
 .code-value.symbols {
   font-size: 1.5rem;
+}
+
+/* Striped tail band so the barcode output never sits on the page edge. */
+.page-buffer {
+  height: 160px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 6px,
+    var(--hero-stripe) 6px 7px
+  );
 }
 
 @media (max-width: 640px) {
