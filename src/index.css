@@ -486,7 +486,8 @@ button.symbol-cell:hover {
   gap: 16px;
 }
 
-.assigner-hint {
+.assigner-hint,
+.step-hint {
   margin: 0;
   font-size: 14px;
   color: var(--fg-muted);

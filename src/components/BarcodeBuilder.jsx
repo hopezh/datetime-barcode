@@ -119,6 +119,10 @@ export default function BarcodeBuilder({ base }) {
           value={barcodeSegments ? barcodeSegments.map((seg) => seg.symbol).join('') : ''}
           segments={barcodeSegments ?? []}
         />
+        <p className="step-hint">
+          When pasting in PowerPoint use the option &quot;keep source formatting&quot; to keep the
+          colors.
+        </p>
       </Step>
     </>
   )
