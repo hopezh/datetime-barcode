@@ -106,13 +106,18 @@ export default function BarcodeBuilder({ base }) {
       </div>
 
       <Step number="05" title={`Convert the ${codeName} string to barcode`}>
-        <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>
+        <button
+          type="button"
+          className="action-button filled"
+          disabled={!canTranslate}
+          onClick={translate}
+        >
           Translate
         </button>
         <CodeDisplay
           label="Barcode"
           value={barcodeSegments ? barcodeSegments.map((seg) => seg.symbol).join('') : ''}
-          segments={barcodeSegments}
+          segments={barcodeSegments ?? []}
         />
       </Step>
     </>

@@ -354,6 +354,17 @@ button:disabled {
   padding: 10px 24px;
 }
 
+/* Inverted variant: the final Translate action. */
+.action-button.filled {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--background);
+}
+
+.action-button.filled:hover:not(:disabled) {
+  background: var(--accent);
+}
+
 .field,
 .code-display {
   display: flex;
@@ -567,9 +578,13 @@ button.symbol-cell:hover {
   white-space: nowrap;
 }
 
-/* Barcode symbols match the size of the step-4 symbol grid. */
+/* Barcode symbols match the size of the step-4 symbol grid; extra
+   vertical padding doubles the field height and centers the line. */
 .code-value.symbols {
   font-size: 1.5rem;
+  min-height: 88px;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 /* Striped tail band so the barcode output never sits on the page edge;

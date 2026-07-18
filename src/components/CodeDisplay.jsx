@@ -1,5 +1,14 @@
 import CopyButton from './CopyButton.jsx'
 
+function segmentsToHtml(segments) {
+  const spans = segments
+    .map(({ symbol, color }) =>
+      color ? `<span style="color:${color}">${symbol}</span>` : symbol,
+    )
+    .join('')
+  return `<span style="font-family:monospace">${spans}</span>`
+}
+
 export default function CodeDisplay({ label, value, segments }) {
   return (
     <div className="code-display">
@@ -14,7 +23,7 @@ export default function CodeDisplay({ label, value, segments }) {
               ))
             : value || ' '}
         </output>
-        <CopyButton text={value} />
+        <CopyButton text={value} html={segments ? segmentsToHtml(segments) : null} />
       </div>
     </div>
   )
