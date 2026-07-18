@@ -21,7 +21,7 @@ export default function ExampleSubtitle() {
 
   return (
     <pre className="subtitle">
-      {'\n' + DATETIME_LINE}
+      {DATETIME_LINE}
       {EXAMPLE_ROWS.map((row, rowIndex) => (
         <Fragment key={row.name}>
           {'\n\n' + row.name.padEnd(10) + ' -> ' + row.code + '\n           -> '}

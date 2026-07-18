@@ -72,25 +72,22 @@ export default function BarcodeBuilder({ base }) {
 
   return (
     <>
-      <section className="step">
-        <h2>Step 1. Specify the date and time</h2>
+      <Step number="01" title="Specify the date and time">
         <DatetimeInput
           value={datetimeInput}
           error={datetimeInput && !codeResult.ok ? codeResult.error : null}
           onChange={setDatetimeInput}
         />
-      </section>
+      </Step>
 
-      <section className="step">
-        <h2>Step 2. Convert date &amp; time to {codeName} string</h2>
+      <Step number="02" title={`Convert date & time to ${codeName} string`}>
         <button type="button" className="action-button" disabled={!codeResult.ok} onClick={convert}>
           Convert
         </button>
         <CodeDisplay label={codeLabel} value={code} />
-      </section>
+      </Step>
 
-      <section className="step">
-        <h2>Step 3. Pick symbols and colors for {DIGIT_LISTS[base]}</h2>
+      <Step number="03" title={`Pick symbols and colors for ${DIGIT_LISTS[base]}`}>
         <DigitAssigner
           symbols={symbols}
           colors={colors}
@@ -100,10 +97,9 @@ export default function BarcodeBuilder({ base }) {
           onRandomizeSymbols={randomizeSymbols}
           onRandomizeColors={randomizeColors}
         />
-      </section>
+      </Step>
 
-      <section className="step">
-        <h2>Step 4. Select symbol set</h2>
+      <Step number="04" title="Select symbol set">
         <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={setSelectedSetId} />
         {selectedSet.experimental && (
           <p className="warning">
@@ -111,10 +107,9 @@ export default function BarcodeBuilder({ base }) {
           </p>
         )}
         <SymbolGrid symbols={selectedSet.symbols} assigned={symbols} onPick={pickSymbol} />
-      </section>
+      </Step>
 
-      <section className="step">
-        <h2>Step 5. Convert the {codeName} string to barcode</h2>
+      <Step number="05" title={`Convert the ${codeName} string to barcode`}>
         <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>
           Translate
         </button>
@@ -123,7 +118,19 @@ export default function BarcodeBuilder({ base }) {
           value={barcodeSegments ? barcodeSegments.map((seg) => seg.symbol).join('') : ''}
           segments={barcodeSegments}
         />
-      </section>
+      </Step>
     </>
+  )
+}
+
+function Step({ number, title, children }) {
+  return (
+    <section className="step">
+      <div className="section-header">
+        <h2>{title}</h2>
+        <span className="meta">step {number}</span>
+      </div>
+      <div className="step-body">{children}</div>
+    </section>
   )
 }

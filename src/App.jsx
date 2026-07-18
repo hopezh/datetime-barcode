@@ -23,16 +23,33 @@ export default function App() {
   }, [theme])
 
   return (
-    <main className="app">
-      <header className="app-header">
-        <div>
-          <h1>Datetime Barcode</h1>
-          <ExampleSubtitle />
-        </div>
-        <div className="header-actions">
+    <main className="frame">
+      <nav>
+        <span className="wordmark">Datetime Barcode</span>
+        <div className="nav-actions">
           <GithubLink />
           <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
         </div>
+      </nav>
+
+      <header className="hero">
+        <div>
+          <p className="meta">datetime · base 2–6 · unicode symbols</p>
+          <h1>
+            A date and time,
+            <br />
+            written in five bases,
+            <br />
+            <span className="accent">drawn as a barcode</span>.
+          </h1>
+          <p className="lede">
+            Convert any moment into a fixed-width digit string in base 2 to 6, assign each digit a
+            Unicode symbol and a color — and read the result as a barcode.
+          </p>
+        </div>
+        <aside>
+          <ExampleSubtitle />
+        </aside>
       </header>
 
       <div className="tabs" role="tablist">

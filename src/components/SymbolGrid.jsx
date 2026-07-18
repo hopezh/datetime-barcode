@@ -1,4 +1,9 @@
+// Must match the largest .symbol-grid column count in index.css: blank cells
+// pad the last row so the hairline grid never exposes its container color.
+const GRID_COLUMNS = 16
+
 export default function SymbolGrid({ symbols, assigned, onPick }) {
+  const blanks = (GRID_COLUMNS - (symbols.length % GRID_COLUMNS)) % GRID_COLUMNS
   return (
     <div className="symbol-grid">
       {symbols.map((symbol) => {
@@ -16,6 +21,9 @@ export default function SymbolGrid({ symbols, assigned, onPick }) {
           </button>
         )
       })}
+      {Array.from({ length: blanks }, (_, i) => (
+        <div key={`blank-${i}`} className="symbol-cell" aria-hidden="true" />
+      ))}
     </div>
   )
 }
