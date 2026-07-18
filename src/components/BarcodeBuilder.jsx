@@ -13,14 +13,6 @@ import CodeDisplay from './CodeDisplay.jsx'
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
 
 const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary', 6: 'senary' }
-const DIGIT_LISTS = {
-  2: '0 and 1',
-  3: '0, 1, and 2',
-  4: '0, 1, 2, and 3',
-  5: '0, 1, 2, 3, and 4',
-  6: '0, 1, 2, 3, 4, and 5',
-}
-
 function nowAsDatetimeInput() {
   const now = new Date()
   const pad = (n) => String(n).padStart(2, '0')
@@ -72,42 +64,46 @@ export default function BarcodeBuilder({ base }) {
 
   return (
     <>
-      <Step number="01" title="Specify the date and time">
-        <DatetimeInput
-          value={datetimeInput}
-          error={datetimeInput && !codeResult.ok ? codeResult.error : null}
-          onChange={setDatetimeInput}
-        />
-      </Step>
+      <div className="step-row bottom-aligned">
+        <Step number="01" title="Specify date and time">
+          <DatetimeInput
+            value={datetimeInput}
+            error={datetimeInput && !codeResult.ok ? codeResult.error : null}
+            onChange={setDatetimeInput}
+          />
+        </Step>
 
-      <Step number="02" title={`Convert date & time to ${codeName} string`}>
-        <button type="button" className="action-button" disabled={!codeResult.ok} onClick={convert}>
-          Convert
-        </button>
-        <CodeDisplay label={codeLabel} value={code} />
-      </Step>
+        <Step number="02" title="Convert date and time">
+          <button type="button" className="action-button" disabled={!codeResult.ok} onClick={convert}>
+            Convert
+          </button>
+          <CodeDisplay label={codeLabel} value={code} />
+        </Step>
+      </div>
 
-      <Step number="03" title={`Pick symbols and colors for ${DIGIT_LISTS[base]}`}>
-        <DigitAssigner
-          symbols={symbols}
-          colors={colors}
-          assignTarget={assignTarget}
-          onArm={setAssignTarget}
-          onPickColor={pickColor}
-          onRandomizeSymbols={randomizeSymbols}
-          onRandomizeColors={randomizeColors}
-        />
-      </Step>
+      <div className="step-row">
+        <Step number="03" title="Pick symbols and colors">
+          <DigitAssigner
+            symbols={symbols}
+            colors={colors}
+            assignTarget={assignTarget}
+            onArm={setAssignTarget}
+            onPickColor={pickColor}
+            onRandomizeSymbols={randomizeSymbols}
+            onRandomizeColors={randomizeColors}
+          />
+        </Step>
 
-      <Step number="04" title="Select symbol set">
-        <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={setSelectedSetId} />
-        {selectedSet.experimental && (
-          <p className="warning">
-            Experimental set: these glyphs may not render with default system fonts.
-          </p>
-        )}
-        <SymbolGrid symbols={selectedSet.symbols} assigned={symbols} onPick={pickSymbol} />
-      </Step>
+        <Step number="04" title="Select symbol set">
+          <SymbolSetPicker sets={SYMBOL_SETS} selectedSetId={selectedSetId} onSelect={setSelectedSetId} />
+          {selectedSet.experimental && (
+            <p className="warning">
+              Experimental set: these glyphs may not render with default system fonts.
+            </p>
+          )}
+          <SymbolGrid symbols={selectedSet.symbols} assigned={symbols} onPick={pickSymbol} />
+        </Step>
+      </div>
 
       <Step number="05" title={`Convert the ${codeName} string to barcode`}>
         <button type="button" className="action-button" disabled={!canTranslate} onClick={translate}>

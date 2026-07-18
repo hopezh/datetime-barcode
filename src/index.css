@@ -238,6 +238,31 @@ nav {
   display: none;
 }
 
+/* Steps 1 and 2 share a row on wide screens; the 1px gap draws the seam. */
+.step-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--hairline);
+  background: var(--border);
+  border-bottom: var(--hairline) solid var(--border);
+}
+
+.step-row > .step {
+  border-bottom: none;
+}
+
+@media (min-width: 960px) {
+  .step-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Bottom-anchor both bodies so step 1's input row sits level with
+     step 2's output field; the other rows stay top-aligned. */
+  .step-row.bottom-aligned .step-body {
+    justify-content: flex-end;
+  }
+}
+
 /* Each step is a mini hairline bento: a step-number rail spanning the
    full height, with the title and content cells to its right. */
 .step {
@@ -255,11 +280,16 @@ nav {
 
 .step-meta {
   grid-row: 1 / 3;
-  padding: 20px 24px;
+  padding: 20px 36px 20px 24px;
+}
+
+.step-meta,
+.section-header,
+.step-body {
   transition: background-color 150ms ease;
 }
 
-.step-meta:hover {
+.step:hover > * {
   background: var(--surface-hover);
 }
 
@@ -293,6 +323,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  container-type: inline-size;
 }
 
 button {
@@ -354,7 +385,11 @@ input {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+}
+
+.datetime-row select,
+.datetime-row input {
+  padding: 10px 8px;
 }
 
 .time-selects {
@@ -378,7 +413,8 @@ input {
 }
 
 /* Hairline grid: lines are the container showing through 1px gaps.
-   Column counts pair with GRID_COLUMNS in SymbolGrid.jsx. */
+   Column counts pair with GRID_COLUMNS in SymbolGrid.jsx; they adapt to
+   the step body's width (container query) since steps can share a row. */
 .symbol-grid {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
@@ -388,13 +424,13 @@ input {
   width: 100%;
 }
 
-@media (max-width: 960px) {
+@container (max-width: 700px) {
   .symbol-grid {
     grid-template-columns: repeat(8, 1fr);
   }
 }
 
-@media (max-width: 640px) {
+@container (max-width: 360px) {
   .symbol-grid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -459,8 +495,10 @@ button.symbol-cell:hover {
 
 .slot-button {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  padding: 8px 12px;
   font-family: var(--font-mono);
   font-weight: 400;
 }
@@ -477,10 +515,11 @@ button.symbol-cell:hover {
 }
 
 .slot-color {
-  width: 2.4rem;
-  height: 1.5rem;
+  width: 28px;
+  height: 28px;
   padding: 2px;
   border: var(--hairline) solid var(--border);
+  border-radius: 50%;
   background: var(--surface-raised);
   cursor: pointer;
 }
@@ -491,7 +530,7 @@ button.symbol-cell:hover {
 
 .slot-color::-webkit-color-swatch {
   border: none;
-  border-radius: 0;
+  border-radius: 50%;
 }
 
 .assigner-actions {
@@ -535,7 +574,7 @@ button.symbol-cell:hover {
 
 /* Striped tail band so the barcode output never sits on the page edge. */
 .page-buffer {
-  height: 160px;
+  height: 320px;
   background: repeating-linear-gradient(
     45deg,
     transparent 0 6px,
