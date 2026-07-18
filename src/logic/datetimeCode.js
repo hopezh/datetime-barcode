@@ -4,6 +4,7 @@ export const FIELD_WIDTHS = {
   4: { year: 6, month: 2, day: 3, hour: 3, minute: 3, second: 3 },
   5: { year: 6, month: 2, day: 3, hour: 2, minute: 3, second: 3 },
   6: { year: 5, month: 2, day: 2, hour: 2, minute: 3, second: 3 },
+  7: { year: 5, month: 2, day: 2, hour: 2, minute: 3, second: 3 },
 }
 
 const DATETIME_PATTERN = /^(\d{4})-(\d{2})-(\d{2})_(\d{2}):(\d{2}):(\d{2})$/

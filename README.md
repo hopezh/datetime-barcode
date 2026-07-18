@@ -2,7 +2,7 @@
 
 **Live app: https://hopezh.github.io/datetime-barcode/**
 
-A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–6, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Five tabs — **Binary**, **Ternary**, **Quaternary**, **Quinary**, and **Senary**, each marked with a dice icon showing its base — offer the same five-step flow, one per base.
+A minimalistic web app that converts a date and time into a fixed-width digit string in base 2–7, then renders that string as a "barcode" made of Unicode symbols you pick to represent each digit. Six tabs — **Binary**, **Ternary**, **Quaternary**, **Quinary**, **Senary**, and **Septenary**, each marked with a dice icon showing its base — offer the same five-step flow, one per base.
 
 Each datetime component is encoded with a fixed digit width, with `-` between fields and `_` between the date and time halves:
 
@@ -11,26 +11,30 @@ Each datetime component is encoded with a fixed digit width, with `-` between fi
 - quaternary: year 6, month 2, day 3, hour 3, minute 3, second 3
 - quinary: year 6, month 2, day 3, hour 2, minute 3, second 3
 - senary: year 5, month 2, day 2, hour 2, minute 3, second 3
+- septenary: year 5, month 2, day 2, hour 2, minute 3, second 3
 
 Example:
 
 ```
-           -> 2026-07-15_21:08:59
+           -> 2026-07-15_21:08:53
 
-binary     -> 011111101010-0111-01111_10101-001000-111011
-           -> ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▚▒▚▚
+binary     -> 011111101010-0111-01111_10101-001000-110101
+           -> ▒▚▚▚▚▚▚▒▚▒▚▒ ▒▚▚▚ ▒▚▚▚▚ ▚▒▚▒▚ ▒▒▚▒▒▒ ▚▚▒▚▒▚
 
-ternary    -> 02210001-021-0120_210-0022-2012
-           -> ▖██▀▖▖▖▀ ▖█▀ ▖▀█▖ █▀▖ ▖▖██ █▖▀█
+ternary    -> 02210001-021-0120_210-0022-1222
+           -> ▖██▀▖▖▖▀ ▖█▀ ▖▀█▖ █▀▖ ▖▖██ ▀███
 
-quaternary -> 133222-13-033_111-020-323
-           -> ▄▟▟▐▐▐ ▄▟ ▁▟▟ ▄▄▄ ▁▐▁ ▟▐▟
+quaternary -> 133222-13-033_111-020-311
+           -> ▄▟▟▐▐▐ ▄▟ ▁▟▟ ▄▄▄ ▁▐▁ ▟▄▄
 
-quinary    -> 031101-12-030_41-013-214
-           -> ▘▓▌▌▘▌ ▌░ ▘▓▘ ▇▌ ▘▌▓ ░▌▇
+quinary    -> 031101-12-030_41-013-203
+           -> ▘▓▌▌▘▌ ▌░ ▘▓▘ ▇▌ ▘▌▓ ░▘▓
 
-senary     -> 13214-11-23_33-012-135
-           -> ▝▛▐▝▙ ▝▝ ▐▛ ▛▛ ▂▝▐ ▝▛█
+senary     -> 13214-11-23_33-012-125
+           -> ▝▛▐▝▙ ▝▝ ▐▛ ▛▛ ▂▝▐ ▝▐█
+
+septenary  -> 05623-10-21_30-011-104
+           -> ▁▆▇▃▄ ▂▁ ▃▂ ▄▁ ▁▂▂ ▂▁▅
 ```
 
 Built with React + Vite (plain JSX, no TypeScript), run with [Bun](https://bun.sh). No other runtime dependencies.
@@ -61,7 +65,7 @@ Pick a tab for the base you want, then walk through its five labeled steps (each
 
 1. **Specify the date and time** — a date picker plus three 24-hour dropdowns for hour, minute, and second. It defaults to the moment the app loaded.
 2. **Convert to the chosen base** — click **Convert** to encode the datetime as the fixed-width digit string.
-3. **Pick symbols and colors for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `5 =` for senary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup. The color picker under each slot tints that digit's symbol. Or click **Assign random symbols across all sets** to fill every slot with distinct random symbols drawn from the three non-experimental sets, **Assign random symbols in the selected set only** to draw them from the set currently chosen in the next step, **Assign unique random colors** to assign each digit a distinct color from a palette that stays readable in both themes, or **Assign one random color** to give every digit the same random color.
+3. **Pick symbols and colors for each digit** — click a slot button (one per digit: `0 =` and `1 =` for binary, up to `6 =` for septenary) to arm it, then click a glyph in the grid below. After each pick the next slot arms automatically, so one grid click per digit completes the setup. The color picker under each slot tints that digit's symbol. Or click **Assign random symbols across all sets** to fill every slot with distinct random symbols drawn from the three non-experimental sets, **Assign random symbols in the selected set only** to draw them from the set currently chosen in the next step, **Assign unique random colors** to assign each digit a distinct color from a palette that stays readable in both themes, or **Assign one random color** to give every digit the same random color.
 4. **Select symbol set** — choose which Unicode block the grid shows (Block Elements, Box Drawing, Geometric Shapes, or the experimental Legacy Computing sextants, which may not render with default fonts). Assignments survive switching sets, so the digit symbols can come from different sets.
 5. **Convert the digit string to barcode** — click **Translate** to render the barcode, with each symbol shown in its digit's color. Separators become spaces so the fields read as groups.
 
@@ -103,7 +107,7 @@ Per-tab state lives in each `BarcodeBuilder` instance (props down, callbacks up)
 
 ## References
 
-- Numeral systems: [binary](https://en.wikipedia.org/wiki/Binary_number) · [ternary](https://en.wikipedia.org/wiki/Ternary_numeral_system) · [quaternary](https://en.wikipedia.org/wiki/Quaternary_numeral_system) · [quinary](https://en.wikipedia.org/wiki/Quinary) · [senary](https://en.wikipedia.org/wiki/Senary)
+- Numeral systems: [binary](https://en.wikipedia.org/wiki/Binary_number) · [ternary](https://en.wikipedia.org/wiki/Ternary_numeral_system) · [quaternary](https://en.wikipedia.org/wiki/Quaternary_numeral_system) · [quinary](https://en.wikipedia.org/wiki/Quinary) · [senary](https://en.wikipedia.org/wiki/Senary) · [septenary](https://en.wikipedia.org/wiki/Septenary)
 - [Block Elements](https://en.wikipedia.org/wiki/Block_Elements) — U+2580–259F
 - [Box Drawing](https://en.wikipedia.org/wiki/Box_Drawing) — U+2500–257F
 - [Geometric Shapes](https://en.wikipedia.org/wiki/Geometric_Shapes_(Unicode_block)) — U+25A0–25FF

@@ -11,6 +11,7 @@ const TABS = [
   { id: 'quaternary', label: 'Quaternary', base: 4 },
   { id: 'quinary', label: 'Quinary', base: 5 },
   { id: 'senary', label: 'Senary', base: 6 },
+  { id: 'septenary', label: 'Septenary', base: 7 },
 ]
 
 export default function App() {
@@ -34,16 +35,16 @@ export default function App() {
 
       <header className="hero">
         <div>
-          <p className="meta">datetime · base 2–6 · unicode symbols</p>
+          <p className="meta">datetime · base 2–7 · unicode symbols</p>
           <h1>
             A date and time,
             <br />
-            written in five bases,
+            written in six bases,
             <br />
             <span className="accent">drawn as a barcode</span>.
           </h1>
           <p className="lede">
-            Convert any moment into a fixed-width digit string in base 2 to 6, assign each digit a
+            Convert any moment into a fixed-width digit string in base 2 to 7, assign each digit a
             Unicode symbol and a color — and read the result as a barcode.
           </p>
           <GithubLink />

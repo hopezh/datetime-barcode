@@ -12,7 +12,14 @@ import CodeDisplay from './CodeDisplay.jsx'
 
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
 
-const CODE_NAMES = { 2: 'binary', 3: 'ternary', 4: 'quaternary', 5: 'quinary', 6: 'senary' }
+const CODE_NAMES = {
+  2: 'binary',
+  3: 'ternary',
+  4: 'quaternary',
+  5: 'quinary',
+  6: 'senary',
+  7: 'septenary',
+}
 function nowAsDatetimeInput() {
   const now = new Date()
   const pad = (n) => String(n).padStart(2, '0')
