@@ -49,32 +49,34 @@ export default function DigitAssigner({
           </div>
         ))}
       </div>
-      <div className="assigner-actions">
-        <div className="assigner-actions-column">
-          <button type="button" onClick={onRandomizeSymbolsInSet}>
-            Assign random symbols in the selected set only
-          </button>
-          <button type="button" onClick={onRandomizeSymbols}>
-            Assign random symbols across all sets
-          </button>
+      <div className="assigner-actions-stack">
+        <div className="assigner-actions">
+          <div className="assigner-actions-column">
+            <button type="button" onClick={onRandomizeSymbolsInSet}>
+              Assign random symbols in the selected set only
+            </button>
+            <button type="button" onClick={onRandomizeSymbols}>
+              Assign random symbols across all sets
+            </button>
+          </div>
+          <div className="assigner-actions-column">
+            <button type="button" onClick={onApplyOneRandomColor}>
+              Assign one random color
+            </button>
+            <button type="button" onClick={onRandomizeColors}>
+              Assign unique random colors
+            </button>
+          </div>
         </div>
-        <div className="assigner-actions-column">
-          <button type="button" onClick={onApplyOneRandomColor}>
-            Assign one random color
-          </button>
-          <button type="button" onClick={onRandomizeColors}>
-            Assign unique random colors
-          </button>
-        </div>
+        <button
+          type="button"
+          className="copy-relation-button"
+          disabled={!symbols.every(Boolean)}
+          onClick={copyRelation}
+        >
+          Copy number-symbol pairs as a string, e.g. &quot;0 = ▚, 1 = ▌&quot;
+        </button>
       </div>
-      <button
-        type="button"
-        className="copy-relation-button"
-        disabled={!symbols.every(Boolean)}
-        onClick={copyRelation}
-      >
-        Copy number-symbol pairs as string, e.g. &quot;0 = ▚, 1 = ▌&quot;
-      </button>
     </div>
   )
 }

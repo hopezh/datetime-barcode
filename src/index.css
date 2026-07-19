@@ -595,6 +595,14 @@ button.symbol-cell:hover {
   border-radius: 50%;
 }
 
+/* Hug the four-button row so the copy button below stretches to its span. */
+.assigner-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: fit-content;
+}
+
 .assigner-actions {
   display: flex;
   align-items: flex-start;
