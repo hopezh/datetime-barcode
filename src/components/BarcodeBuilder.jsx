@@ -10,6 +10,7 @@ import DigitAssigner from './DigitAssigner.jsx'
 import DatetimeInput from './DatetimeInput.jsx'
 import NumberPaste from './NumberPaste.jsx'
 import CodeDisplay from './CodeDisplay.jsx'
+import Step from './Step.jsx'
 
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
 
@@ -168,20 +169,5 @@ export default function BarcodeBuilder({ base }) {
         </p>
       </Step>
     </>
-  )
-}
-
-function Step({ number, title, children }) {
-  return (
-    <section className="step">
-      <div className="step-meta">
-        <span className="meta">step</span>
-        <span className="step-number">{number}</span>
-      </div>
-      <div className="section-header">
-        <h2>{title}</h2>
-      </div>
-      <div className="step-body">{children}</div>
-    </section>
   )
 }

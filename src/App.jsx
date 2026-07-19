@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ThemeToggle from './components/ThemeToggle.jsx'
 import GithubLink from './components/GithubLink.jsx'
 import BarcodeBuilder from './components/BarcodeBuilder.jsx'
+import Step from './components/Step.jsx'
 import ExampleSubtitle from './components/ExampleSubtitle.jsx'
 import PageFooter from './components/PageFooter.jsx'
 
@@ -57,22 +58,24 @@ export default function App() {
         </aside>
       </header>
 
-      <div className="tabs" role="tablist">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            role="tab"
-            aria-selected={activeTabId === tab.id}
-            className={`tab${activeTabId === tab.id ? ' active' : ''}`}
-            onClick={() => setActiveTabId(tab.id)}
-          >
-            {/* Masked span (not <img>) so the icon follows the tab's text color in both themes. */}
-            <span className="tab-icon" style={{ maskImage: `url(dice-${tab.base}.svg)` }} />
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <Step number="00" title="Select number system">
+        <div className="tabs" role="tablist">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={activeTabId === tab.id}
+              className={`tab${activeTabId === tab.id ? ' active' : ''}`}
+              onClick={() => setActiveTabId(tab.id)}
+            >
+              {/* Masked span (not <img>) so the icon follows the tab's text color in both themes. */}
+              <span className="tab-icon" style={{ maskImage: `url(dice-${tab.base}.svg)` }} />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </Step>
 
       {TABS.map((tab) => (
         <div key={tab.id} className="tab-panel" role="tabpanel" hidden={activeTabId !== tab.id}>

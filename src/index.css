@@ -207,7 +207,7 @@ nav {
 .tabs {
   display: flex;
   justify-content: center;
-  border-bottom: var(--hairline) solid var(--border);
+  flex-wrap: wrap;
 }
 
 .tab {
@@ -230,7 +230,12 @@ nav {
 }
 
 .tab.active {
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--background);
+}
+
+.tab.active:hover {
+  background: var(--accent);
 }
 
 .tab-icon {
