@@ -264,12 +264,6 @@ nav {
   .step-row {
     grid-template-columns: 1fr 1fr;
   }
-
-  /* Bottom-anchor both bodies so step 1's input row sits level with
-     step 2's output field; the other rows stay top-aligned. */
-  .step-row.bottom-aligned .step-body {
-    justify-content: flex-end;
-  }
 }
 
 /* Each step is a mini hairline bento: a step-number rail spanning the
@@ -581,6 +575,12 @@ button.symbol-cell:hover {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+/* One rung above --surface-hover so the fill stays visible while the
+   hovered step already paints its cells --surface-hover. */
+.assigner-actions button:hover {
+  background: var(--border);
 }
 
 .code-display {

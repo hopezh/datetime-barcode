@@ -84,7 +84,7 @@ export default function BarcodeBuilder({ base }) {
 
   return (
     <>
-      <div className="step-row bottom-aligned">
+      <div className="step-row">
         <Step number="01" title="Specify date and time">
           <DatetimeInput
             value={datetimeInput}
@@ -94,10 +94,15 @@ export default function BarcodeBuilder({ base }) {
         </Step>
 
         <Step number="02" title="Convert date and time">
-          <button type="button" className="action-button" disabled={!codeResult.ok} onClick={convert}>
+          <CodeDisplay label={codeLabel} value={code} />
+          <button
+            type="button"
+            className="action-button filled"
+            disabled={!codeResult.ok}
+            onClick={convert}
+          >
             Convert
           </button>
-          <CodeDisplay label={codeLabel} value={code} />
         </Step>
       </div>
 
