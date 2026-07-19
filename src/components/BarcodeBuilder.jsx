@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { SYMBOL_SETS } from '../data/symbolSets.js'
 import { COLOR_POOL } from '../data/colorPool.js'
-import { datetimeToCode } from '../logic/datetimeCode.js'
+import { parseDatetime, stringToCode } from '../logic/datetimeCode.js'
 import { codeToBarcodeSegments } from '../logic/barcode.js'
 import { sampleWithoutReplacement } from '../logic/random.js'
 import SymbolSetPicker from './SymbolSetPicker.jsx'
 import SymbolGrid from './SymbolGrid.jsx'
 import DigitAssigner from './DigitAssigner.jsx'
 import DatetimeInput from './DatetimeInput.jsx'
+import NumberPaste from './NumberPaste.jsx'
 import CodeDisplay from './CodeDisplay.jsx'
 
 const RANDOM_POOL = SYMBOL_SETS.filter((set) => !set.experimental).flatMap((set) => set.symbols)
@@ -37,13 +38,15 @@ export default function BarcodeBuilder({ base }) {
   const [colors, setColors] = useState(() => Array(base).fill(null))
   const [assignTarget, setAssignTarget] = useState(0)
   const [datetimeInput, setDatetimeInput] = useState(nowAsDatetimeInput)
+  const [source, setSource] = useState('')
   const [code, setCode] = useState('')
   const [barcodeSegments, setBarcodeSegments] = useState(null)
 
   const codeName = CODE_NAMES[base]
   const codeLabel = codeName[0].toUpperCase() + codeName.slice(1)
   const selectedSet = SYMBOL_SETS.find((set) => set.id === selectedSetId)
-  const codeResult = datetimeToCode(datetimeInput, base)
+  const datetimeResult = parseDatetime(datetimeInput)
+  const codeResult = stringToCode(source, base)
   const canTranslate = Boolean(code) && symbols.every(Boolean)
 
   function pickSymbol(symbol) {
@@ -86,15 +89,27 @@ export default function BarcodeBuilder({ base }) {
     <>
       <div className="step-row">
         <Step number="01" title="Specify date and time">
-          <DatetimeInput
-            value={datetimeInput}
-            error={datetimeInput && !codeResult.ok ? codeResult.error : null}
-            onChange={setDatetimeInput}
-          />
+          <div className="step1-fields">
+            <DatetimeInput
+              value={datetimeInput}
+              error={datetimeInput && !datetimeResult.ok ? datetimeResult.error : null}
+              onChange={setDatetimeInput}
+              onSend={setSource}
+            />
+            <NumberPaste onSend={setSource} />
+          </div>
         </Step>
 
         <Step number="02" title="Convert date and time">
-          <CodeDisplay label={codeLabel} value={code} />
+          <div className="field source-field">
+            <span className="field-label">String to be converted</span>
+            <input
+              type="text"
+              value={source}
+              aria-label="String to be converted"
+              onChange={(event) => setSource(event.target.value)}
+            />
+          </div>
           <button
             type="button"
             className="action-button filled"
@@ -103,6 +118,7 @@ export default function BarcodeBuilder({ base }) {
           >
             Convert
           </button>
+          <CodeDisplay label={codeLabel} value={code} copyable={false} />
         </Step>
       </div>
 

@@ -405,10 +405,40 @@ input {
   padding: 10px 12px;
 }
 
-.datetime-row {
+/* Hug the widest row (the datetime one) so both rows share one width and
+   their trailing copy/send buttons line up column-for-column. */
+.step1-fields {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: fit-content;
+}
+
+.datetime-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 8px;
+}
+
+.source-field {
+  width: 100%;
+}
+
+.number-paste-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.number-paste-row input {
+  min-width: 0;
+}
+
+.number-paste-row input,
+.source-field input {
+  text-align: center;
 }
 
 .datetime-row select,

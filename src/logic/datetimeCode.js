@@ -31,6 +31,20 @@ export function parseDatetime(input) {
   return { ok: true, parts: { year, month, day, hour, minute, second } }
 }
 
+const NUMBER_PATTERN = /^\d+([-_]\d+)*$/
+
+// BigInt so pasted numbers longer than Number's safe range still convert.
+function numberToCode(input, base) {
+  if (!NUMBER_PATTERN.test(input)) {
+    return { ok: false, error: 'Expected a datetime or digits separated by "-" or "_"' }
+  }
+  return { ok: true, code: input.replace(/\d+/g, (field) => BigInt(field).toString(base)) }
+}
+
+export function stringToCode(input, base) {
+  return DATETIME_PATTERN.test(input) ? datetimeToCode(input, base) : numberToCode(input, base)
+}
+
 export function datetimeToCode(input, base) {
   const parsed = parseDatetime(input)
   if (!parsed.ok) return parsed

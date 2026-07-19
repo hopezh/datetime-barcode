@@ -9,7 +9,7 @@ function segmentsToHtml(segments) {
   return `<span style="font-family:monospace">${spans}</span>`
 }
 
-export default function CodeDisplay({ label, value, segments }) {
+export default function CodeDisplay({ label, value, segments, copyable = true }) {
   return (
     <div className="code-display">
       <span className="field-label">{label}</span>
@@ -23,7 +23,7 @@ export default function CodeDisplay({ label, value, segments }) {
               ))
             : value || ' '}
         </output>
-        <CopyButton text={value} html={segments ? segmentsToHtml(segments) : null} />
+        {copyable && <CopyButton text={value} html={segments ? segmentsToHtml(segments) : null} />}
       </div>
     </div>
   )

@@ -91,3 +91,9 @@ add a button below the four existing buttons in step 3, named 'copy number->symb
 replace "0=▂" with "0=▚".
 
 change the title of the button to 'copy number->symbol pairs as a string, e.g. "0=▚, 1=▜▌"'.
+
+in step 1, add a button "->" to the right of the "copy" button of datetime selector, which when clicked will send the datetime string to the "input text field" in step 2.
+in step 1, add a "copy" button in between the text input field and the "->" button below the text "Or, paste*". both "->" buttons have the same function. 
+in step 2, add a text input field above the text of number system, which receives the datetime string, or the arbitrary number string, when either "->" button in step 1 is clicked, and displays it, add a small text above it "Strings to be converted:". 
+put the "convert" button above the text for number system. 
+the text field below the text for number system should display the converted string.

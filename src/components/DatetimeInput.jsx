@@ -1,8 +1,6 @@
-import CopyButton from './CopyButton.jsx'
-
 // Native time pickers render AM/PM or 24-hour based on the OS locale and
 // can't be forced to 24-hour, so the time uses three dropdowns instead.
-export default function DatetimeInput({ value, error, onChange }) {
+export default function DatetimeInput({ value, error, onChange, onSend }) {
   const [datePart = '', timePart = ''] = value.split('_')
   const [hour = '00', minute = '00', second = '00'] = timePart.split(':')
 
@@ -26,7 +24,9 @@ export default function DatetimeInput({ value, error, onChange }) {
           <span>:</span>
           <TimeSelect value={second} max={59} onChange={(s) => update(datePart, hour, minute, s)} />
         </div>
-        <CopyButton text={value} />
+        <button type="button" onClick={() => onSend(value)}>
+          -&gt;
+        </button>
       </div>
       {error && <span className="field-error">{error}</span>}
     </div>

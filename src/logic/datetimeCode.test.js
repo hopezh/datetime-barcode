@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'bun:test'
-import { parseDatetime, datetimeToCode, toDigits } from './datetimeCode.js'
+import { parseDatetime, datetimeToCode, stringToCode, toDigits } from './datetimeCode.js'
 
 describe('toDigits', () => {
   it('pads to the requested width', () => {
@@ -79,6 +79,33 @@ describe('parseDatetime', () => {
     expect(parseDatetime('2026-13-14_23:12:00').ok).toBe(false)
     expect(parseDatetime('2026-07-00_23:12:00').ok).toBe(false)
     expect(parseDatetime('2026-07-14_24:12:00').ok).toBe(false)
+  })
+})
+
+describe('stringToCode', () => {
+  it('routes datetime-shaped input through datetimeToCode', () => {
+    expect(stringToCode('2026-07-14_23:12:00', 2)).toEqual(datetimeToCode('2026-07-14_23:12:00', 2))
+  })
+
+  it('converts a plain number', () => {
+    expect(stringToCode('7', 2)).toEqual({ ok: true, code: '111' })
+  })
+
+  it('converts each divider-separated field and keeps the dividers', () => {
+    expect(stringToCode('7-8_9', 2)).toEqual({ ok: true, code: '111-1000_1001' })
+  })
+
+  it('converts numbers beyond Number safe range', () => {
+    expect(stringToCode('18446744073709551616', 2)).toEqual({
+      ok: true,
+      code: '1' + '0'.repeat(64),
+    })
+  })
+
+  it('rejects empty and non-numeric input', () => {
+    expect(stringToCode('', 2).ok).toBe(false)
+    expect(stringToCode('12a3', 2).ok).toBe(false)
+    expect(stringToCode('1-_2', 2).ok).toBe(false)
   })
 })
 
