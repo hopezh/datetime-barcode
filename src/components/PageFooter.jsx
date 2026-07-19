@@ -31,7 +31,7 @@ const REFERENCE_ROWS = [
     ],
   },
   {
-    label: 'design reference',
+    label: 'UI design ref',
     links: [['aihero.dev/ai-coding-dictionary', 'https://www.aihero.dev/ai-coding-dictionary']],
   },
 ]
