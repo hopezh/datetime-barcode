@@ -1,3 +1,5 @@
+import { copyRichText } from '../logic/clipboard.js'
+
 export default function DigitAssigner({
   symbols,
   colors,
@@ -10,7 +12,16 @@ export default function DigitAssigner({
   onRandomizeColors,
 }) {
   function copyRelation() {
-    navigator.clipboard.writeText(symbols.map((symbol, digit) => `${digit} = ${symbol}`).join(', '))
+    const text = symbols.map((symbol, digit) => `${digit} = ${symbol}`).join(', ')
+    const pairs = symbols
+      .map((symbol, digit) => {
+        const colored = colors[digit]
+          ? `<span style="color:${colors[digit]}">${symbol}</span>`
+          : symbol
+        return `${digit} = ${colored}`
+      })
+      .join(', ')
+    copyRichText(text, `<span style="font-family:monospace">${pairs}</span>`)
   }
 
   return (
