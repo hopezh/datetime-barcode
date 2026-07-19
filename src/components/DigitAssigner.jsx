@@ -9,6 +9,10 @@ export default function DigitAssigner({
   onApplyOneRandomColor,
   onRandomizeColors,
 }) {
+  function copyRelation() {
+    navigator.clipboard.writeText(symbols.map((symbol, digit) => `${digit} = ${symbol}`).join(', '))
+  }
+
   return (
     <div className="assigner">
       <p className="assigner-hint">
@@ -52,6 +56,14 @@ export default function DigitAssigner({
           </button>
         </div>
       </div>
+      <button
+        type="button"
+        className="copy-relation-button"
+        disabled={!symbols.every(Boolean)}
+        onClick={copyRelation}
+      >
+        Copy number-symbol pairs as string, e.g. &quot;0 = ▚, 1 = ▌&quot;
+      </button>
     </div>
   )
 }

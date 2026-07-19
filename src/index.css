@@ -579,7 +579,8 @@ button.symbol-cell:hover {
 
 /* One rung above --surface-hover so the fill stays visible while the
    hovered step already paints its cells --surface-hover. */
-.assigner-actions button:hover {
+.assigner-actions button:hover,
+.copy-relation-button:hover:not(:disabled) {
   background: var(--border);
 }
 
