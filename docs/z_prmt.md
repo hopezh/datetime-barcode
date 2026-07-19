@@ -85,3 +85,9 @@ pls randomize the colors of the symbols in the subtitle based on the number syst
 3. move the example code block to the right block, with similar strip pattern as background, like the block showing "#the-hairline-grid*".
 
 1. for each step, move the name "STEP 01" to a vertical block/div to the left of the div containing the title and that of the contents, i.e. the vertical block cover the full height of that two divs, creating a "mini bento grid" for that step. the text "STEP 01" should be alignted to the top left corner of that div.
+
+add a button below the four existing buttons in step 3, named 'copy number->symbol relation as "0=▂" etc.', and the content copied will be something like "0=▂", and so on. implement this feature once the button is added.
+
+replace "0=▂" with "0=▚".
+
+change the title of the button to 'copy number->symbol pairs as a string, e.g. "0=▚, 1=▜▌"'.
