@@ -1,4 +1,5 @@
-import { copyRichText } from '../logic/clipboard.js'
+import { useRef } from 'react'
+import { downloadConfig, readConfig } from '../logic/configFile.js'
 
 export default function DigitAssigner({
   symbols,
@@ -10,18 +11,20 @@ export default function DigitAssigner({
   onRandomizeSymbolsInSet,
   onApplyOneRandomColor,
   onRandomizeColors,
+  onImport,
+  codeName,
 }) {
-  function copyRelation() {
-    const text = symbols.map((symbol, digit) => `${digit} = ${symbol}`).join(', ')
-    const pairs = symbols
-      .map((symbol, digit) => {
-        const colored = colors[digit]
-          ? `<span style="color:${colors[digit]}">${symbol}</span>`
-          : symbol
-        return `${digit} = ${colored}`
-      })
-      .join(', ')
-    copyRichText(text, `<span style="font-family:monospace">${pairs}</span>`)
+  const fileInputRef = useRef(null)
+
+  async function importConfig(event) {
+    const [file] = event.target.files
+    if (!file) return
+    try {
+      onImport(await readConfig(file, symbols.length))
+    } catch {
+      // Not a readable config file — leave the current assignment untouched.
+    }
+    event.target.value = ''
   }
 
   return (
@@ -68,14 +71,21 @@ export default function DigitAssigner({
             </button>
           </div>
         </div>
-        <button
-          type="button"
-          className="copy-relation-button"
-          disabled={!symbols.every(Boolean)}
-          onClick={copyRelation}
-        >
-          Copy number-symbol pairs as a string, e.g. &quot;0 = ▚, 1 = ▌&quot;
-        </button>
+        <div className="assigner-actions">
+          <button type="button" onClick={() => fileInputRef.current.click()}>
+            Import number-symbol-color config
+          </button>
+          <button type="button" onClick={() => downloadConfig(symbols, colors, codeName)}>
+            Export number-symbol-color config
+          </button>
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".json,application/json"
+          hidden
+          onChange={importConfig}
+        />
       </div>
     </div>
   )

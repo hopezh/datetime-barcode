@@ -135,6 +135,11 @@ export default function BarcodeBuilder({ base }) {
             onRandomizeSymbolsInSet={randomizeSymbolsInSet}
             onApplyOneRandomColor={applyOneRandomColor}
             onRandomizeColors={randomizeColors}
+            onImport={(config) => {
+              setSymbols(config.symbols)
+              setColors(config.colors)
+            }}
+            codeName={codeName}
           />
         </Step>
 
