@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 z_prmt.md
+
+# Understand-Anything scratch output (the knowledge graph itself is tracked)
+.ua/intermediate/
+.ua/tmp/
+.ua/diff-overlay.json
+.ua/.trash-*/

@@ -1,0 +1,2250 @@
+{
+ "version": "1.0.0",
+ "project": {
+  "name": "datetime-barcode",
+  "languages": [
+   "javascript",
+   "markdown",
+   "json",
+   "html",
+   "css",
+   "yaml"
+  ],
+  "frameworks": [
+   "React",
+   "Vite",
+   "GitHub Actions"
+  ],
+  "description": "A minimalistic React + Vite web app that encodes a date and time into a fixed-width digit string in bases 2-10 and renders it as a barcode made of user-chosen Unicode symbols. Nine per-base tabs (binary through decimal) each expose the same five-step flow and keep independent state.",
+  "analyzedAt": "2026-07-20T15:37:32.745Z",
+  "gitCommitHash": "fbe428f61384e3d46afcafe635c300e98445a49e"
+ },
+ "nodes": [
+  {
+   "id": "file:src/App.jsx",
+   "type": "file",
+   "name": "App.jsx",
+   "filePath": "src/App.jsx",
+   "summary": "Root application shell that owns theme and active-tab state, declares the nine numeral-system tabs (base 2 through 10), and composes the hero, tab bar, per-base BarcodeBuilder panels, and footer.",
+   "tags": [
+    "entry-point",
+    "component",
+    "layout",
+    "state-management",
+    "tabs"
+   ],
+   "complexity": "moderate",
+   "languageNotes": "All nine tab panels are rendered simultaneously and toggled with the `hidden` attribute rather than conditionally mounted, so each base keeps independent state across tab switches."
+  },
+  {
+   "id": "file:src/components/GithubLink.jsx",
+   "type": "file",
+   "name": "GithubLink.jsx",
+   "filePath": "src/components/GithubLink.jsx",
+   "summary": "Presentational component rendering the inline GitHub repository icon link shown in the navigation bar.",
+   "tags": [
+    "component",
+    "presentational",
+    "navigation",
+    "icon"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/PageFooter.jsx",
+   "type": "file",
+   "name": "PageFooter.jsx",
+   "filePath": "src/components/PageFooter.jsx",
+   "summary": "Renders the page footer from a static REFERENCE_ROWS table of external reference links grouped by topic (numeral systems, Unicode symbol sets, build tooling, design references).",
+   "tags": [
+    "component",
+    "presentational",
+    "footer",
+    "data-driven",
+    "links"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/Step.jsx",
+   "type": "file",
+   "name": "Step.jsx",
+   "filePath": "src/components/Step.jsx",
+   "summary": "Generic numbered-section wrapper that renders a step number and title around arbitrary children, giving the five-step flow a consistent frame.",
+   "tags": [
+    "component",
+    "presentational",
+    "layout",
+    "wrapper"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/ThemeToggle.jsx",
+   "type": "file",
+   "name": "ThemeToggle.jsx",
+   "filePath": "src/components/ThemeToggle.jsx",
+   "summary": "Stateless light/dark theme toggle button driven entirely by the `theme` and `onToggle` props supplied by App.",
+   "tags": [
+    "component",
+    "presentational",
+    "theming",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/main.jsx",
+   "type": "file",
+   "name": "main.jsx",
+   "filePath": "src/main.jsx",
+   "summary": "Application bootstrap that imports global styles and mounts the App component into the DOM root via React's createRoot.",
+   "tags": [
+    "entry-point",
+    "bootstrap",
+    "react",
+    "dom"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/App.jsx:App",
+   "type": "function",
+   "name": "App",
+   "filePath": "src/App.jsx",
+   "lineRange": [
+    21,
+    89
+   ],
+   "summary": "Root component that initializes theme from the OS color-scheme preference, syncs it to the document dataset, tracks the selected base tab, and lays out the nav, hero, tab selector, barcode panels, and footer.",
+   "tags": [
+    "component",
+    "entry-point",
+    "state-management",
+    "theming"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/components/GithubLink.jsx:GithubLink",
+   "type": "function",
+   "name": "GithubLink",
+   "filePath": "src/components/GithubLink.jsx",
+   "lineRange": [
+    1,
+    15
+   ],
+   "summary": "Returns an anchor element wrapping the inline GitHub SVG mark that links to the project repository.",
+   "tags": [
+    "component",
+    "presentational",
+    "icon"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/PageFooter.jsx:PageFooter",
+   "type": "function",
+   "name": "PageFooter",
+   "filePath": "src/components/PageFooter.jsx",
+   "lineRange": [
+    39,
+    57
+   ],
+   "summary": "Maps the REFERENCE_ROWS constant into footer rows of dot-separated external links, each opened in a new tab with noreferrer.",
+   "tags": [
+    "component",
+    "presentational",
+    "footer",
+    "data-driven"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/Step.jsx:Step",
+   "type": "function",
+   "name": "Step",
+   "filePath": "src/components/Step.jsx",
+   "lineRange": [
+    1,
+    14
+   ],
+   "summary": "Renders a labeled section with the given step number and title, wrapping its children in the shared step layout.",
+   "tags": [
+    "component",
+    "presentational",
+    "wrapper",
+    "layout"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/ThemeToggle.jsx:ThemeToggle",
+   "type": "function",
+   "name": "ThemeToggle",
+   "filePath": "src/components/ThemeToggle.jsx",
+   "lineRange": [
+    1,
+    7
+   ],
+   "summary": "Renders a button reflecting the current theme and invoking the onToggle callback when clicked.",
+   "tags": [
+    "component",
+    "presentational",
+    "theming",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/BarcodeBuilder.jsx",
+   "type": "file",
+   "name": "BarcodeBuilder.jsx",
+   "filePath": "src/components/BarcodeBuilder.jsx",
+   "summary": "Central per-base container component that owns all state for one numeral-base tab and orchestrates the five-step flow: symbol set selection, symbol picking, datetime or number entry, code conversion, and barcode rendering.",
+   "tags": [
+    "component",
+    "container",
+    "state-management",
+    "entry-point",
+    "orchestration"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Uses lazy useState initializers (e.g. useState(() => Array(base).fill(null))) so per-base arrays are allocated once rather than on every render."
+  },
+  {
+   "id": "file:src/components/DatetimeInput.jsx",
+   "type": "file",
+   "name": "DatetimeInput.jsx",
+   "filePath": "src/components/DatetimeInput.jsx",
+   "summary": "Controlled date and time entry widget that splits a `YYYY-MM-DD_HH:MM:SS` string into a date field plus hour/minute/second selects and emits the recomposed value on change.",
+   "tags": [
+    "component",
+    "form-input",
+    "controlled-component",
+    "datetime",
+    "validation"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/NumberPaste.jsx",
+   "type": "file",
+   "name": "NumberPaste.jsx",
+   "filePath": "src/components/NumberPaste.jsx",
+   "summary": "Small uncontrolled text-entry component that lets the user paste or type an arbitrary source string and send it downstream for encoding.",
+   "tags": [
+    "component",
+    "form-input",
+    "event-handler",
+    "user-input"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/SymbolGrid.jsx",
+   "type": "file",
+   "name": "SymbolGrid.jsx",
+   "filePath": "src/components/SymbolGrid.jsx",
+   "summary": "Renders the symbols of the active Unicode set as a clickable grid, badging each symbol with the digit it is currently assigned to and reporting picks upward.",
+   "tags": [
+    "component",
+    "presentation",
+    "grid",
+    "event-handler",
+    "symbol-selection"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/SymbolSetPicker.jsx",
+   "type": "file",
+   "name": "SymbolSetPicker.jsx",
+   "filePath": "src/components/SymbolSetPicker.jsx",
+   "summary": "Minimal presentational picker that renders one button per available Unicode symbol set and reports the selected set id to its parent.",
+   "tags": [
+    "component",
+    "presentation",
+    "selector",
+    "stateless"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/data/symbolSets.js",
+   "type": "file",
+   "name": "symbolSets.js",
+   "filePath": "src/data/symbolSets.js",
+   "summary": "Static catalogue of the four Unicode symbol sets (Block Elements, Box Drawing, Geometric Shapes, and experimental Legacy Computing sextants), each expanded from a codepoint range into an array of characters.",
+   "tags": [
+    "data-model",
+    "constants",
+    "unicode",
+    "symbol-sets"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Symbol arrays are generated at module load via String.fromCodePoint over a codepoint range, so adding a set means naming a range rather than listing characters."
+  },
+  {
+   "id": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "type": "function",
+   "name": "BarcodeBuilder",
+   "filePath": "src/components/BarcodeBuilder.jsx",
+   "lineRange": [
+    36,
+    178
+   ],
+   "summary": "React component taking a numeral `base` prop; holds the eight pieces of tab state and wires symbol/color assignment, randomization, datetime parsing, code conversion, and barcode translation into the stepped UI.",
+   "tags": [
+    "component",
+    "state-management",
+    "orchestration",
+    "react-hooks"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:src/components/DatetimeInput.jsx:DatetimeInput",
+   "type": "function",
+   "name": "DatetimeInput",
+   "filePath": "src/components/DatetimeInput.jsx",
+   "lineRange": [
+    3,
+    34
+   ],
+   "summary": "Parses the incoming combined datetime string into its date and time parts, renders the date input alongside three TimeSelect dropdowns, and re-joins the parts through an `update` helper on every edit.",
+   "tags": [
+    "component",
+    "controlled-component",
+    "datetime",
+    "form-input"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/DatetimeInput.jsx:TimeSelect",
+   "type": "function",
+   "name": "TimeSelect",
+   "filePath": "src/components/DatetimeInput.jsx",
+   "lineRange": [
+    36,
+    45
+   ],
+   "summary": "Local helper component rendering a zero-padded numeric select whose option range is generated from a count prop.",
+   "tags": [
+    "component",
+    "presentation",
+    "utility",
+    "form-input"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/NumberPaste.jsx:NumberPaste",
+   "type": "function",
+   "name": "NumberPaste",
+   "filePath": "src/components/NumberPaste.jsx",
+   "lineRange": [
+    3,
+    24
+   ],
+   "summary": "Keeps local text state for the pasted source string and forwards it to the parent via onSend when submitted.",
+   "tags": [
+    "component",
+    "form-input",
+    "local-state",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/SymbolGrid.jsx:SymbolGrid",
+   "type": "function",
+   "name": "SymbolGrid",
+   "filePath": "src/components/SymbolGrid.jsx",
+   "lineRange": [
+    5,
+    29
+   ],
+   "summary": "Maps the symbol list to grid buttons, marking each one with its assigned digit index via assigned.indexOf and invoking onPick on click.",
+   "tags": [
+    "component",
+    "presentation",
+    "grid",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/SymbolSetPicker.jsx:SymbolSetPicker",
+   "type": "function",
+   "name": "SymbolSetPicker",
+   "filePath": "src/components/SymbolSetPicker.jsx",
+   "lineRange": [
+    1,
+    14
+   ],
+   "summary": "Renders one selection button per symbol set, highlighting the active id and calling onSelect with the chosen set's id.",
+   "tags": [
+    "component",
+    "presentation",
+    "selector",
+    "stateless"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/ExampleSubtitle.jsx",
+   "type": "file",
+   "name": "ExampleSubtitle.jsx",
+   "filePath": "src/components/ExampleSubtitle.jsx",
+   "summary": "Renders the app's hero subtitle as a preformatted block showing one worked example per base (binary through decimal), each encoded date-time string paired with its colored Unicode barcode. Holds a hardcoded EXAMPLE_ROWS table using the time 18:35:49 so every base exercises all of its digits.",
+   "tags": [
+    "component",
+    "presentation",
+    "example-data",
+    "react"
+   ],
+   "complexity": "moderate",
+   "languageNotes": "Uses a lazy useState initializer so the random per-row color assignment is sampled once on mount rather than on every render."
+  },
+  {
+   "id": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "type": "function",
+   "name": "ExampleSubtitle",
+   "filePath": "src/components/ExampleSubtitle.jsx",
+   "lineRange": [
+    21,
+    41
+   ],
+   "summary": "Default-exported React component that samples a distinct color per digit for each example row, then maps every row's code into colored barcode spans inside a <pre> block.",
+   "tags": [
+    "component",
+    "react",
+    "rendering",
+    "entry-point"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/data/colorPool.js",
+   "type": "file",
+   "name": "colorPool.js",
+   "filePath": "src/data/colorPool.js",
+   "summary": "Exports COLOR_POOL, a fixed palette of twelve mid-tone hex hues chosen to stay readable against both the light and dark themes.",
+   "tags": [
+    "data-model",
+    "constants",
+    "theming",
+    "palette"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/logic/barcode.js",
+   "type": "file",
+   "name": "barcode.js",
+   "filePath": "src/logic/barcode.js",
+   "summary": "Core encoding logic that turns a digit string into barcode output by indexing a caller-supplied symbol and color array per character. Pure functions with no React or DOM dependency.",
+   "tags": [
+    "utility",
+    "core-logic",
+    "serialization",
+    "pure-functions",
+    "tested"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Nullish coalescing (??) supplies a space fallback for characters outside the symbol table, so separators like '-' and '_' pass through as blanks."
+  },
+  {
+   "id": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "function",
+   "name": "codeToBarcodeSegments",
+   "filePath": "src/logic/barcode.js",
+   "lineRange": [
+    1,
+    6
+   ],
+   "summary": "Maps each character of a code string to a {symbol, color} segment by using the character's numeric value as an index into the symbols and colors arrays, falling back to a space and null.",
+   "tags": [
+    "utility",
+    "core-logic",
+    "mapping",
+    "pure-function"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/barcode.js:codeToBarcode",
+   "type": "function",
+   "name": "codeToBarcode",
+   "filePath": "src/logic/barcode.js",
+   "lineRange": [
+    8,
+    12
+   ],
+   "summary": "Convenience wrapper that flattens the segment list into a plain symbol-only string, discarding color information.",
+   "tags": [
+    "utility",
+    "core-logic",
+    "serialization",
+    "pure-function"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/logic/barcode.test.js",
+   "type": "file",
+   "name": "barcode.test.js",
+   "filePath": "src/logic/barcode.test.js",
+   "summary": "Unit tests covering the barcode encoding helpers, verifying digit-to-symbol mapping and the fallback behavior for characters outside the symbol table.",
+   "tags": [
+    "test",
+    "unit-test",
+    "core-logic",
+    "validation"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/logic/random.js",
+   "type": "file",
+   "name": "random.js",
+   "filePath": "src/logic/random.js",
+   "summary": "Single-purpose randomness helper providing unbiased sampling without replacement, used to assign a distinct color to each digit of a base.",
+   "tags": [
+    "utility",
+    "randomness",
+    "pure-module",
+    "sampling"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/random.js:sampleWithoutReplacement",
+   "type": "function",
+   "name": "sampleWithoutReplacement",
+   "filePath": "src/logic/random.js",
+   "lineRange": [
+    1,
+    7
+   ],
+   "summary": "Returns `count` items drawn at random from a copy of `source`, splicing each pick out of the working pool so no item repeats.",
+   "tags": [
+    "utility",
+    "randomness",
+    "sampling",
+    "pure-function"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/components/CodeDisplay.jsx",
+   "type": "file",
+   "name": "CodeDisplay.jsx",
+   "filePath": "src/components/CodeDisplay.jsx",
+   "summary": "Presentational React component that renders a labeled read-only output field, showing either a plain string value or a sequence of colored symbol segments, with an optional copy affordance.",
+   "tags": [
+    "component",
+    "presentation",
+    "react",
+    "ui",
+    "display"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Builds a parallel inline-HTML representation of the rendered segments so the clipboard can carry the same per-symbol colors that JSX renders on screen."
+  },
+  {
+   "id": "file:src/components/CopyButton.jsx",
+   "type": "file",
+   "name": "CopyButton.jsx",
+   "filePath": "src/components/CopyButton.jsx",
+   "summary": "Small stateful React button that copies supplied text (or rich HTML when provided) to the clipboard and flashes a transient 'Copied' confirmation.",
+   "tags": [
+    "component",
+    "react",
+    "clipboard",
+    "ui",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/logic/clipboard.js",
+   "type": "file",
+   "name": "clipboard.js",
+   "filePath": "src/logic/clipboard.js",
+   "summary": "Thin browser-clipboard wrapper that writes a dual-format ClipboardItem so rich-text targets receive colored HTML while plain-text targets fall back to the raw string.",
+   "tags": [
+    "utility",
+    "clipboard",
+    "browser-api",
+    "serialization"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Uses the async Clipboard API's ClipboardItem with multiple MIME types, letting the paste target pick the richest format it supports."
+  },
+  {
+   "id": "function:src/components/CodeDisplay.jsx:CodeDisplay",
+   "type": "function",
+   "name": "CodeDisplay",
+   "filePath": "src/components/CodeDisplay.jsx",
+   "lineRange": [
+    12,
+    30
+   ],
+   "summary": "Default-exported component rendering a label plus an output element; maps colored segments to styled spans when present, otherwise prints the plain value, and appends a CopyButton unless copying is disabled.",
+   "tags": [
+    "component",
+    "react",
+    "presentation",
+    "ui"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/components/CopyButton.jsx:CopyButton",
+   "type": "function",
+   "name": "CopyButton",
+   "filePath": "src/components/CopyButton.jsx",
+   "lineRange": [
+    4,
+    22
+   ],
+   "summary": "Default-exported button component whose async click handler routes to rich-text copying when HTML is supplied and to plain-text copying otherwise, then toggles a 1.5-second 'Copied' label.",
+   "tags": [
+    "component",
+    "react",
+    "event-handler",
+    "clipboard",
+    "hook"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/clipboard.js:copyRichText",
+   "type": "function",
+   "name": "copyRichText",
+   "filePath": "src/logic/clipboard.js",
+   "lineRange": [
+    3,
+    10
+   ],
+   "summary": "Writes a single ClipboardItem carrying both text/plain and text/html blobs, so pasting into PowerPoint or Word preserves symbol colors.",
+   "tags": [
+    "utility",
+    "clipboard",
+    "browser-api",
+    "serialization"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "pipeline:.github/workflows/deploy.yml",
+   "type": "pipeline",
+   "name": "deploy.yml",
+   "filePath": ".github/workflows/deploy.yml",
+   "summary": "GitHub Actions workflow that installs dependencies with Bun, runs the Vite production build, and publishes the resulting dist/ directory to GitHub Pages on every push to main or manual dispatch.",
+   "tags": [
+    "ci-cd",
+    "deployment",
+    "infrastructure",
+    "github-actions",
+    "static-hosting"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Uses the modern OIDC-based Pages deployment flow (pages: write plus id-token: write permissions with upload-pages-artifact/deploy-pages) instead of pushing to a gh-pages branch, and a concurrency group so overlapping deploys cancel each other."
+  },
+  {
+   "id": "step:.github/workflows/deploy.yml:deploy",
+   "type": "step",
+   "name": "deploy",
+   "filePath": ".github/workflows/deploy.yml",
+   "lineRange": [
+    18,
+    32
+   ],
+   "summary": "Single ubuntu-latest job that checks out the repo, sets up Bun, installs from the frozen lockfile, builds, uploads dist/ as a Pages artifact, and deploys it to the github-pages environment.",
+   "tags": [
+    "ci-cd",
+    "build-system",
+    "deployment",
+    "bun"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "config:.oxlintrc.json",
+   "type": "config",
+   "name": ".oxlintrc.json",
+   "filePath": ".oxlintrc.json",
+   "summary": "Oxlint configuration enabling the React and oxc plugin sets, enforcing the rules-of-hooks rule as an error and warning on non-component exports (with constant exports allowed).",
+   "tags": [
+    "configuration",
+    "linting",
+    "react",
+    "build-system"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Uses a local $schema pointer into node_modules so editors get completion for oxlint rule names."
+  },
+  {
+   "id": "document:README.md",
+   "type": "document",
+   "name": "README.md",
+   "filePath": "README.md",
+   "summary": "Primary project documentation covering the base 2-10 fixed-width datetime encoding scheme with per-base digit widths and worked examples, plus how to run the app, a walkthrough of the five-step UI flow, the full source tree layout, and reference links.",
+   "tags": [
+    "documentation",
+    "entry-point",
+    "overview",
+    "usage-guide"
+   ],
+   "complexity": "moderate",
+   "languageNotes": "Documents the project convention that logic/ modules return { ok, ... } result objects instead of throwing, since malformed input is an expected state while typing."
+  },
+  {
+   "id": "file:index.html",
+   "type": "file",
+   "name": "index.html",
+   "filePath": "index.html",
+   "summary": "Vite HTML entry point that mounts the React app into #root via a module script pointing at src/main.jsx, and loads the Geist and Geist Mono webfonts plus the theme-aware SVG favicon.",
+   "tags": [
+    "entry-point",
+    "markup",
+    "bootstrap",
+    "vite"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Vite treats index.html as the build graph root, so the /src/main.jsx module script is the crawled entry rather than a config-declared one."
+  },
+  {
+   "id": "config:package.json",
+   "type": "config",
+   "name": "package.json",
+   "filePath": "package.json",
+   "summary": "Package manifest declaring the ESM-type private app with React 19 as its only runtime dependency, and Vite, oxlint, and the React plugin as dev tooling, plus dev/test/build/lint/preview scripts run through Bun.",
+   "tags": [
+    "configuration",
+    "build-system",
+    "dependencies",
+    "npm-scripts"
+   ],
+   "complexity": "simple",
+   "languageNotes": "\"type\": \"module\" makes every .js file in the project an ES module, which is why the Vite config and logic modules use import/export without a .mjs extension."
+  },
+  {
+   "id": "document:docs/z_prmt_01_gen_plan.md",
+   "type": "document",
+   "name": "z_prmt_01_gen_plan.md",
+   "filePath": "docs/z_prmt_01_gen_plan.md",
+   "summary": "Original free-form requirements note that seeded the project: encode a datetime string into binary, then substitute Unicode block-element symbols for 0 and 1 to render a barcode. Lists the intended UI controls (symbol-set dropdown, symbol grid, 0/1 assigner, datetime input, binary display, translate button), an initial three.js/R3F tooling guess, and cross-platform font plus dark/light-mode requirements.",
+   "tags": [
+    "documentation",
+    "requirements",
+    "planning",
+    "development-history"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Historical reference only — the three.js / react-three-fiber tooling listed here was dropped in the revised plan in favor of plain React DOM."
+  },
+  {
+   "id": "document:docs/z_prmt_02_plan.md",
+   "type": "document",
+   "name": "z_prmt_02_plan.md",
+   "filePath": "docs/z_prmt_02_plan.md",
+   "summary": "The revised build plan that the initial implementation followed: fixed-width binary field encoding, the Vite + React + Bun toolchain decision, the intended src/ file layout, the pure-logic API for datetime encoding and barcode substitution, all-state-in-App ownership, CSS-custom-property theming, curated symbol-set ranges, and the unit-test plus UI verification checklist.",
+   "tags": [
+    "documentation",
+    "planning",
+    "architecture",
+    "development-history"
+   ],
+   "complexity": "moderate",
+   "languageNotes": "Describes the app's original single-base (binary) scope; the shipped app generalized to bases 2-10 and renamed several modules, so this document is a snapshot rather than a current spec."
+  },
+  {
+   "id": "document:docs/z_prmt_03_suggestions_on_plan.md",
+   "type": "document",
+   "name": "z_prmt_03_suggestions_on_plan.md",
+   "filePath": "docs/z_prmt_03_suggestions_on_plan.md",
+   "summary": "Plan-review notes listing five execution-efficiency suggestions (overlap install with coding, single install, skip the boilerplate smoke test, verify prefers-color-scheme by code review, batch browser verification into one session), each annotated with whether it was applied or made obsolete by the switch to Bun. Concludes that no structural changes to the logic/data/components split were warranted.",
+   "tags": [
+    "documentation",
+    "review",
+    "planning",
+    "development-history"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "document:docs/design/DESIGN.md",
+   "type": "document",
+   "name": "DESIGN.md",
+   "filePath": "docs/design/DESIGN.md",
+   "summary": "Written specification of the project's 'Hairline Grid' design system, covering design principles, color and spacing tokens, typography, the 1px grid construction rule, component anatomy, and motion guidelines across nine sections.",
+   "tags": [
+    "documentation",
+    "design-system",
+    "style-guide",
+    "reference"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Uses Lab-space color tokens rather than hex, so lightness ladders stay perceptually even across the dark and light themes."
+  },
+  {
+   "id": "file:docs/design/hairline-grid-design-spec.html",
+   "type": "file",
+   "name": "hairline-grid-design-spec.html",
+   "filePath": "docs/design/hairline-grid-design-spec.html",
+   "summary": "Self-contained rendered reference page for the Hairline Grid design system, declaring the full token set inline and demonstrating each component visually alongside its rules.",
+   "tags": [
+    "documentation",
+    "design-system",
+    "reference",
+    "markup",
+    "living-styleguide"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Tokens are duplicated inline rather than imported from src/index.css so the page stays viewable standalone without a build step."
+  },
+  {
+   "id": "file:src/components/DigitAssigner.jsx",
+   "type": "file",
+   "name": "DigitAssigner.jsx",
+   "filePath": "src/components/DigitAssigner.jsx",
+   "summary": "React component for the step where the user assigns a Unicode symbol and color to each digit slot of the current base, plus import/export of the symbol configuration as a JSON file.",
+   "tags": [
+    "component",
+    "react",
+    "ui",
+    "user-input",
+    "configuration"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "type": "function",
+   "name": "DigitAssigner",
+   "filePath": "src/components/DigitAssigner.jsx",
+   "lineRange": [
+    4,
+    92
+   ],
+   "summary": "Default-exported React component rendering one slot button per digit of the active base, wiring arm/pick-color callbacks and the hidden file input used for config import and export.",
+   "tags": [
+    "component",
+    "react",
+    "event-handler",
+    "ui"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:src/components/DigitAssigner.jsx:SlotButton",
+   "type": "function",
+   "name": "SlotButton",
+   "filePath": "src/components/DigitAssigner.jsx",
+   "lineRange": [
+    94,
+    107
+   ],
+   "summary": "Local presentational subcomponent rendering a single digit slot as a button showing its assigned symbol and color.",
+   "tags": [
+    "component",
+    "react",
+    "ui",
+    "presentational"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/index.css",
+   "type": "file",
+   "name": "index.css",
+   "filePath": "src/index.css",
+   "summary": "Global stylesheet holding every theme token and application style: the Lab-space grey ladder, dark and light theme ladders, the stripe texture, typography, and all component rules of the Hairline Grid system.",
+   "tags": [
+    "styling",
+    "design-system",
+    "theming",
+    "markup",
+    "global-styles"
+   ],
+   "complexity": "complex",
+   "languageNotes": "Light theme is a mirrored token ladder under `:root[data-theme='light']`, so components never branch on theme themselves."
+  },
+  {
+   "id": "file:src/logic/configFile.js",
+   "type": "file",
+   "name": "configFile.js",
+   "filePath": "src/logic/configFile.js",
+   "summary": "Serialization module that saves the current symbol/color assignment to a downloadable JSON file and reads such a file back into per-digit arrays.",
+   "tags": [
+    "serialization",
+    "utility",
+    "file-io",
+    "configuration"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/configFile.js:downloadConfig",
+   "type": "function",
+   "name": "downloadConfig",
+   "filePath": "src/logic/configFile.js",
+   "lineRange": [
+    1,
+    10
+   ],
+   "summary": "Serializes symbols and colors to JSON and triggers a browser download via a temporary object URL, revoking it afterwards.",
+   "tags": [
+    "serialization",
+    "file-io",
+    "utility",
+    "browser-api"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/configFile.js:readConfig",
+   "type": "function",
+   "name": "readConfig",
+   "filePath": "src/logic/configFile.js",
+   "lineRange": [
+    14,
+    21
+   ],
+   "summary": "Parses an uploaded JSON config file and rebuilds symbol and color arrays indexed by digit number for the given base.",
+   "tags": [
+    "deserialization",
+    "file-io",
+    "utility",
+    "validation"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:src/logic/datetimeCode.js",
+   "type": "file",
+   "name": "datetimeCode.js",
+   "filePath": "src/logic/datetimeCode.js",
+   "summary": "Core encoding module of the app: parses a datetime or plain number string and converts it to a fixed-width digit code in any base from 2 to 10.",
+   "tags": [
+    "core-logic",
+    "encoding",
+    "utility",
+    "parsing",
+    "data-model",
+    "tested"
+   ],
+   "complexity": "moderate",
+   "languageNotes": "Uses BigInt for the plain-number path so arbitrarily long numeric input converts without float precision loss."
+  },
+  {
+   "id": "function:src/logic/datetimeCode.js:toDigits",
+   "type": "function",
+   "name": "toDigits",
+   "filePath": "src/logic/datetimeCode.js",
+   "lineRange": [
+    15,
+    17
+   ],
+   "summary": "Converts a numeric value to a string in the given base, zero-padded to a fixed width.",
+   "tags": [
+    "utility",
+    "encoding",
+    "formatting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/datetimeCode.js:parseDatetime",
+   "type": "function",
+   "name": "parseDatetime",
+   "filePath": "src/logic/datetimeCode.js",
+   "lineRange": [
+    19,
+    32
+   ],
+   "summary": "Matches an input string against the datetime pattern and returns its year, month, day, hour, minute and second components as numbers.",
+   "tags": [
+    "parsing",
+    "validation",
+    "utility",
+    "datetime"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/datetimeCode.js:stringToCode",
+   "type": "function",
+   "name": "stringToCode",
+   "filePath": "src/logic/datetimeCode.js",
+   "lineRange": [
+    44,
+    46
+   ],
+   "summary": "Public entry point that dispatches an input string to either the datetime encoder or the plain-number encoder based on pattern match.",
+   "tags": [
+    "encoding",
+    "dispatch",
+    "entry-point",
+    "core-logic"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "type": "function",
+   "name": "datetimeToCode",
+   "filePath": "src/logic/datetimeCode.js",
+   "lineRange": [
+    48,
+    66
+   ],
+   "summary": "Encodes a parsed datetime into a fixed-width digit string by converting each field to the target base using the per-field widths.",
+   "tags": [
+    "encoding",
+    "core-logic",
+    "datetime",
+    "formatting"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:src/logic/datetimeCode.test.js",
+   "type": "file",
+   "name": "datetimeCode.test.js",
+   "filePath": "src/logic/datetimeCode.test.js",
+   "summary": "Unit test suite for the datetime encoding module, covering digit padding, datetime parsing, per-base fixed-width encoding, and plain-number input across bases 2 through 10.",
+   "tags": [
+    "test",
+    "unit-test",
+    "encoding",
+    "validation"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:vite.config.js",
+   "type": "file",
+   "name": "vite.config.js",
+   "filePath": "vite.config.js",
+   "summary": "Vite build configuration enabling the React plugin and setting a relative base path so the built app can be served from any subdirectory.",
+   "tags": [
+    "configuration",
+    "build-system",
+    "vite",
+    "react"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/BarcodeBuilder.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/ExampleSubtitle.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/GithubLink.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/PageFooter.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/Step.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "file:src/components/ThemeToggle.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/main.jsx",
+   "target": "file:src/App.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/main.jsx",
+   "target": "file:src/index.css",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "function:src/App.jsx:App",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/GithubLink.jsx",
+   "target": "function:src/components/GithubLink.jsx:GithubLink",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/PageFooter.jsx",
+   "target": "function:src/components/PageFooter.jsx:PageFooter",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/Step.jsx",
+   "target": "function:src/components/Step.jsx:Step",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/ThemeToggle.jsx",
+   "target": "function:src/components/ThemeToggle.jsx:ThemeToggle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/App.jsx",
+   "target": "function:src/App.jsx:App",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/GithubLink.jsx",
+   "target": "function:src/components/GithubLink.jsx:GithubLink",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/PageFooter.jsx",
+   "target": "function:src/components/PageFooter.jsx:PageFooter",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/Step.jsx",
+   "target": "function:src/components/Step.jsx:Step",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/ThemeToggle.jsx",
+   "target": "function:src/components/ThemeToggle.jsx:ThemeToggle",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/GithubLink.jsx:GithubLink",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/PageFooter.jsx:PageFooter",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/Step.jsx:Step",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/App.jsx:App",
+   "target": "function:src/components/ThemeToggle.jsx:ThemeToggle",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/CodeDisplay.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/DatetimeInput.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/DigitAssigner.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/NumberPaste.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/Step.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/SymbolGrid.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/components/SymbolSetPicker.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/data/colorPool.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/data/symbolSets.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/logic/barcode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/logic/datetimeCode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "file:src/logic/random.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/DatetimeInput.jsx",
+   "target": "function:src/components/DatetimeInput.jsx:DatetimeInput",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/DatetimeInput.jsx",
+   "target": "function:src/components/DatetimeInput.jsx:TimeSelect",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/NumberPaste.jsx",
+   "target": "function:src/components/NumberPaste.jsx:NumberPaste",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/SymbolGrid.jsx",
+   "target": "function:src/components/SymbolGrid.jsx:SymbolGrid",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/SymbolSetPicker.jsx",
+   "target": "function:src/components/SymbolSetPicker.jsx:SymbolSetPicker",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/BarcodeBuilder.jsx",
+   "target": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/DatetimeInput.jsx",
+   "target": "function:src/components/DatetimeInput.jsx:DatetimeInput",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/NumberPaste.jsx",
+   "target": "function:src/components/NumberPaste.jsx:NumberPaste",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/SymbolGrid.jsx",
+   "target": "function:src/components/SymbolGrid.jsx:SymbolGrid",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/SymbolSetPicker.jsx",
+   "target": "function:src/components/SymbolSetPicker.jsx:SymbolSetPicker",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "target": "function:src/logic/datetimeCode.js:parseDatetime",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "target": "function:src/logic/datetimeCode.js:stringToCode",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "target": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/BarcodeBuilder.jsx:BarcodeBuilder",
+   "target": "function:src/logic/random.js:sampleWithoutReplacement",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/ExampleSubtitle.jsx",
+   "target": "file:src/data/colorPool.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/ExampleSubtitle.jsx",
+   "target": "file:src/logic/barcode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/ExampleSubtitle.jsx",
+   "target": "file:src/logic/random.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/logic/barcode.test.js",
+   "target": "file:src/logic/barcode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/ExampleSubtitle.jsx",
+   "target": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/ExampleSubtitle.jsx",
+   "target": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/barcode.js",
+   "target": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/barcode.js",
+   "target": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/barcode.js",
+   "target": "function:src/logic/barcode.js:codeToBarcode",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/barcode.js",
+   "target": "function:src/logic/barcode.js:codeToBarcode",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/random.js",
+   "target": "function:src/logic/random.js:sampleWithoutReplacement",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/random.js",
+   "target": "function:src/logic/random.js:sampleWithoutReplacement",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/logic/barcode.js:codeToBarcode",
+   "target": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "target": "function:src/logic/barcode.js:codeToBarcodeSegments",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/ExampleSubtitle.jsx:ExampleSubtitle",
+   "target": "function:src/logic/random.js:sampleWithoutReplacement",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/barcode.js",
+   "target": "file:src/logic/barcode.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/components/CodeDisplay.jsx",
+   "target": "file:src/components/CopyButton.jsx",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/CopyButton.jsx",
+   "target": "file:src/logic/clipboard.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/components/CodeDisplay.jsx",
+   "target": "function:src/components/CodeDisplay.jsx:CodeDisplay",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/CodeDisplay.jsx",
+   "target": "function:src/components/CodeDisplay.jsx:CodeDisplay",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/components/CopyButton.jsx",
+   "target": "function:src/components/CopyButton.jsx:CopyButton",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/CopyButton.jsx",
+   "target": "function:src/components/CopyButton.jsx:CopyButton",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/clipboard.js",
+   "target": "function:src/logic/clipboard.js:copyRichText",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/clipboard.js",
+   "target": "function:src/logic/clipboard.js:copyRichText",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/CopyButton.jsx:CopyButton",
+   "target": "function:src/logic/clipboard.js:copyRichText",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/CodeDisplay.jsx:CodeDisplay",
+   "target": "function:src/components/CopyButton.jsx:CopyButton",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "pipeline:.github/workflows/deploy.yml",
+   "target": "step:.github/workflows/deploy.yml:deploy",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "pipeline:.github/workflows/deploy.yml",
+   "target": "config:package.json",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "pipeline:.github/workflows/deploy.yml",
+   "target": "file:index.html",
+   "type": "deploys",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "pipeline:.github/workflows/deploy.yml",
+   "target": "file:src/main.jsx",
+   "type": "deploys",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:index.html",
+   "target": "file:src/main.jsx",
+   "type": "depends_on",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:package.json",
+   "target": "file:index.html",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:package.json",
+   "target": "file:vite.config.js",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:package.json",
+   "target": "file:src/main.jsx",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:.oxlintrc.json",
+   "target": "file:src/App.jsx",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "config:.oxlintrc.json",
+   "target": "file:src/components/BarcodeBuilder.jsx",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/App.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/main.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/logic/datetimeCode.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/logic/barcode.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/components/BarcodeBuilder.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:src/data/symbolSets.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:README.md",
+   "target": "file:index.html",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "document:docs/z_prmt_01_gen_plan.md",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_03_suggestions_on_plan.md",
+   "target": "document:docs/z_prmt_02_plan.md",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/App.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/main.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/index.css",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/logic/barcode.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/logic/barcode.test.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/data/symbolSets.js",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/components/ThemeToggle.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/components/SymbolSetPicker.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/components/SymbolGrid.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/components/DatetimeInput.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/z_prmt_02_plan.md",
+   "target": "file:src/components/CodeDisplay.jsx",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/components/DigitAssigner.jsx",
+   "target": "file:src/logic/configFile.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/logic/datetimeCode.test.js",
+   "target": "file:src/logic/datetimeCode.js",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "file:src/logic/datetimeCode.test.js",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/components/DigitAssigner.jsx",
+   "target": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/DigitAssigner.jsx",
+   "target": "function:src/components/DigitAssigner.jsx:SlotButton",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/components/DigitAssigner.jsx",
+   "target": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "target": "function:src/components/DigitAssigner.jsx:SlotButton",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "target": "function:src/logic/configFile.js:downloadConfig",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/components/DigitAssigner.jsx:DigitAssigner",
+   "target": "function:src/logic/configFile.js:readConfig",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/configFile.js",
+   "target": "function:src/logic/configFile.js:downloadConfig",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/configFile.js",
+   "target": "function:src/logic/configFile.js:readConfig",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/configFile.js",
+   "target": "function:src/logic/configFile.js:downloadConfig",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/configFile.js",
+   "target": "function:src/logic/configFile.js:readConfig",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:toDigits",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:parseDatetime",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:stringToCode",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:toDigits",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:parseDatetime",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:stringToCode",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/logic/datetimeCode.js:stringToCode",
+   "target": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "target": "function:src/logic/datetimeCode.js:parseDatetime",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:src/logic/datetimeCode.js:datetimeToCode",
+   "target": "function:src/logic/datetimeCode.js:toDigits",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:src/logic/datetimeCode.js",
+   "target": "file:src/components/BarcodeBuilder.jsx",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/components/DigitAssigner.jsx",
+   "target": "file:src/components/BarcodeBuilder.jsx",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:docs/design/DESIGN.md",
+   "target": "file:src/index.css",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:docs/design/hairline-grid-design-spec.html",
+   "target": "file:src/index.css",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:docs/design/hairline-grid-design-spec.html",
+   "target": "document:docs/design/DESIGN.md",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:src/index.css",
+   "target": "file:src/main.jsx",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "file:vite.config.js",
+   "target": "file:src/main.jsx",
+   "type": "configures",
+   "direction": "forward",
+   "weight": 0.6
+  },
+  {
+   "source": "pipeline:.github/workflows/deploy.yml",
+   "target": "file:vite.config.js",
+   "type": "depends_on",
+   "weight": 0.6,
+   "description": "The deploy workflow runs `bun run build`, which reads the Vite build config."
+  }
+ ],
+ "layers": [
+  {
+   "id": "layer:entry",
+   "name": "Application Shell & Entry",
+   "description": "The Vite HTML document, the React bootstrap that mounts the root, and the App shell that owns theme state and switches between the nine per-base tabs.",
+   "nodeIds": [
+    "file:index.html",
+    "file:src/main.jsx",
+    "file:src/App.jsx"
+   ]
+  },
+  {
+   "id": "layer:ui",
+   "name": "UI Components",
+   "description": "The thirteen React components that render the five-step flow, from BarcodeBuilder's per-base state container down to presentational pieces like SymbolGrid, DigitAssigner, and CodeDisplay.",
+   "nodeIds": [
+    "file:src/components/BarcodeBuilder.jsx",
+    "file:src/components/DatetimeInput.jsx",
+    "file:src/components/NumberPaste.jsx",
+    "file:src/components/SymbolGrid.jsx",
+    "file:src/components/SymbolSetPicker.jsx",
+    "file:src/components/DigitAssigner.jsx",
+    "file:src/components/CodeDisplay.jsx",
+    "file:src/components/CopyButton.jsx",
+    "file:src/components/ExampleSubtitle.jsx",
+    "file:src/components/Step.jsx",
+    "file:src/components/ThemeToggle.jsx",
+    "file:src/components/GithubLink.jsx",
+    "file:src/components/PageFooter.jsx"
+   ]
+  },
+  {
+   "id": "layer:core-logic",
+   "name": "Core Logic",
+   "description": "Pure, React-free modules that do the actual work: fixed-width base 2-10 datetime encoding, digit-to-symbol barcode substitution, color sampling, clipboard writes, and symbol-config file I/O.",
+   "nodeIds": [
+    "file:src/logic/datetimeCode.js",
+    "file:src/logic/barcode.js",
+    "file:src/logic/random.js",
+    "file:src/logic/clipboard.js",
+    "file:src/logic/configFile.js"
+   ]
+  },
+  {
+   "id": "layer:data",
+   "name": "Static Data",
+   "description": "Constant catalogues consumed by the UI: the four Unicode symbol sets expanded from codepoint ranges and the twelve-hue color pool tuned for both themes.",
+   "nodeIds": [
+    "file:src/data/symbolSets.js",
+    "file:src/data/colorPool.js"
+   ]
+  },
+  {
+   "id": "layer:test",
+   "name": "Tests",
+   "description": "Unit tests pinning the encoding layer's behavior: digit padding and per-base fixed-width encoding, plus symbol mapping and out-of-table fallback.",
+   "nodeIds": [
+    "file:src/logic/datetimeCode.test.js",
+    "file:src/logic/barcode.test.js"
+   ]
+  },
+  {
+   "id": "layer:design-system",
+   "name": "Design System",
+   "description": "The Hairline Grid visual system — the global stylesheet holding every theme token and component rule, alongside its written spec and rendered living styleguide.",
+   "nodeIds": [
+    "file:src/index.css",
+    "document:docs/design/DESIGN.md",
+    "file:docs/design/hairline-grid-design-spec.html"
+   ]
+  },
+  {
+   "id": "layer:documentation",
+   "name": "Documentation",
+   "description": "The README covering the encoding scheme and UI walkthrough, plus the three planning notes recording how the logic/data/components split was arrived at.",
+   "nodeIds": [
+    "document:README.md",
+    "document:docs/z_prmt_01_gen_plan.md",
+    "document:docs/z_prmt_02_plan.md",
+    "document:docs/z_prmt_03_suggestions_on_plan.md"
+   ]
+  },
+  {
+   "id": "layer:build-config",
+   "name": "Build, Tooling & Deployment",
+   "description": "The Bun/Vite/oxlint toolchain configuration and the GitHub Actions workflow that builds the app and publishes dist/ to GitHub Pages.",
+   "nodeIds": [
+    "config:package.json",
+    "file:vite.config.js",
+    "config:.oxlintrc.json",
+    "pipeline:.github/workflows/deploy.yml"
+   ]
+  }
+ ],
+ "tour": [
+  {
+   "order": 1,
+   "title": "What This Project Is",
+   "description": "Start with the README to learn the premise: a date and time is encoded into a fixed-width digit string in any base from 2 to 10, then rendered as a \"barcode\" of Unicode symbols the user picks per digit. It documents the per-base field widths (binary spends 12 bits on the year, decimal spends 4 digits) and walks through the five-step UI flow that every one of the nine base tabs repeats. Read this first so the code below has a purpose attached to it.",
+   "nodeIds": [
+    "document:README.md"
+   ]
+  },
+  {
+   "order": 2,
+   "title": "Boot Sequence",
+   "description": "The app starts where every Vite project does. index.html declares a #root div and a module script pointing at src/main.jsx, which imports the global stylesheet and mounts App through React's createRoot. vite.config.js registers the React plugin and sets a relative base path so the built bundle works when served from a GitHub Pages subdirectory rather than a domain root.",
+   "nodeIds": [
+    "file:index.html",
+    "file:src/main.jsx",
+    "file:vite.config.js"
+   ],
+   "languageLesson": "Vite treats index.html as the build entry, not a static template. The <script type=\"module\"> tag is what the bundler follows to discover your whole dependency graph, which is why the HTML file sits at the project root rather than in a public/ folder."
+  },
+  {
+   "order": 3,
+   "title": "The App Shell and Nine Tabs",
+   "description": "App.jsx is the root shell and the top of the dependency graph. It owns exactly two pieces of state -- the active theme and the active tab -- and declares the nine numeral-system tabs, rendering one BarcodeBuilder per base. The key design decision: every BarcodeBuilder stays mounted at all times, with inactive ones hidden via the HTML `hidden` attribute rather than unmounted, so each tab preserves its own symbols, colors, and datetime when you switch away and back.",
+   "nodeIds": [
+    "file:src/App.jsx",
+    "file:src/components/ExampleSubtitle.jsx",
+    "file:src/components/GithubLink.jsx"
+   ],
+   "languageLesson": "React discards a component's state when it unmounts. Hiding with the `hidden` attribute instead of conditional rendering (`{active && <Panel/>}`) keeps the component tree alive, trading a little extra DOM for free per-tab state persistence -- no lifting state up, no external store."
+  },
+  {
+   "order": 4,
+   "title": "The Encoding Core",
+   "description": "This is the heart of the project and the first half of the data pipeline. datetimeCode.js parses a `YYYY-MM-DD_HH:MM:SS` string and converts each component -- year, month, day, hour, minute, second -- into a zero-padded digit string of a fixed width chosen per base, joining fields with `-` and the date and time halves with `_`. Note that it lives in src/logic/ and imports nothing from React: it is pure computation you could run in Node, which is precisely what makes it testable.",
+   "nodeIds": [
+    "file:src/logic/datetimeCode.js"
+   ],
+   "languageLesson": "These functions return result objects like `{ ok: true, code }` or `{ ok: false, error }` instead of throwing. Malformed input is an expected state while a user is mid-typing, not an exceptional one -- so the failure is modeled as an ordinary return value the caller must inspect, rather than control flow the caller must remember to catch."
+  },
+  {
+   "order": 5,
+   "title": "Digits Become Symbols",
+   "description": "The second half of the pipeline. barcode.js takes the digit string from Step 4 plus caller-supplied symbol and color arrays, and maps each character to its assigned glyph and hue, falling back gracefully for separator characters that have no digit slot. colorPool.js supplies twelve mid-tone hues picked to stay legible in both themes, and random.js samples from that pool without replacement so no two digits in a base collide on the same color.",
+   "nodeIds": [
+    "file:src/logic/barcode.js",
+    "file:src/data/colorPool.js",
+    "file:src/logic/random.js"
+   ],
+   "languageLesson": "barcode.js receives the symbols and colors as arguments rather than importing them from src/data/. Dependencies point inward toward the pure function, so the same module serves the live UI, the tests, and the hardcoded examples in ExampleSubtitle without knowing which is calling."
+  },
+  {
+   "order": 6,
+   "title": "Tests Pin the Contract",
+   "description": "Because the two logic modules from Steps 4 and 5 have no React or DOM dependency, testing them needs no rendering harness at all. These suites cover digit padding, datetime parsing, per-base fixed-width encoding across all nine bases, and the symbol-mapping fallback for out-of-table characters. Read them as executable documentation of the encoding rules the README describes in prose.",
+   "nodeIds": [
+    "file:src/logic/datetimeCode.test.js",
+    "file:src/logic/barcode.test.js"
+   ]
+  },
+  {
+   "order": 7,
+   "title": "The Per-Base State Container",
+   "description": "BarcodeBuilder is the busiest file in the codebase -- the highest fan-out node in the graph -- and the bridge between the pure logic of Steps 4-5 and the UI. One instance exists per base, owning all state for that tab: the datetime string, the converted code, the per-digit symbol and color assignments, and the selected Unicode set. It follows a strict props-down, callbacks-up discipline: every child below is presentational and reports changes back here rather than holding state of its own.",
+   "nodeIds": [
+    "file:src/components/BarcodeBuilder.jsx",
+    "file:src/components/Step.jsx"
+   ],
+   "languageLesson": "Concentrating state in one container and passing plain props to stateless children keeps the data flow traceable in a single file. When you need to answer \"why did this symbol change?\", there is exactly one place to look."
+  },
+  {
+   "order": 8,
+   "title": "Steps 1 and 2 -- Entering a Datetime",
+   "description": "The first two of the five UI steps collect input. DatetimeInput is a controlled widget that splits the `YYYY-MM-DD_HH:MM:SS` string into a date field plus hour, minute, and second selects, recomposing and emitting the full string on every change. NumberPaste offers an escape hatch for feeding an arbitrary source string straight into the encoder. Both hand their value up to BarcodeBuilder, which calls the datetimeCode functions from Step 4 when Convert is clicked.",
+   "nodeIds": [
+    "file:src/components/DatetimeInput.jsx",
+    "file:src/components/NumberPaste.jsx"
+   ]
+  },
+  {
+   "order": 9,
+   "title": "Steps 3 and 4 -- Choosing Symbols",
+   "description": "symbolSets.js is a static catalogue that expands four Unicode codepoint ranges -- Block Elements, Box Drawing, Geometric Shapes, and the experimental Legacy Computing sextants -- into arrays of characters. SymbolSetPicker chooses which set the grid shows; SymbolGrid renders it as clickable glyphs badged with the digit each is assigned to; DigitAssigner drives the arm-a-slot-then-pick-a-glyph interaction, auto-advancing to the next slot, and adds bulk random assignment plus JSON import/export of a configuration.",
+   "nodeIds": [
+    "file:src/data/symbolSets.js",
+    "file:src/components/SymbolSetPicker.jsx",
+    "file:src/components/SymbolGrid.jsx",
+    "file:src/components/DigitAssigner.jsx"
+   ]
+  },
+  {
+   "order": 10,
+   "title": "Step 5 -- Rendering and Copying Out",
+   "description": "The pipeline terminates here. CodeDisplay renders a labeled read-only field showing either a plain string (the digit code from Step 4) or the sequence of colored symbol segments produced by barcode.js in Step 5, each glyph in its digit's hue. CopyButton and clipboard.js handle export: clipboard.js writes a dual-format ClipboardItem so rich-text targets receive the colored HTML while plain-text targets get the raw characters. configFile.js serializes the whole symbol-and-color assignment to a downloadable JSON file and reads it back.",
+   "nodeIds": [
+    "file:src/components/CodeDisplay.jsx",
+    "file:src/components/CopyButton.jsx",
+    "file:src/logic/clipboard.js",
+    "file:src/logic/configFile.js"
+   ],
+   "languageLesson": "The Async Clipboard API's ClipboardItem accepts multiple MIME types for a single copy. Writing both `text/html` and `text/plain` lets the receiving application choose -- a document editor takes the colored markup, a terminal takes the bare glyphs -- from one user gesture."
+  },
+  {
+   "order": 11,
+   "title": "The Hairline Grid Design System",
+   "description": "The visual layer is deliberately separated from the components. index.css holds every theme token and component rule: a Lab-space grey ladder with distinct dark and light variants, the stripe texture, typography, and the 1px grid construction that gives the app its name. DESIGN.md is the written specification behind it, the HTML spec page is a rendered living styleguide, and ThemeToggle is a stateless button that simply reports a toggle up to App from Step 3.",
+   "nodeIds": [
+    "file:src/index.css",
+    "document:docs/design/DESIGN.md",
+    "file:docs/design/hairline-grid-design-spec.html",
+    "file:src/components/ThemeToggle.jsx"
+   ],
+   "languageLesson": "Theming through CSS custom properties means a single attribute swap on the root element repaints the entire app. Components reference `var(--token)` and never know which theme is active, so no React state has to propagate down for a color change."
+  },
+  {
+   "order": 12,
+   "title": "Build, Lint, and Deploy",
+   "description": "package.json declares an ESM private app with React 19 as its only runtime dependency, with dev, test, build, lint, and preview scripts run through Bun. .oxlintrc.json enables the React plugin set and enforces rules-of-hooks as an error. deploy.yml closes the loop: on every push to main it installs with Bun, runs the Vite production build, and publishes dist/ to GitHub Pages -- which is why vite.config.js needed that relative base path back in Step 2.",
+   "nodeIds": [
+    "config:package.json",
+    "config:.oxlintrc.json",
+    "pipeline:.github/workflows/deploy.yml"
+   ],
+   "languageLesson": "GitHub Actions workflows declare `on` triggers, `jobs` that can run in parallel, and ordered `steps` within each job. A Pages deployment splits into a build job that uploads an artifact and a deploy job that consumes it, so the publishing step needs no access to your source or dependencies."
+  },
+  {
+   "order": 13,
+   "title": "How the Design Was Arrived At",
+   "description": "The docs/ folder preserves the project's decision trail, which is unusual and worth reading last. The first note is the raw free-form idea (binary only, a three.js guess for tooling); the second is the revised plan that the implementation actually followed -- fixed-width fields, the Vite plus React plus Bun toolchain, and the logic/data/components split you have just toured; the third reviews that plan and concludes no structural change was warranted. Together they show why the boundaries you saw in Steps 4-9 exist.",
+   "nodeIds": [
+    "document:docs/z_prmt_01_gen_plan.md",
+    "document:docs/z_prmt_02_plan.md",
+    "document:docs/z_prmt_03_suggestions_on_plan.md"
+   ]
+  }
+ ]
+}

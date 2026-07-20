@@ -1,0 +1,935 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "fbe428f61384e3d46afcafe635c300e98445a49e",
+  "generatedAt": "2026-07-20T15:24:18.872Z",
+  "files": {
+    ".claude/launch.json": {
+      "filePath": ".claude/launch.json",
+      "contentHash": "64b0e3f027e2ecba7d70836bc6a3da05a02288015e8cc1801366d0f68adee368",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": true
+    },
+    ".claude/settings.json": {
+      "filePath": ".claude/settings.json",
+      "contentHash": "43fd9292d8554aea3381e56d82032711f710bf8de2cec4c06ef2966351c70934",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    ".github/workflows/deploy.yml": {
+      "filePath": ".github/workflows/deploy.yml",
+      "contentHash": "67c53beab3cc9aa12153cc93f6a709c9744869ee78f9a983c14704ee6692e0c1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    ".oxlintrc.json": {
+      "filePath": ".oxlintrc.json",
+      "contentHash": "9a11085b48d1ea2c1cdd18c3438a669abcc635f5586019e5df87161369af70ef",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "bc7b3709609ff175aa9ac94fdec159adefa57013d7cc20d3654b7be4b0ab9835",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 129,
+      "hasStructuralAnalysis": true
+    },
+    "docs/design/DESIGN.md": {
+      "filePath": "docs/design/DESIGN.md",
+      "contentHash": "36ca363eb67ed40bc40824b23151035a7d97d6004042e7d22927e4c4c39cb57d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 270,
+      "hasStructuralAnalysis": true
+    },
+    "docs/design/hairline-grid-design-spec.html": {
+      "filePath": "docs/design/hairline-grid-design-spec.html",
+      "contentHash": "47ffd9fdb80ad92f997bf363abbe1abb9fa9b8183458966ce6e9d7619b0cf480",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 460,
+      "hasStructuralAnalysis": false
+    },
+    "docs/z_prmt_01_gen_plan.md": {
+      "filePath": "docs/z_prmt_01_gen_plan.md",
+      "contentHash": "8cc07a7c7305eb1e988b7b4ab26edada8947fad39af94bae3baf7be47e6bb051",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "docs/z_prmt_02_plan.md": {
+      "filePath": "docs/z_prmt_02_plan.md",
+      "contentHash": "543c2f8ee250a204fc83359192db98839395d061de182ee04eaf056181fb8156",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 110,
+      "hasStructuralAnalysis": true
+    },
+    "docs/z_prmt_03_suggestions_on_plan.md": {
+      "filePath": "docs/z_prmt_03_suggestions_on_plan.md",
+      "contentHash": "94021ac164cd99ae48b67a7bf0e9d1977d80b53e293a9e299c7c65494262ac56",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "index.html": {
+      "filePath": "index.html",
+      "contentHash": "1b1081d49ea4c283f2baedacd185b29f0e64002fde12659672c34df66ebe7a1b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 17,
+      "hasStructuralAnalysis": false
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "4fdb13e072e0141a7ccc0589046171211e39451ad6a0b7353beed66a9d66c7e4",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/App.jsx": {
+      "filePath": "src/App.jsx",
+      "contentHash": "c51d1ffc230cd42d64498ce1317f209678ced76d48975e764217a51d5b95add8",
+      "functions": [
+        {
+          "name": "App",
+          "params": [],
+          "exported": true,
+          "lineCount": 69
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useEffect",
+            "useState"
+          ]
+        },
+        {
+          "source": "./components/ThemeToggle.jsx",
+          "specifiers": [
+            "ThemeToggle"
+          ]
+        },
+        {
+          "source": "./components/GithubLink.jsx",
+          "specifiers": [
+            "GithubLink"
+          ]
+        },
+        {
+          "source": "./components/BarcodeBuilder.jsx",
+          "specifiers": [
+            "BarcodeBuilder"
+          ]
+        },
+        {
+          "source": "./components/Step.jsx",
+          "specifiers": [
+            "Step"
+          ]
+        },
+        {
+          "source": "./components/ExampleSubtitle.jsx",
+          "specifiers": [
+            "ExampleSubtitle"
+          ]
+        },
+        {
+          "source": "./components/PageFooter.jsx",
+          "specifiers": [
+            "PageFooter"
+          ]
+        }
+      ],
+      "exports": [
+        "App"
+      ],
+      "totalLines": 90,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/BarcodeBuilder.jsx": {
+      "filePath": "src/components/BarcodeBuilder.jsx",
+      "contentHash": "f464dc52708e3611987bd186d41b8090dcd2a7fc5c9182ecaf6b4ee45227ef9c",
+      "functions": [
+        {
+          "name": "nowAsDatetimeInput",
+          "params": [],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "BarcodeBuilder",
+          "params": [],
+          "exported": true,
+          "lineCount": 143
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useState"
+          ]
+        },
+        {
+          "source": "../data/symbolSets.js",
+          "specifiers": [
+            "SYMBOL_SETS"
+          ]
+        },
+        {
+          "source": "../data/colorPool.js",
+          "specifiers": [
+            "COLOR_POOL"
+          ]
+        },
+        {
+          "source": "../logic/datetimeCode.js",
+          "specifiers": [
+            "parseDatetime",
+            "stringToCode"
+          ]
+        },
+        {
+          "source": "../logic/barcode.js",
+          "specifiers": [
+            "codeToBarcodeSegments"
+          ]
+        },
+        {
+          "source": "../logic/random.js",
+          "specifiers": [
+            "sampleWithoutReplacement"
+          ]
+        },
+        {
+          "source": "./SymbolSetPicker.jsx",
+          "specifiers": [
+            "SymbolSetPicker"
+          ]
+        },
+        {
+          "source": "./SymbolGrid.jsx",
+          "specifiers": [
+            "SymbolGrid"
+          ]
+        },
+        {
+          "source": "./DigitAssigner.jsx",
+          "specifiers": [
+            "DigitAssigner"
+          ]
+        },
+        {
+          "source": "./DatetimeInput.jsx",
+          "specifiers": [
+            "DatetimeInput"
+          ]
+        },
+        {
+          "source": "./NumberPaste.jsx",
+          "specifiers": [
+            "NumberPaste"
+          ]
+        },
+        {
+          "source": "./CodeDisplay.jsx",
+          "specifiers": [
+            "CodeDisplay"
+          ]
+        },
+        {
+          "source": "./Step.jsx",
+          "specifiers": [
+            "Step"
+          ]
+        }
+      ],
+      "exports": [
+        "BarcodeBuilder"
+      ],
+      "totalLines": 179,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/CodeDisplay.jsx": {
+      "filePath": "src/components/CodeDisplay.jsx",
+      "contentHash": "3f69dc4fee772726349c93260282a2b71823e7847101dd5bd2186fbb2508d11b",
+      "functions": [
+        {
+          "name": "segmentsToHtml",
+          "params": [
+            "segments"
+          ],
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "CodeDisplay",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "./CopyButton.jsx",
+          "specifiers": [
+            "CopyButton"
+          ]
+        }
+      ],
+      "exports": [
+        "CodeDisplay"
+      ],
+      "totalLines": 31,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/CopyButton.jsx": {
+      "filePath": "src/components/CopyButton.jsx",
+      "contentHash": "a37e168601a6fcb26021abd027019fc7ba291eee21500f2d37ab966bf9091a28",
+      "functions": [
+        {
+          "name": "CopyButton",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useState"
+          ]
+        },
+        {
+          "source": "../logic/clipboard.js",
+          "specifiers": [
+            "copyRichText"
+          ]
+        }
+      ],
+      "exports": [
+        "CopyButton"
+      ],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/DatetimeInput.jsx": {
+      "filePath": "src/components/DatetimeInput.jsx",
+      "contentHash": "736e41bfab03eb6c2aa04e019d3bd5e66665c2958e2701a4bee83831795204ac",
+      "functions": [
+        {
+          "name": "DatetimeInput",
+          "params": [],
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "TimeSelect",
+          "params": [],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "DatetimeInput"
+      ],
+      "totalLines": 46,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/DigitAssigner.jsx": {
+      "filePath": "src/components/DigitAssigner.jsx",
+      "contentHash": "09924e006f25c9af7cbc700b3ab3657143e61070d89fe827598a439669412f55",
+      "functions": [
+        {
+          "name": "DigitAssigner",
+          "params": [],
+          "exported": true,
+          "lineCount": 89
+        },
+        {
+          "name": "SlotButton",
+          "params": [],
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useRef"
+          ]
+        },
+        {
+          "source": "../logic/configFile.js",
+          "specifiers": [
+            "downloadConfig",
+            "readConfig"
+          ]
+        }
+      ],
+      "exports": [
+        "DigitAssigner"
+      ],
+      "totalLines": 108,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/ExampleSubtitle.jsx": {
+      "filePath": "src/components/ExampleSubtitle.jsx",
+      "contentHash": "5477873ca42286de5a73a800b777d66eb38074be3777e1d6c069678a10b45d9b",
+      "functions": [
+        {
+          "name": "ExampleSubtitle",
+          "params": [],
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "Fragment",
+            "useState"
+          ]
+        },
+        {
+          "source": "../data/colorPool.js",
+          "specifiers": [
+            "COLOR_POOL"
+          ]
+        },
+        {
+          "source": "../logic/barcode.js",
+          "specifiers": [
+            "codeToBarcodeSegments"
+          ]
+        },
+        {
+          "source": "../logic/random.js",
+          "specifiers": [
+            "sampleWithoutReplacement"
+          ]
+        }
+      ],
+      "exports": [
+        "ExampleSubtitle"
+      ],
+      "totalLines": 42,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/GithubLink.jsx": {
+      "filePath": "src/components/GithubLink.jsx",
+      "contentHash": "246058e3b803af2e3e7b5cb9d480533a0e66448d29a2bbac4b6bbfc7a44a88b7",
+      "functions": [
+        {
+          "name": "GithubLink",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "GithubLink"
+      ],
+      "totalLines": 16,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/NumberPaste.jsx": {
+      "filePath": "src/components/NumberPaste.jsx",
+      "contentHash": "2800b6ed610b8272d3b15943245320501ac9363d064517b05bfff7c53b51fa2a",
+      "functions": [
+        {
+          "name": "NumberPaste",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "useState"
+          ]
+        }
+      ],
+      "exports": [
+        "NumberPaste"
+      ],
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/PageFooter.jsx": {
+      "filePath": "src/components/PageFooter.jsx",
+      "contentHash": "2d1f44fda67b39fe9f32944da1221b7bac30d02b3e0c89464f9c6f1f3cbae36a",
+      "functions": [
+        {
+          "name": "PageFooter",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "PageFooter"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/Step.jsx": {
+      "filePath": "src/components/Step.jsx",
+      "contentHash": "0b42e0e6fe32c9830341c2a98e4e3fe8dd499b747716625a53e6c850e2c213e7",
+      "functions": [
+        {
+          "name": "Step",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "Step"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/SymbolGrid.jsx": {
+      "filePath": "src/components/SymbolGrid.jsx",
+      "contentHash": "32e1bc8695efb5dce37865e8017fe48a56213585bc749ca88ae456f1c1c55152",
+      "functions": [
+        {
+          "name": "SymbolGrid",
+          "params": [],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "SymbolGrid"
+      ],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/SymbolSetPicker.jsx": {
+      "filePath": "src/components/SymbolSetPicker.jsx",
+      "contentHash": "938eda2b7c6810d9925cb7857358a13bdef957eb86d33af624e36be98f5b7d26",
+      "functions": [
+        {
+          "name": "SymbolSetPicker",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "SymbolSetPicker"
+      ],
+      "totalLines": 15,
+      "hasStructuralAnalysis": true
+    },
+    "src/components/ThemeToggle.jsx": {
+      "filePath": "src/components/ThemeToggle.jsx",
+      "contentHash": "e29f0034da903211ab1cdd22ea7c1ad7455bafe4c4b74d83066e1e37a46c959a",
+      "functions": [
+        {
+          "name": "ThemeToggle",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "ThemeToggle"
+      ],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/colorPool.js": {
+      "filePath": "src/data/colorPool.js",
+      "contentHash": "e7214c3cee80b0bc6b747f11292f36b47ccde8e99d7927a243ea055cf9dd5162",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "COLOR_POOL"
+      ],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "src/data/symbolSets.js": {
+      "filePath": "src/data/symbolSets.js",
+      "contentHash": "38fbfe72848ee14fd75e5490b697788c36c05a00f7e163aecd4ce7d27e7375b3",
+      "functions": [
+        {
+          "name": "codepointRange",
+          "params": [
+            "start",
+            "end"
+          ],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "SYMBOL_SETS"
+      ],
+      "totalLines": 35,
+      "hasStructuralAnalysis": true
+    },
+    "src/index.css": {
+      "filePath": "src/index.css",
+      "contentHash": "6063db864c5e0480ac750f73da24da1b8f2dc3536eea7c4d9776c0bbb2184529",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 718,
+      "hasStructuralAnalysis": false
+    },
+    "src/logic/barcode.js": {
+      "filePath": "src/logic/barcode.js",
+      "contentHash": "07fd139406550e75c53b81c0b4aa2c9d6ef60bc36b834647c425d893eb50b28d",
+      "functions": [
+        {
+          "name": "codeToBarcodeSegments",
+          "params": [
+            "code",
+            "symbols",
+            "colors"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "codeToBarcode",
+          "params": [
+            "code",
+            "symbols"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "codeToBarcodeSegments",
+        "codeToBarcode"
+      ],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/barcode.test.js": {
+      "filePath": "src/logic/barcode.test.js",
+      "contentHash": "9e72d6231f20278c38c3f7b523521531405bdd5e9ea90c31d2529f2ea0f3bcbb",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bun:test",
+          "specifiers": [
+            "describe",
+            "it",
+            "expect"
+          ]
+        },
+        {
+          "source": "./barcode.js",
+          "specifiers": [
+            "codeToBarcode"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/clipboard.js": {
+      "filePath": "src/logic/clipboard.js",
+      "contentHash": "c8ef57aa64db534cf98629a1ce716ef8a6b046d2b6ec4acee31c3ec7387082e7",
+      "functions": [
+        {
+          "name": "copyRichText",
+          "params": [
+            "text",
+            "html"
+          ],
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "copyRichText"
+      ],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/configFile.js": {
+      "filePath": "src/logic/configFile.js",
+      "contentHash": "24832ff84c3366ddea76873dbd2bf85c040c878610e10803b38ca6321062f8fe",
+      "functions": [
+        {
+          "name": "downloadConfig",
+          "params": [
+            "symbols",
+            "colors",
+            "codeName"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "readConfig",
+          "params": [
+            "file",
+            "base"
+          ],
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "downloadConfig",
+        "readConfig"
+      ],
+      "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/datetimeCode.js": {
+      "filePath": "src/logic/datetimeCode.js",
+      "contentHash": "c84ed0291b705d12d9258bf5cfdb26477bdb69a41f429953d1fbe9425a4680a0",
+      "functions": [
+        {
+          "name": "toDigits",
+          "params": [
+            "value",
+            "base",
+            "width"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "parseDatetime",
+          "params": [
+            "input"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "numberToCode",
+          "params": [
+            "input",
+            "base"
+          ],
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "stringToCode",
+          "params": [
+            "input",
+            "base"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "datetimeToCode",
+          "params": [
+            "input",
+            "base"
+          ],
+          "exported": true,
+          "lineCount": 19
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "FIELD_WIDTHS",
+        "toDigits",
+        "parseDatetime",
+        "stringToCode",
+        "datetimeToCode"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/datetimeCode.test.js": {
+      "filePath": "src/logic/datetimeCode.test.js",
+      "contentHash": "7fd7f92fac3ccda32bb71abd5c7f2e4e1e158098ce61e50d3a27c2359338c6f9",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bun:test",
+          "specifiers": [
+            "describe",
+            "it",
+            "expect"
+          ]
+        },
+        {
+          "source": "./datetimeCode.js",
+          "specifiers": [
+            "parseDatetime",
+            "datetimeToCode",
+            "stringToCode",
+            "toDigits"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 270,
+      "hasStructuralAnalysis": true
+    },
+    "src/logic/random.js": {
+      "filePath": "src/logic/random.js",
+      "contentHash": "fbf505d1a5938ad80aae4a689d91282eee75c655ae087f3dee9ce4fced22d292",
+      "functions": [
+        {
+          "name": "sampleWithoutReplacement",
+          "params": [
+            "source",
+            "count"
+          ],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [
+        "sampleWithoutReplacement"
+      ],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "src/main.jsx": {
+      "filePath": "src/main.jsx",
+      "contentHash": "ae81f1c01f2c8018a1ba5cf73171921c8982d90b049bb6b039ea82f8e1dec958",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "react",
+          "specifiers": [
+            "StrictMode"
+          ]
+        },
+        {
+          "source": "react-dom/client",
+          "specifiers": [
+            "createRoot"
+          ]
+        },
+        {
+          "source": "./index.css",
+          "specifiers": []
+        },
+        {
+          "source": "./App.jsx",
+          "specifiers": [
+            "App"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "vite.config.js": {
+      "filePath": "vite.config.js",
+      "contentHash": "f464792868caa4f0bfbdf7815f43e5f656f2883b2e01c14d1f139cfabae1a82b",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "vite",
+          "specifiers": [
+            "defineConfig"
+          ]
+        },
+        {
+          "source": "@vitejs/plugin-react",
+          "specifiers": [
+            "react"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
