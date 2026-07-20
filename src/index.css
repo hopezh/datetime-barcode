@@ -112,10 +112,6 @@ nav {
 .repo-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  font-family: var(--font-mono);
-  font-size: 13px;
   color: var(--fg-muted);
   transition: color 150ms ease;
 }

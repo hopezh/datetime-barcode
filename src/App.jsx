@@ -33,6 +33,7 @@ export default function App() {
       <nav>
         <span className="wordmark">Datetime Barcode</span>
         <div className="nav-actions">
+          <GithubLink />
           <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
         </div>
       </nav>
@@ -51,7 +52,6 @@ export default function App() {
             Convert any moment into a fixed-width digit string in base 2 to 10, assign each digit a
             Unicode symbol and a color — and read the result as a barcode.
           </p>
-          <GithubLink />
         </div>
         <aside>
           <ExampleSubtitle />
