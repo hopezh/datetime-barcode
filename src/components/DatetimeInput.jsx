@@ -25,7 +25,7 @@ export default function DatetimeInput({ value, error, onChange, onSend }) {
           <TimeSelect value={second} max={59} onChange={(s) => update(datePart, hour, minute, s)} />
         </div>
         <button type="button" onClick={() => onSend(value)}>
-          -&gt;
+          -&gt; Step 2
         </button>
       </div>
       {error && <span className="field-error">{error}</span>}

@@ -16,7 +16,7 @@ export default function NumberPaste({ onSend }) {
           onChange={(event) => setValue(event.target.value)}
         />
         <button type="button" disabled={!value} onClick={() => onSend(value)}>
-          -&gt;
+          -&gt; Step 2
         </button>
       </div>
     </div>
